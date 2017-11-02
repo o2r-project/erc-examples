@@ -1,0 +1,5 @@
+This R Shiny application launches a web version of the R model developed for the paper "A Question Driven Socio-hydrological Modeling Process." Launch the application by opening the 'LaunchModel.R' in R or R Studio and following the directions. Note that the 'Ui.R' file creates the user interface and that the 'server.R' file details the operations to be performed by the server. The 'server.R' file calls upon the 'shFun.R' file which contains the model. The file 'multiplot.R' facilitates combining multiple plots.
+
+The web application plots six metrics of system performance and automatically updates plots in response to user input. Move the hedging slope slider to adjust the degree of hedging applied. In the drop down menu select from three streamflow sequences to test the impact of streamflow on system performance. The model code is provided in this zip file (see 'shFun.R') and will also display at the base of the web application. 
+
+The application is also hosted at: https://mgarcia.shinyapps.io/ReservoirOperations
