@@ -7,11 +7,22 @@ For instructions on how to run the o2r reference implementation, see https://git
 
 **NOTE:** Licenses of files in the archives vary, please check carefully if they suit your needs.
 
+We want to thank everyone who contributed a workspace! Read more, if you want to [add your own!](http://o2r.info/almost/)
+
+
 ## Workspaces
 
-Descriptions TBD
+- [Garcia, M., Portney, K., and Islam, S.: A question driven socio-hydrological modeling process, Hydrol. Earth Syst. Sci., 20, 73-92, https://doi.org/10.5194/hess-20-73-2016, 2016.](workspaces/Aquestiondrivenprocess) 
+(Licensed under a Creative Commons Attribution 3.0 License.)
+
+- [minimal-rmd test](workspaces/minimal-rmd.zip)
+- [minimal-script test](workspaces/minimal-script.zip)
+- ...
+
 
 ## ERC
 
-Descriptions TBD
+- [metadata test](ERC/metadata.zip)
+- [ping test](ERC/ping.zip)
+- ...
 
