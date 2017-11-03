@@ -1,28 +1,25 @@
 # o2r examples
 
-Examples for Executable Research Compendia and compatible workspaces.
-All examples are ZIP archives to allow direct upload to the o2r reproducibility service.
+Examples for [Executable Research Compendia](http://o2r.info/erc-spec) and compatible workspaces.
+Examples are ZIP archives to allow direct upload to the [o2r reproducibility service](http://o2r.info/architecture/), or directories which must be zipped before upload.
 
-For instructions on how to run the o2r reference implementation, see https://github.com/o2r-project/reference-implementation.
+The o2r demo server is available at http://o2r.uni-muenster.de/.
 
-**NOTE:** Licenses of files in the archives vary, please check carefully if they suit your needs.
+For instructions on how to run the o2r reference implementation locally, see https://github.com/o2r-project/reference-implementation.
 
-We want to thank everyone who contributed a workspace! Read more, if you want to [add your own!](http://o2r.info/almost/)
+**NOTE:** Licenses of examples vary, please check carefully if they suit your needs.
 
+We want to thank everyone who contributed a workspace! Why not [add your own?](http://o2r.info/almost/)
 
 ## Workspaces
 
 - [Garcia, M., Portney, K., and Islam, S.: A question driven socio-hydrological modeling process, Hydrol. Earth Syst. Sci., 20, 73-92, https://doi.org/10.5194/hess-20-73-2016, 2016.](workspaces/Aquestiondrivenprocess) 
-(Licensed under a Creative Commons Attribution 3.0 License.)
+[License: [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/)]
 
-- [minimal-rmd test](workspaces/minimal-rmd.zip)
-- [minimal-script test](workspaces/minimal-script.zip)
-- ...
-
+- Minimal workspace with two files: `main.Rmd` in R Markdown format as the main analysis, and `display.html` in HTML for display, as [ready to use ZIP archive](workspaces/minimal-rmd.zip) [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
+- Minimal workspace with two files, `main.R` and `display.png`, as [ready to use ZIP archive](workspaces/minimal-script.zip) with data from http://www.budgetshippingcontainers.co.uk [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
 
 ## ERC
 
-- [metadata test](ERC/metadata.zip)
-- [ping test](ERC/ping.zip)
-- ...
-
+- [metadata test](ERC/metadata.zip) (ready to use ZIP archive) [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
+- [ping test](ERC/ping.zip) (ready to use ZIP archive) [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
