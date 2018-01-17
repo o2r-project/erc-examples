@@ -1,41 +1,29 @@
 ---
-title: A question driven socio-hydrological modeling process
+title: "A question driven socio-hydrological modeling process"
 author:
-    - name: Garcia, M.
-      affiliation: Civil & Environmental Engineering Department, Tufts University
-    - name: Portney, K
-      affiliation: Bush School of Government & Public Service, Texas A&M University
-    - name: Islam, S.
-      affiliation: The Fletcher School of Law and Diplomacy, Tufts University
-date: 15 January 2016
+- affiliation: Civil & Environmental Engineering Department, Tufts University
+  name: Garcia, M.
+- affiliation: Bush School of Government & Public Service, Texas A&M University
+  name: Portney, K
+- affiliation: The Fletcher School of Law and Diplomacy, Tufts University
+  name: Islam, S.
+date: "15 January 2016"
+output:
+  html_document: default
 doi: doi:10.5194/hess-20-73-2016
 abstract: "Human and hydrological systems are coupled: human activity impacts the hydrological cycle and hydrological conditions can, but do not always, trigger changes in human systems. Traditional modeling approaches with no feedback between hydrological and human systems typically cannot offer insight into how different patterns of natural variability or human-induced changes may propagate through this coupled system. Modeling of coupled human–hydrological systems, also called socio-hydrological systems, recognizes the potential for humans to transform hydrological systems and for hydrological conditions to influence human behavior. However, this coupling introduces new challenges and existing literature does not offer clear guidance regarding model conceptualization. There are no universally accepted laws of human behavior as there are for the physical systems; furthermore, a shared understanding of important processes within the field is often used to develop hydrological models, but there is no such consensus on the relevant processes in socio-hydrological systems. Here we present a question driven process to address these challenges. Such an approach allows modeling structure, scope and detail to remain contingent on and adaptive to the question context. We demonstrate the utility of this process by revisiting a classic question in water resources engineering on reservoir operation rules: what is the impact of reservoir operation policy on the reliability of water supply for a growing city? Our example model couples hydrological and human systems by linking the rate of demand decreases to the past reliability to compare standard operating policy (SOP) with hedging policy (HP). The model shows that reservoir storage acts both as a buffer for variability and as a delay triggering oscillations around a sustainable level of demand. HP reduces the threshold for action thereby decreasing the delay and the oscillation effect. As a result, per capita demand decreases during periods of water stress are more frequent but less drastic and the additive effect of small adjustments decreases the tendency of the system to overshoot available supplies. This distinction between the two policies was not apparent using a traditional noncoupled model."
-output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Abstract
-Human and hydrological systems are coupled: human activity impacts the hydrological cycle and hydrological conditions can, but do not always, trigger changes in human systems. Traditional modeling approaches with no feedback between hydrological and human systems typically cannot
-offer insight into how different patterns of natural variability or human-induced changes may propagate through this coupled system. Modeling of coupled human–hydrological systems, also called socio-hydrological systems, recognizes the potential for humans to transform hydrological systems and for hydrological conditions to influence human behavior. However, this coupling introduces new challenges and existing literature does not offer clear guidance regarding model conceptualization. There are no universally accepted laws of human behavior as there are for the physical systems; furthermore, a shared understanding of important processes within the field is often used to develop hydrological models, but there is no such consensus on the relevant processes in sociohydrological systems. Here we present a question driven process to address these challenges. Such an approach allows modeling structure, scope and detail to remain contingent on and adaptive to the question context. We demonstrate the
-utility of this process by revisiting a classic question in water resources engineering on reservoir operation rules: what is the impact of reservoir operation policy on the reliability
-of water supply for a growing city? Our example model couples hydrological and human systems by linking the rate of demand decreases to the past reliability to compare standard operating policy (SOP) with hedging policy (HP). The model shows that reservoir storage acts both as a buffer for variability and as a delay triggering oscillations around a sustainable level of demand. HP reduces the threshold for action thereby decreasing the delay and the oscillation effect. As a result, per capita demand decreases during periods of water stress are more frequent but less drastic and the additive effect of small adjustments decreases the tendency of the system to overshoot available supplies. This distinction between the two policies was not apparent using a traditional noncoupled model.
-
 #1 Introduction
 Humans both respond to and ignore changes in environmental conditions. While humans depend on the natural hydrological cycle to supply water for both personal and economic health (Falkenmark, 1977), they also depend on an array of other natural and human resources to maintain and grow communities. At times water availability can act as the limiting constraint, locally preventing or stalling the expansion of human activity. For example, water availability and variability constrained agricultural development in the Tarim River basin in western China before major water storage and transport infrastructure was constructed (Liu et al., 2014). At
 other times the water-related risks rise in the background, disconnected from decision making, while other priorities prevail. For instance, the level of the Aral Sea has continued to decline for decades imposing significant costs on adjacent communities but no coordinated effort to stop the decline emerged (Micklin, 2007). At still other times public policy
 decisions may work to exacerbate water problems, as when decisions are made to keep municipal water prices artificially low or when “senior water rights” encourage water usage in
 the face of shortages (Chong and Sunding, 2006; Hughes et al., 2013; Mini et al., 2014).
-Human and hydrological systems are coupled. Many impacts
-of human activity on the hydrological system are now
-well documented (Tong and Chen, 2002; Wissmar et al.,
-2004; Vörösmarty et al., 2010; Vahmani and Hogue, 2014)
-and there is increasing evidence that how and when humans
-respond individually and collectively to hydrological
-change has important implications for water resources planning,
-management and policy (Srinivasan et al., 2010; Di
+Human and hydrological systems are coupled. Many impacts of human activity on the hydrological system are now well documented (Tong and Chen, 2002; Wissmar et al., 2004; Vörösmarty et al., 2010; Vahmani and Hogue, 2014) and there is increasing evidence that how and when humans respond individually and collectively to hydrological change has important implications for water resources planning, management and policy (Srinivasan et al., 2010; Di
 Baldassarre et al., 2013; Elshafei et al., 2014). These observations
 have prompted a call to treat humans as an endogenous
 component of the water cycle (Wagener et al., 2010;
@@ -107,6 +95,127 @@ researchers before, it offers an excellent opportunity
 to test the utility of our proposed modeling framework using
 a hypothetical municipality called Sunshine City as a case
 study.
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(plyr)
+library(reshape2)
+
+Streamflow <- read.csv("SyntheticStreamflow.csv")
+source("shFun.R", local = TRUE)
+source("multiplot.R", local = TRUE)
+
+#Set simulation time period
+SU <- 5 
+TP <- 50 + SU             #Time period
+
+#Demand Parameters
+beta <- 1/1000           #Background efficiency increase [.]
+alpha <- 0.15            #Fractional adoption rate [.]
+Dmin <- 200/1000^3       #Minimum possible demand  [km^3/yr]
+
+#Shortage Memory Parameters
+muS <- 0.05              #Forgetting rate [.]
+Tp <- 0.4
+
+#Population Parameters
+deltaB <- 0.04           #Birth rate [.]    
+deltaD <- 0.03           #Death rate [.]
+deltaI <- 0.05           #Immigration rate [.]
+deltaE <- 0.03           #Emmigration rate [.]
+
+#Hydrologic Parameters
+muH <- 2.0               #Mean annual streamflow [L^3]
+sigmaH <- 0.50           #Standard deviation of streamfow [L^3]
+rhoH <- 0.60             #Lag 1 autocorrelation [.]
+etaH <- 0.001            #Evaporation rate [L]
+sigmaT <- 0.1            #Average slope of reservoir []
+Vmax <- 2.0              #Reservoir capacity [L^3]
+Kp <- 1                  #Hedging slope
+
+#Intial Conditions
+V1 <- 0.5                #Initial storage
+P1 <- 1000000            #Initial population
+M1 <- 0                  #Initial shortage memory
+D1 <- 400/1000^3         #Initial per cap. demand
+A1 <- 10                 #Reservoir base area [L^2]
+
+Q <- Streamflow[,"Q1"]
+
+ResSOP <- shFun(Q, TP, SU, V1, P1, D1, M1, A1, 
+                sigmaT, 1, etaH, deltaB, deltaD, deltaI, 
+                deltaE, muS, alpha, beta, Vmax, Dmin, Tp)
+ResSOP <- subset(ResSOP, Year > 0)
+
+ResHP <- shFun(Q, TP, SU, V1, P1, D1, M1, A1, 
+               sigmaT, Kp, etaH, deltaB, deltaD, deltaI, 
+               deltaE, muS, alpha, beta, Vmax, Dmin, Tp)
+ResHP <- subset(ResHP, Year > 0)
+
+colnames(ResHP) <- c("Year","StreamHP","VolHP","MemHP","DemHP","PopHP","TotHP")
+Res <- merge(ResSOP,ResHP,by="Year")
+
+Qdata <- Res[,c("Year","Stream")]
+p1 <- ggplot(data=Qdata, aes(x=Year, y=Stream)) +
+  geom_line(size=1) +
+  ggtitle(paste("Annual Streamflow")) +
+  ylab("Streamflow (km3/yr)") +
+  scale_y_continuous(limits=c(0, 3.5)) + 
+  theme(legend.position="bottom")
+
+Voldata <- Res[,c("Year","Vol","VolHP")]
+Voldata <- melt(Voldata, id=c("Year")) 
+p2 <- ggplot(data=Voldata, aes(x=Year, y=value, group = variable)) +
+  geom_line(aes(linetype=variable), size=1) +
+  ggtitle(paste("Storage Volume")) +
+  ylab("Volume (km3)") +
+  scale_y_continuous(limits=c(0, 2)) + 
+  scale_linetype_manual(values=c("solid", "dotted"), name="Operating\nPolicy", labels=c("SOP", "HP"))+
+  theme(legend.position="bottom")
+
+Memdata <- Res[,c("Year","Mem","MemHP")]
+Memdata <- melt(Memdata, id=c("Year")) 
+p3 <- ggplot(data=Memdata, aes(x=Year, y=value, group = variable)) +
+  geom_line(aes(linetype=variable), size=1) +
+  ggtitle(paste("Shortage Awareness")) +
+  ylab("Shortage Awareness") +
+  scale_y_continuous(limits=c(0, 1)) + 
+  scale_linetype_manual(values=c("solid", "dotted"), name="Operating\nPolicy", labels=c("SOP", "HP"))+
+  theme(legend.position="bottom")
+
+Demdata <- Res[,c("Year","Dem","DemHP")]
+Demdata <- mutate(Demdata, Dem = Dem*1000^3, DemHP = DemHP*1000^3)
+Demdata <- melt(Demdata, id=c("Year")) 
+p4 <- ggplot(data=Demdata, aes(x=Year, y=value, group = variable)) +
+  geom_line(aes(linetype=variable), size=1) +
+  ggtitle(paste("Per Capita Demand")) +
+  ylab("Per Cap. Demand (m3/yr)") +
+  scale_y_continuous(limits=c(200, 400)) + 
+  scale_linetype_manual(values=c("solid", "dotted"), name="Operating\nPolicy", labels=c("SOP", "HP"))+
+  theme(legend.position="bottom")
+
+Popdata <- Res[,c("Year","Pop","PopHP")]
+Popdata <- mutate(Popdata, Pop = Pop/1000000, PopHP = PopHP/1000000)
+Popdata <- melt(Popdata, id=c("Year")) 
+p5 <- ggplot(data=Popdata, aes(x=Year, y=value, group = variable)) +
+  geom_line(aes(linetype=variable), size=1) +
+  ggtitle(paste("Population")) +
+  ylab("Population (Millions)") +
+  scale_linetype_manual(values=c("solid", "dotted"), name="Operating\nPolicy", labels=c("SOP", "HP"))+
+  theme(legend.position="bottom")
+
+Totdata <- Res[,c("Year","Tot","TotHP")]
+Totdata <- melt(Totdata, id=c("Year")) 
+p6 <- ggplot(data=Totdata, aes(x=Year, y=value, group = variable)) +
+  geom_line(aes(linetype=variable), size=1) +
+  ggtitle(paste("Total Demand")) +
+  ylab("Total Demand (km3/yr)") +
+  scale_linetype_manual(values=c("solid", "dotted"), name="Operating\nPolicy", labels=c("SOP", "HP"))+
+  theme(legend.position="bottom")
+
+Plot <- multiplot(p1, p2, p3, p4, p5, p6, cols=3)
+```
+
 
 #2 Modeling socio-hydrological systems
 
