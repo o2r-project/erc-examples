@@ -21,7 +21,7 @@ opts_chunk$set(dev="png",
                dev.args=list(type="cairo"),
                dpi=96)
 
-data <- read.csv(file = "data.csv")
+data <- read.csv("data.csv")
 data <- data[sample(nrow(data)),]
 barplot(height = data$capacity, names.arg = data$year, ylab = "capacity", sub = "(c) Statista 2017")
 ```
