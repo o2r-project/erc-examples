@@ -1,5 +1,8 @@
 ---
 title: "Ping, pong"
+author: "Tester"
+abstract: "Test"
+
 ---
 
 I run for some time, but don't do too much.
