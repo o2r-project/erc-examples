@@ -38,8 +38,8 @@ We want to thank everyone who contributed a workspace! Why not [add your own?](h
 The ERC's runtime container is a standalone environment, and it must not rely on any online resources to work.
 The following two are a minimal demonstrator for this conceptual decision.
 
-- [ping workspace](workspace-ping) contains a `Dockerfile` (so the reproducibility service will not create one) which runs the [`ping`](https://en.wikipedia.org/wiki/Ping_(networking_utility)) tool to [`127.0.0.1`](https://en.wikipedia.org/wiki/Localhost), i.e. the localhost loopback, for 60 seconds. The other included files are merely there to make the metadata extraction work. This workspace can be successfully executed with the reproducibility service. [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
-- [ping workspace](workspace-ping-bad) contains a files just as the previous workspace, but tries to ping an online URL (`o2r.info`). This workspace results in a failed execution with the reproducibility service. [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
+- [ping workspace](workspaces/workspace-ping) contains a `Dockerfile` (so the reproducibility service will not create one) which runs the [`ping`](https://en.wikipedia.org/wiki/Ping_(networking_utility)) tool to [`127.0.0.1`](https://en.wikipedia.org/wiki/Localhost), i.e. the localhost loopback, for 60 seconds. The other included files are merely there to make the metadata extraction work. This workspace can be successfully executed with the reproducibility service. [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
+- [ping workspace](workspaces/workspace-ping-bad) contains files just as the previous workspace, but tries to ping an online URL (`o2r.info`). This workspace results in a failed execution with the reproducibility service. [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
 
 ## ERC
 
