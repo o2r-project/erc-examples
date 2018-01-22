@@ -23,14 +23,23 @@ We want to thank everyone who contributed a workspace! Why not [add your own?](h
 
 #### R Markdown
 
-- [Minimal workspace as ZIP archive](workspaces/minimal-rmd.zip) with two files: `main.Rmd` in R Markdown format as the main analysis, and `display.html` in HTML for display [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
-
+- [Minimal workspace as ZIP archive](workspaces/minimal-rmd.zip) with two files: `main.Rmd` in R Markdown format as the main analysis, and `display.html` in HTML for display [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)].
+- [R Markdown workspace with data file](workspaces/workspace-rmd-data) with three files: `main.Rmd` in R Markdown format as the main analysis, `data.csv` providing the raw data for the analysis, and `display.html` in HTML for display [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]. The workspace is also available in three variants to demonstrate the capabilities of the platform:
+  - [R Markdown workspace with randomised plot](workspaces/workspace-rmd-data-random) changes the order of the included bar plot. This example demonstrates differences between the uploaded display file and the one created by the platform in a wrongly designed workflow (i.e. using random effects in a way breaking reproducibility).
+  - [R Markdown workspace with wrong display file](workspaces/workspace-rmd-data_wrong-displayfile) has a mismatch between the plot created in the code and the plot included in the display file. This example demonstrates differences between the uploaded display file and the one created by the platform.
+  - [R Markdown workspace with different dataset](workspaces/workspace-rmd-data-other) is a direct copy of the original R Markdown workspace but with different data values in `data.csv`. This example can be used to demonstrate a simple substitution of tabular data from a plain text format.
 
 #### R
 
 - [Minimal workspace as ZIP archive](workspaces/minimal-script.zip) with two files, `main.R` and `display.png`, with data from http://www.budgetshippingcontainers.co.uk [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
 
 #### Networking
+
+The ERC's runtime container is a standalone environment, and it must not rely on any online resources to work.
+The following two are a minimal demonstrator for this conceptual decision.
+
+- [ping workspace](workspace-ping) contains a `Dockerfile` (so the reproducibility service will not create one) which runs the [`ping`](https://en.wikipedia.org/wiki/Ping_(networking_utility)) tool to [`127.0.0.1`](https://en.wikipedia.org/wiki/Localhost), i.e. the localhost loopback, for 60 seconds. The other included files are merely there to make the metadata extraction work. This workspace can be successfully executed with the reproducibility service. [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
+- [ping workspace](workspace-ping-bad) contains a files just as the previous workspace, but tries to ping an online URL (`o2r.info`). This workspace results in a failed execution with the reproducibility service. [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
 
 ## ERC
 
