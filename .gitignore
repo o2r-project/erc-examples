@@ -1,1 +1,5 @@
 workspaces/*\.zip
+
+corpus/\.Renviron
+
+corpus/\.Rhistory

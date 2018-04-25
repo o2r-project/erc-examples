@@ -45,3 +45,7 @@ The following two are a minimal demonstrator for this conceptual decision.
 
 - [metadata test](ERC/metadata.zip) (ready to use ZIP archive) [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
 - [ping test](ERC/ping.zip) (ready to use ZIP archive) [License: [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)]
+
+## Tools
+
+The directory `corpus` contains an R Markdown document to upload the full corpus of demo papers to a local or remote instance of the o2r reference implementation.
