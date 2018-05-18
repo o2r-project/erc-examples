@@ -140,8 +140,8 @@ If no metadata editing is required, you can attempt to publish all candidates wi
 
 ```{r publish_function}
 # publish candidates with direct copy of the metadata
-publish_compendium <- function(id, cookie) {
-  cat(format(Sys.time()), "Publishing ", id, "\n")
+publish_compendium <- function(id, cookie, sleep_after_upload_secs = 0) {
+  cat(format(Sys.time()), "Publishing ", id, " (", relativePath(names(id)) ,")\n")
   
   # get metadata
   response <- GET(url = paste0(o2r_api_endpoint, "compendium/", id, "/metadata"),
@@ -168,26 +168,45 @@ publish_compendium <- function(id, cookie) {
   }
   result <- status_code(response_update)
   names(result) <- id
+  Sys.sleep(time = sleep_after_upload_secs)
   return(result)
 }
 ```
 
-```{r publish}
-#id <- upload_workspace_zip(finished_papers_upload[[3]], user_cookie)
-#publish_compendium(id, o2r_user_cookie)
+Use loop to publish one paper after the other, and take a little break in between.
 
-finished_papers_publishings <- sapply(X = finished_papers_uploads,
-                                  FUN = publish_compendium,
-                                  cookie = o2r_user_cookie)
+```{r publish}
+finished_papers_publishings <- c()
+for (candidate_id in finished_papers_uploads) {
+  result <- publish_compendium(candidate_id, cookie = o2r_user_cookie, sleep_after_upload_secs = 2)
+  finished_papers_publishings <- c(finished_papers_publishings, result)
+}
 ```
 
 If not all workspaces could be published automatically, go to [the author page](http://localhost/#!/author/0000-0001-6225-344X) to edit the candidate compendia.
 
+Because of a race condition in `o2r-meta` ([#104](https://github.com/o2r-project/o2r-meta/issues/104)), we might get some `HTTP 500` errors.
+Let's try to publish those again.
+
+```{r retry_500_errors}
+publish_had_500_error <- names(finished_papers_publishings[finished_papers_publishings == 500])
+for (candidate_id in publish_had_500_error) {
+  result <- publish_compendium(candidate_id, cookie = o2r_user_cookie, sleep_after_upload_secs = 2)
+  # overwrite status
+  finished_papers_publishings[candidate_id] <- result
+}
+```
+
+_How many candidates are still not published now?_
+
+```{r publish_result}
+length(finished_papers_publishings[finished_papers_publishings != 200])
+```
+
+
 ## Start a job for each paper
 
-One at a time.
-
-```{r jobs}
+```{r job_functions}
 start_job <- function(id, cookie) {
   cat(format(Sys.time()), "Starting job for ", id, "\n")
   
@@ -238,13 +257,28 @@ finish_job <- function(id, cookie) {
   names(final_status) <- job_id
   return(final_status)
 }
+```
 
-#finish_job(names(finished_papers_publishings)[[3]], o2r_user_cookie)
+Run the jobs, one at a time.
 
-finished_papers_jobs <- sapply(X = names(finished_papers_publishings),
-                                  FUN = finish_job,
-                                  cookie = o2r_user_cookie)
+```{r jobs}
+finished_papers_jobs <- c()
+
+for (id in names(finished_papers_publishings)) {
+  result <- finish_job(id, cookie = o2r_user_cookie)
+  finished_papers_jobs <- c(finished_papers_jobs, result)
+}
 summary(as.factor(finished_papers_jobs))
+```
+
+## Fixing errors
+
+<!-- The following code chunk can be sued to upload, publish, and execute a single compendium for debugging purposes. -->
+
+```{r single_upload, eval=FALSE}
+id <- upload_workspace_zip(names(finished_papers_uploads[[6]]), o2r_user_cookie)
+publish_compendium(id, o2r_user_cookie)
+finish_job(names(finished_papers_publishings)[[3]], o2r_user_cookie)
 ```
 
 ## Testing the metadata extraction
