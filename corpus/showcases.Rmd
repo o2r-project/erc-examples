@@ -7,13 +7,17 @@ author: "Daniel Nüst"
 
 This document contains some script to upload the workspaces making up the o2r test corpus to an instance of the o2r reproducibility service.
 
+**Note:** This document is best run chunk by chunk, and not as a whole, using RStudio.
+
 The path to the corpus directory must be set for any code to work.
 You can add a file `.Renviron` on your local machine next to this file, and in it define the path in the environment variable `ERC_EXAMPLES_CORPUS_PATH`.
 
 ```{r}
-corpus_path <- Sys.getenv(x = "ERC_EXAMPLES_CORPUS_PATH", unset = NA)
-if (is.na(corpus_path))
-  stop("Corpus path must be set!")
+if(!exists("corpus_path")) {
+  corpus_path <- Sys.getenv(x = "ERC_EXAMPLES_CORPUS_PATH", unset = NA)
+  if (is.na(corpus_path))
+    stop("Corpus path must be set!")
+}
 cat("Loading copus papers from", corpus_path, "\n")
 ```
 
@@ -59,7 +63,7 @@ _Which of the reproduced workspace contains an R Markdown file?_
 ```{r zips_with_rmd}
 has_rmd <- sapply(X = finished_papers_repro_zips, FUN = function(zipfile) {
   files_in_zip <- unzip(zipfile = zipfile, list = TRUE)
-  any(grepl(pattern = "\\.Rmd", x = files_in_zip, ignore.case = TRUE))
+  any(grepl(pattern = "main\\.Rmd", x = files_in_zip, ignore.case = TRUE))
 })
 
 finished_papers_repro_zips[has_rmd]
@@ -127,7 +131,6 @@ upload_workspace_zip <- function(file, cookie) {
 ```
 
 ```{r upload}
-#upload_workspace_zip(finished_papers_upload[[3]], user_cookie)
 finished_papers_uploads <- lapply(X = finished_papers_repro_zips[has_rmd],
                                   FUN = upload_workspace_zip,
                                   cookie = o2r_user_cookie)
@@ -202,7 +205,6 @@ _How many candidates are still not published now?_
 ```{r publish_result}
 length(finished_papers_publishings[finished_papers_publishings != 200])
 ```
-
 
 ## Start a job for each paper
 
