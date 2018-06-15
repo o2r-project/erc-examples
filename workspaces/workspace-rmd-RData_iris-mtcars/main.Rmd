@@ -1,0 +1,118 @@
+---
+title: "A non-scientific example workspace to showcase and test the loading and usage of .RData-files"
+author:
+- affiliation: "Institute for Geoinformatics, Westfälische Wilhelms-Universität Münster, Heisenbergstraße 2, 40149 Münster, Germany"
+  name: Carlotta Workospacy 
+date: "07 June 2018"
+licenses:
+  code: "-" 
+  data: "Part of R 3.6.0"
+  text: CC-BY-3.0
+output:
+  html_document: default
+doi: 10.5194/ascmo-2-105-2016
+abstract: "Loading .RData files in a RMarkdown file is dead simple. Just how simple, you ask? The examples given below demonstrate just how simple working with .RData files is. The code featured in this workspace will load an `example.RData` file, containing the `iris` and `mtcars` datasets, which are included in R. It will then create a set of simple, yet colourful plots of the datasets respectively, seperated into a chunk of code for each dataset."
+---
+
+
+#Load datasets and required libraries 'ggplot2' and 'gplots'
+
+``` {r "Load datasets", cache=FALSE, results="hide", message=FALSE , warning=FALSE, comment=FALSE, warning=FALSE}
+
+library(ggplot2)
+library(gplots)
+
+load("example.RData")
+
+```
+
+
+#Some plots for the iris dataset
+
+Taken from https://warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/iris_plots/ (07.06.2018).
+
+``` {r "iris plots", echo=FALSE, cache=FALSE, results="hide", message=FALSE , warning=FALSE, comment=FALSE, warning=FALSE}
+
+# Taken from https://warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/iris_plots/ (07.06.2018).
+
+plot(iris$Petal.Length, iris$Petal.Width, main="Edgar Anderson's Iris Data")
+
+panel.pearson <- function(x, y, ...) {
+horizontal <- (par("usr")[1] + par("usr")[2]) / 2;
+vertical <- (par("usr")[3] + par("usr")[4]) / 2;
+text(horizontal, vertical, format(abs(cor(x,y)), digits=2))
+}
+
+pairs(iris[1:4], main = "Edgar Anderson's Iris Data", pch = 21, bg = c("red","green3","blue")[unclass(iris$Species)], upper.panel=panel.pearson)
+
+
+heatmap.2(t(iris[, 1:4]), trace="none", scale="row", key=TRUE, mar=c(2, 8), cexRow=1, ColSideColors=c("grey", "black", "yellow")[iris$Species])
+
+```
+
+
+#Some plots for the mtcars dataset
+
+Inspired by https://www.statmethods.net/advgraphs/ggplot2.html and https://www.statmethods.net/graphs/scatterplot.html (07.06.2018).
+
+``` {r "mtcars plots", echo=FALSE, cache=FALSE, results="hide", message=FALSE , warning=FALSE, comment=FALSE, warning=FALSE}
+
+
+# ggplot2 examples, inspired by https://www.statmethods.net/advgraphs/ggplot2.html and https://www.statmethods.net/graphs/scatterplot.html (07.06.2018)
+
+# create factors with value labels
+mtcars$num_gears <- factor(mtcars$gear,levels=c(3,4,5),
+   labels=c("3 gears","4 gears","5 gears"))
+mtcars$automatic_V_manual <- factor(mtcars$am,levels=c(0,1),
+   labels=c("Automatic","Manual"))
+mtcars$cylinders <- factor(mtcars$cyl,levels=c(4,6,8),
+   labels=c("4cyl","6cyl","8cyl"))
+
+# Kernel density plots for mpg
+# grouped by number of gears (indicated by color)
+qplot(mpg, data=mtcars, geom="density", fill=num_gears, alpha=I(.5),
+   main="Distribution of Gas Milage", xlab="Miles Per Gallon",
+   ylab="Density")
+
+# Scatterplot of mpg vs. hp for each combination of gears and cylinders
+# in each facet, transmittion type is represented by shape and color
+qplot(hp, mpg, data=mtcars, shape=automatic_V_manual, color=automatic_V_manual,
+   facets=gear~cyl, size=I(3),
+   xlab="Horsepower", ylab="Miles per Gallon")
+
+# Separate regressions of mpg on weight for each number of cylinders
+qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"),
+   method="lm", formula=y~x, color=cylinders,
+   main="Regression of MPG on Weight",
+   xlab="Weight", ylab="Miles per Gallon")
+
+# Boxplots of mpg by number of gears
+# observations (points) are overlayed and jittered
+qplot(gear, mpg, data=mtcars, geom=c("boxplot", "jitter"),
+   fill=num_gears, main="Mileage by Gear Number",
+   xlab="", ylab="Miles per Gallon") 
+
+# Simple Scatterplot
+attach(mtcars)
+plot(wt, mpg, main="Scatterplot Example",
+   xlab="Car Weight ", ylab="Miles Per Gallon ", pch=19) 
+
+# Add fit lines
+abline(lm(mpg~wt), col="red") # regression line (y~x)
+lines(lowess(wt,mpg), col="blue") # lowess line (x,y) 
+
+```
+
+Code used in this workspace is used for educational and non-commertial purposes, only.
+
+## Original sources:
+
+### mtcars 
+
+Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411. 
+
+### iris
+
+Fisher, R. A. (1936) The use of multiple measurements in taxonomic problems. Annals of Eugenics, 7, Part II, 179–188.
+
+The data were collected by Anderson, Edgar (1935). The irises of the Gaspe Peninsula, Bulletin of the American Iris Society, 59, 2–5. 
