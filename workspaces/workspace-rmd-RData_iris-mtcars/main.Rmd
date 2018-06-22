@@ -11,8 +11,18 @@ licenses:
 output:
   html_document: default
 doi: 10.5194/ascmo-2-105-2016
-abstract: "Loading .RData files in a RMarkdown file is dead simple. Just how simple, you ask? The examples given below demonstrate just how simple working with .RData files is. The code featured in this workspace will load an `example.RData` file, containing the `iris` and `mtcars` datasets, which are included in R. It will then create a set of simple, yet colourful plots of the datasets respectively, seperated into a chunk of code for each dataset."
+abstract: "Loading .RData files in a RMarkdown file is dead simple. Just how simple, you ask? The examples given below demonstrate just how simple working with .RData files is. The code featured in this workspace will load an `example.RData` file, containing the `iris` and `mtcars` datasets, which are included in R, as \'my_iris\' and \'my_mtcars\' objects, respectively. It will then create a set of simple, yet colourful plots of the datasets respectively, seperated into a chunk of code for each dataset."
 ---
+
+#Create a simple `.RData` file
+
+``` {r "Save datasets", eval=FALSE, cache=FALSE, results="hide", message=FALSE , warning=FALSE, comment=FALSE, warning=FALSE}
+
+my_iris <- iris
+my_mtcars <- mtcars
+save.image("./example.RData")
+
+```
 
 
 #Load datasets and required libraries 'ggplot2' and 'gplots'
@@ -31,11 +41,11 @@ load("example.RData")
 
 Taken from https://warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/iris_plots/ (07.06.2018).
 
-``` {r "iris plots", echo=FALSE, cache=FALSE, results="hide", message=FALSE , warning=FALSE, comment=FALSE, warning=FALSE}
+``` {r "my_iris plots", echo=FALSE, cache=FALSE, results="hide", message=FALSE , warning=FALSE, comment=FALSE, warning=FALSE}
 
 # Taken from https://warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/iris_plots/ (07.06.2018).
 
-plot(iris$Petal.Length, iris$Petal.Width, main="Edgar Anderson's Iris Data")
+plot(my_iris$Petal.Length, my_iris$Petal.Width, main="Edgar Anderson's Iris Data")
 
 panel.pearson <- function(x, y, ...) {
 horizontal <- (par("usr")[1] + par("usr")[2]) / 2;
@@ -43,10 +53,10 @@ vertical <- (par("usr")[3] + par("usr")[4]) / 2;
 text(horizontal, vertical, format(abs(cor(x,y)), digits=2))
 }
 
-pairs(iris[1:4], main = "Edgar Anderson's Iris Data", pch = 21, bg = c("red","green3","blue")[unclass(iris$Species)], upper.panel=panel.pearson)
+pairs(my_iris[1:4], main = "Edgar Anderson's Iris Data", pch = 21, bg = c("red","green3","blue")[unclass(my_iris$Species)], upper.panel=panel.pearson)
 
 
-heatmap.2(t(iris[, 1:4]), trace="none", scale="row", key=TRUE, mar=c(2, 8), cexRow=1, ColSideColors=c("grey", "black", "yellow")[iris$Species])
+heatmap.2(t(my_iris[, 1:4]), trace="none", scale="row", key=TRUE, mar=c(2, 8), cexRow=1, ColSideColors=c("grey", "black", "yellow")[my_iris$Species])
 
 ```
 
@@ -55,45 +65,45 @@ heatmap.2(t(iris[, 1:4]), trace="none", scale="row", key=TRUE, mar=c(2, 8), cexR
 
 Inspired by https://www.statmethods.net/advgraphs/ggplot2.html and https://www.statmethods.net/graphs/scatterplot.html (07.06.2018).
 
-``` {r "mtcars plots", echo=FALSE, cache=FALSE, results="hide", message=FALSE , warning=FALSE, comment=FALSE, warning=FALSE}
+``` {r "my_mtcars plots", echo=FALSE, cache=FALSE, results="hide", message=FALSE , warning=FALSE, comment=FALSE, warning=FALSE}
 
 
 # ggplot2 examples, inspired by https://www.statmethods.net/advgraphs/ggplot2.html and https://www.statmethods.net/graphs/scatterplot.html (07.06.2018)
 
 # create factors with value labels
-mtcars$num_gears <- factor(mtcars$gear,levels=c(3,4,5),
+my_mtcars$num_gears <- factor(my_mtcars$gear,levels=c(3,4,5),
    labels=c("3 gears","4 gears","5 gears"))
-mtcars$automatic_V_manual <- factor(mtcars$am,levels=c(0,1),
+my_mtcars$automatic_V_manual <- factor(my_mtcars$am,levels=c(0,1),
    labels=c("Automatic","Manual"))
-mtcars$cylinders <- factor(mtcars$cyl,levels=c(4,6,8),
+my_mtcars$cylinders <- factor(my_mtcars$cyl,levels=c(4,6,8),
    labels=c("4cyl","6cyl","8cyl"))
 
 # Kernel density plots for mpg
 # grouped by number of gears (indicated by color)
-qplot(mpg, data=mtcars, geom="density", fill=num_gears, alpha=I(.5),
+qplot(mpg, data=my_mtcars, geom="density", fill=num_gears, alpha=I(.5),
    main="Distribution of Gas Milage", xlab="Miles Per Gallon",
    ylab="Density")
 
 # Scatterplot of mpg vs. hp for each combination of gears and cylinders
 # in each facet, transmittion type is represented by shape and color
-qplot(hp, mpg, data=mtcars, shape=automatic_V_manual, color=automatic_V_manual,
+qplot(hp, mpg, data=my_mtcars, shape=automatic_V_manual, color=automatic_V_manual,
    facets=gear~cyl, size=I(3),
    xlab="Horsepower", ylab="Miles per Gallon")
 
 # Separate regressions of mpg on weight for each number of cylinders
-qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"),
+qplot(wt, mpg, data=my_mtcars, geom=c("point", "smooth"),
    method="lm", formula=y~x, color=cylinders,
    main="Regression of MPG on Weight",
    xlab="Weight", ylab="Miles per Gallon")
 
 # Boxplots of mpg by number of gears
 # observations (points) are overlayed and jittered
-qplot(gear, mpg, data=mtcars, geom=c("boxplot", "jitter"),
+qplot(gear, mpg, data=my_mtcars, geom=c("boxplot", "jitter"),
    fill=num_gears, main="Mileage by Gear Number",
    xlab="", ylab="Miles per Gallon") 
 
 # Simple Scatterplot
-attach(mtcars)
+attach(my_mtcars)
 plot(wt, mpg, main="Scatterplot Example",
    xlab="Car Weight ", ylab="Miles Per Gallon ", pch=19) 
 
