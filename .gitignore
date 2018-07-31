@@ -3,3 +3,4 @@ workspaces/*\.zip
 corpus/\.Renviron
 
 corpus/\.Rhistory
+.Rproj.user
