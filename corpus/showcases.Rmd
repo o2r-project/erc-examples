@@ -67,6 +67,42 @@ finished_papers_repro_zips[has_rmd]
 
 `r length(finished_papers_repro_zips[has_rmd])` papers have a reproduced workspace with an R Markdown file.
 
+_Which of the reproduced workspaces can be uploaded, published, and a job executed?_
+
+See notes [here](https://docs.google.com/spreadsheets/d/1WG8Ab5EKhb4KcZNLpveWwbvqlZ41Gjj7l1LccKyBla4/edit#gid=406313660).
+
+```{r list_of_green_workspaces}
+green_papers <- finished_papers_repro_zips[has_rmd][c(1, # Bayesian - check fails
+                                                      2, # Aquestiondriven - check fails
+                                                      4, # gastropod
+                                                      8, # metafor
+                                                      13,# flood risk
+                                                      14,# geochronological
+                                                      16, # INSYDE
+                                                      22, # Fourier
+                                                      26, # Timescales
+                                                      27, # survival
+                                                      28, # Underestimation - success with no diffs
+                                                      11, # lubridate - success with no diffs
+                                                      24, # split-apply-combine
+                                                      25, # tidy data
+                                                      # to check:
+                                                      
+                                                      19, # LOESS - execution takes very long
+                                                      5, # landslide - recently updated by DN, not waited yet to finish
+                                                      7, # calibrating norway
+                                                      18  # vector machines
+                                                      # need fix:
+                                                      #10, # CPLFD # ERROR saving new compendium: Error: key /tmp/o2r/compendium/B8c0H/r/nc/TmaxForYears.nc must not contain '.' > o2r-meta
+                                                      )]
+```
+
+Uploading `r length(green_papers)`:
+
+```{r output_green_papers, echo=FALSE}
+green_papers
+```
+
 ## Upload corpus papers as workspaces
 
 ```{r upload_prerequisites}
@@ -93,7 +129,7 @@ cat("Cookie      ", o2r_user_cookie, "\n")
 
 ```{r upload_functions}
 relativePath = function(p) {
-  str_replace(p, paste0(corpus_path, "/"), "")
+  str_replace(p, paste0(path.expand(corpus_path), "/"), "")
 }
 
 upload_workspace_zip <- function(file, cookie) {
@@ -114,7 +150,7 @@ upload_workspace_zip <- function(file, cookie) {
   if (is.list(response_content) && !is.null(response_content$id)) {
     cat(format(Sys.time()), "Uploaded  ", file_relative, ": ",
         response_content$id,
-        "(", format(Sys.time() - startTime), ")\n")
+        paste0("(", format(Sys.time() - startTime), ")"), "\n")
     result <- response_content$id
   } else {
     cat(format(Sys.time()), "Error uploading ", file_relative, "\n",
@@ -127,8 +163,7 @@ upload_workspace_zip <- function(file, cookie) {
 ```
 
 ```{r upload}
-#upload_workspace_zip(finished_papers_upload[[3]], user_cookie)
-finished_papers_uploads <- lapply(X = finished_papers_repro_zips[has_rmd],
+finished_papers_uploads <- lapply(X = green_papers,
                                   FUN = upload_workspace_zip,
                                   cookie = o2r_user_cookie)
 ```
@@ -141,7 +176,12 @@ If no metadata editing is required, you can attempt to publish all candidates wi
 ```{r publish_function}
 # publish candidates with direct copy of the metadata
 publish_compendium <- function(id, cookie, sleep_after_upload_secs = 0) {
-  cat(format(Sys.time()), "Publishing ", id, " (", relativePath(names(id)) ,")\n")
+  if (is.na(id)) {
+    warning("Cannot publish compendium from ", names(id), "\n")
+    return(NA)
+  }
+  
+  cat(format(Sys.time()), "Publishing ", id, paste0(" (", relativePath(names(id)) ,")"), "...")
   
   # get metadata
   response <- GET(url = paste0(o2r_api_endpoint, "compendium/", id, "/metadata"),
@@ -179,7 +219,8 @@ Use loop to publish one paper after the other, and take a little break in betwee
 finished_papers_publishings <- c()
 for (candidate_id in finished_papers_uploads) {
   result <- publish_compendium(candidate_id, cookie = o2r_user_cookie, sleep_after_upload_secs = 2)
-  finished_papers_publishings <- c(finished_papers_publishings, result)
+  if (!is.na(result))
+    finished_papers_publishings <- c(finished_papers_publishings, result)
 }
 ```
 
@@ -202,7 +243,6 @@ _How many candidates are still not published now?_
 ```{r publish_result}
 length(finished_papers_publishings[finished_papers_publishings != 200])
 ```
-
 
 ## Start a job for each paper
 
@@ -246,7 +286,7 @@ finish_job <- function(id, cookie) {
     cat(format(Sys.time()), "Waiting for job  ", job_id)
     while (job_status(job_id, cookie) == "running") {
       cat(".")
-      Sys.sleep(time = 3)
+      Sys.sleep(time = 10)
     }
     cat("\n")
     
@@ -271,14 +311,20 @@ for (id in names(finished_papers_publishings)) {
 summary(as.factor(finished_papers_jobs))
 ```
 
-## Fixing errors
+## Fixing errors & testing
 
-<!-- The following code chunk can be sued to upload, publish, and execute a single compendium for debugging purposes. -->
+The following code chunk can be used to upload, publish, and execute a single compendium from the list `finished_papers_repro_zips[has_rmd]` for debugging purposes.
+For the function to work, run the chunks above to load finished papers and the three `.._function` chunks.
 
 ```{r single_upload, eval=FALSE}
-id <- upload_workspace_zip(names(finished_papers_uploads[[6]]), o2r_user_cookie)
-publish_compendium(id, o2r_user_cookie)
-finish_job(names(finished_papers_publishings)[[3]], o2r_user_cookie)
+process_workspace <- function(workspaceIndex, the_list = finished_papers_repro_zips[has_rmd]) {
+  id <- upload_workspace_zip(the_list[[workspaceIndex]], cookie = o2r_user_cookie)
+  publish_result <- publish_compendium(id, o2r_user_cookie)
+  job_result <- finish_job(names(publish_result), o2r_user_cookie)
+  cat("Uploaded ", finished_papers_repro_zips[has_rmd][[workspaceIndex]], " as ", id,
+    "\nand published resulting in ", publish_result, "\nand ran job ", names(job_result), " resulting in ", job_result)
+}
+#process_workspace(19)
 ```
 
 ## Testing the metadata extraction
