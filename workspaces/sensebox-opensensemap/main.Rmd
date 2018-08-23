@@ -1,0 +1,241 @@
+---
+title: "Reproducible Environmental Observations and Analysis"
+author:
+  - name: "Daniel Nüst"
+    affiliation: "senseBox and OpenSenseMap community"
+date: "`r format(Sys.time(), '%Y-%m-%d %T %Z')`"
+output: html_document
+abstract: "Analyse senseBox data from OpenSenseMap in a transparent, reproducible, and open way."
+licenses:
+  code: Apache-2.0
+  data: "PDDL 1.0"
+  text: CC-BY-4.0
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+This document showcases a completely reproducible [particulate](https://en.wikipedia.org/wiki/Particulates) matter analysis.
+Starting from the used measurement devices, via software for data hosting, to the analysis and visualisation environment.
+It stands on the shoulders of communities who provide free and open resources in the spirit of [Open Science](https://en.wikipedia.org/wiki/Open_science):
+
+- **open hardware**: the [senseBox](https://sensebox.de/en/) project, [Arduino](https://en.wikipedia.org/wiki/Arduino)
+- **open data**: the [openSenseMap](https://opensensemap.org/) and its [API](https://api.opensensemap.org/) provide environmental data licensed under [PDDL 1.0](http://opendatacommons.org/licenses/pddl/summary/)
+- **free and open source software**: [software by the senseBox team](https://github.com/sensebox/) to host their services and [download the data into R](https://github.com/noerw/opensensmapR), [R](https://jupyter.org/) with a large number of packages (e.g. `rmarkdown`, `sf`, `dplyr`, ...), [Project Jupyter](https://jupyter.org/), [binder](https://mybinder.org/), [Rocker](https://www.rocker-project.org/), [Docker](https://docker.com/), ... and many more
+
+The actual analysis is based on the [opensensmapR vignette `osem-intro`](https://noerw.github.io/opensensmapR/inst/doc/osem-intro.html).
+The code and it's environment are published, documented, and packaged to support [reproducible research](https://doi.org/10.1045/january2017-nuest).
+
+The code repository is [https://github.com/nuest/sensebox-binder](https://github.com/nuest/sensebox-binder).
+The repository can be opened interactively at [http://mybinder.org/v2/gh/nuest/sensebox-binder/master](http://mybinder.org/v2/gh/nuest/sensebox-binder/master).
+The code (this document as either [R Markdown](http://rmarkdown.rstudio.com/) or [Jupyter Notebook](https://nbformat.readthedocs.io/en/latest/)) and environment (a [Docker image](https://docs.docker.com/glossary/?term=image)) are archived with a [DOI](https://en.wikipedia.org/wiki/Digital_object_identifier): [`10.5281/zenodo.1135140`](https://doi.org/10.5281/zenodo.1135140).
+
+## Analysis
+
+The analysis of takes a look at _fine particulate matter measured in Germany at New Year's Eve 2018_.
+
+In the remainder of this file, code "chunks" and text are [interspersed](https://en.wikipedia.org/wiki/Literate_programming) to provide a transparent and understandable workflow.
+Take a look at the file `main.Rmd` to see _all code_.
+
+**Note**: The data is included in the archive as a backup in [JSON](https://en.wikipedia.org/wiki/JSON) format.
+To use life data from the openSenseMap API, set the variable `online` to `TRUE` in the second code chunk.
+
+```{r packages, message=FALSE, warning=FALSE, include=FALSE}
+library("opensensmapr")
+library("dplyr")
+library("lubridate")
+library("units")
+library("sf")
+library("lwgeom")
+library("readr")
+library("jsonlite")
+library("here")
+library("maps")
+```
+
+```{r load_box_data, include=FALSE}
+online <- FALSE # access online API or use local data backup?
+analysis_date <- lubridate::as_datetime("2018-01-01 00:00:00")
+
+if (online) {
+  # retrieve data from openSenseMap API
+  all_boxes <- osem_boxes()
+  pm25_boxes <- osem_boxes(
+    exposure = 'outdoor',
+    date = analysis_date, # ±4 hours
+    phenomenon = 'PM2.5'
+  )
+  
+  # update local data
+  all_json <- toJSON(all_boxes, digits = NA, pretty = TRUE)
+  write(all_json, file = here("data/all_boxes.json"))
+  pm25_json <- toJSON(pm25_boxes, digits = NA, pretty = TRUE)
+  write(pm25_json, file = here("data/pm25_boxes.json"))
+} else {
+  # load data from file and fix column types
+  all_boxes_file <- fromJSON(here("data/all_boxes.json"))
+  all_boxes <- type_convert(all_boxes_file,
+                                  col_types = cols(
+                                    exposure = col_factor(levels = NULL),
+                                    model = col_factor(levels = NULL),
+                                    grouptag = col_factor(levels = NULL)))
+  class(all_boxes) <- c("sensebox", class(all_boxes))
+  pm25_boxes_file <- fromJSON(here("data/pm25_boxes.json"))
+  pm25_boxes <- type_convert(pm25_boxes_file,
+                                  col_types = cols(
+                                    exposure = col_factor(levels = NULL),
+                                    model = col_factor(levels = NULL),
+                                    grouptag = col_factor(levels = NULL)))
+  class(pm25_boxes) <- c("sensebox", class(pm25_boxes))
+}
+
+knitr::kable(data.frame(nrow(all_boxes), nrow(pm25_boxes)),
+             col.names = c(
+               "# senseBoxes",
+               paste("# senseBoxes with PM2.5 measurements around", format(analysis_date, "%Y-%m-%d %T %Z"))))
+```
+
+### Exploring openSenseMap
+
+The openSenseMap currently provides access to `r nrow(all_boxes)` senseBoxes of which `r nrow(pm25_boxes)` provide measurements of [PM2.5](https://www.umweltbundesamt.de/sites/default/files/medien/377/dokumente/infoblatt_feinstaub_pm2_5_en.pdf) around `r format(analysis_date, "%Y-%m-%d %T %Z")`.
+
+The following map shows the PM2.5 sensor locations, which are mostly deployed in central Europe.
+
+```{r plot_outdoor_feinstaub, echo=FALSE}
+plot(pm25_boxes)
+```
+
+### Particulates at New Year's Eve in Münster
+
+_How many senseBoxes in Münster measure PM2.5?_
+
+```{r muenster_boxes, echo=FALSE}
+ms <- st_sfc(st_point(c(7.62571, 51.96236)))
+st_crs(ms) <- 4326
+
+pm25_boxes_sf <- st_as_sf(pm25_boxes, remove = FALSE, agr = "identity")
+names(pm25_boxes_sf) <- c(names(pm25_boxes), "geometry")
+
+pm25_boxes_sf <- cbind(pm25_boxes_sf, dist_to_ms = st_distance(ms, pm25_boxes_sf)[1,])
+max_dist <- set_units(7, km) # km from city center
+
+ms_boxes <- pm25_boxes_sf[pm25_boxes_sf$dist_to_ms < max_dist, c("X_id", "name")]
+ms_boxes
+```
+
+Now we retrieve data for `r nrow(ms_boxes)` senseBoxes with values in the area of interest.
+
+```{r muenster_data}
+if (online) {
+  class(ms_boxes) <- c("sensebox", class(ms_boxes))
+  ms_data <- osem_measurements(ms_boxes, phenomenon = "PM2.5",
+                             from = lubridate::as_datetime("2017-12-31 20:00:00"),
+                             to = lubridate::as_datetime("2018-01-01 04:00:00"),
+                             columns = c("value", "createdAt", "lat", "lon", "boxId",
+                                         "boxName", "exposure", "sensorId",
+                                         "phenomenon", "unit", "sensorType"))
+  # update local data
+  data_json <- toJSON(ms_data, digits = NA, pretty = TRUE)
+  write(data_json, file = here("data/ms_data.json"))
+} else {
+  # load data from file and fix column types
+  ms_data_file <- fromJSON(here("data/ms_data.json"))
+  ms_data <- type_convert(ms_data_file,
+                                  col_types = cols(
+                                    sensorId = col_factor(levels = NULL),
+                                    unit = col_factor(levels = NULL)))
+  class(ms_data) <- c(class(ms_data), "sensebox")
+}
+
+summary(ms_data %>% 
+                select(value,sensorId,unit))
+```
+
+We can now plot `r nrow(ms_data)` measurements.
+
+```{r muenster_plot_timeseries, echo=FALSE}
+plot(value~createdAt, ms_data, 
+     type = "p", pch = '*', cex = 2, # new year's style
+     col = factor(ms_data$sensorId), 
+     xlab = NA, 
+     ylab = unique(ms_data$unit),
+     main = "Particulates measurements (PM2.5) on New Year 2017/2018",
+     sub = paste(nrow(ms_boxes), "stations in Münster, Germany\n",
+                 "Data by openSenseMap.org licensed under",
+                 "Public Domain Dedication and License 1.0"))
+```
+
+You can see, it was a [very "particular" celebration](http://www.dw.com/en/new-years-eve-are-fireworks-harming-the-environment/a-41957523).
+
+_Who are the record holders?_
+
+```{r top_three_boxes, echo=FALSE}
+top_measurements <- ms_data %>%
+  arrange(desc(value))
+top_boxes <- top_measurements %>%
+               distinct(sensorId, .keep_all = TRUE)
+knitr::kable(x = top_boxes %>%
+               select(value, createdAt, boxName) %>%
+               head(n = 3),
+             caption = "Top 3 boxes")
+```
+
+**Note:** The timestamp is UTC and the local time is [CET](https://en.wikipedia.org/wiki/CET) (`UTC+1:00`).
+The value `999.9` is the maximum value measured by the used sensor [SDS011](https://nettigo.pl/attachments/398).
+
+```{r top_boxes, echo=FALSE}
+knitr::kable(top_boxes %>% filter(value == max(top_boxes$value)) %>%
+               select(sensorId, boxName),
+             col.names = c("Top sensor identifier", "Top box name"))
+```
+
+Congratulations (?) to boxes for holding the record values just after the new year started.
+
+**Where are the record holding boxes?**
+
+```{r top_box_plot, echo=FALSE}
+top_boxes_sf <- top_boxes %>% 
+  filter(value == max(top_boxes$value)) %>%
+  st_as_sf(coords = c('lon', 'lat'), crs = 4326)
+bbox <- sf::st_bbox(top_boxes_sf)
+
+world <- map("world", plot = FALSE, fill = TRUE) %>%
+  sf::st_as_sf() %>%
+  sf::st_geometry()
+
+plot(world,
+     xlim = round(bbox[c(1,3)], digits = 1),
+     ylim = round(bbox[c(2,4)], digits = 1),
+     axes = TRUE, las = 1)
+plot(top_boxes_sf, add = TRUE, col = "red", cex = 2)
+title("senseBox stations in Münster with highest PM2.5 measurements")
+```
+
+## Conclusion
+
+This document creates a reproducible workflow of open data from a public API.
+It leverages software to create a transparent analysis, which can be easily opened, investigated, and even developed further with a web browser by opening the public code repository on a free cloud platform.
+To increase reproducibility, the data is cached manually as CSV files (i.e. text-based data format) and stored next to the analysis file.
+A use may adjust this workflow to her own needs, like different location or time period, by adjust the R code and deleting the data files.
+In case the exploration platform ceases to exist, users may still recreate the environment themselves based on the files in the code repository.
+A snapshot of the files from the code repository, i.e. data, code, and runtime environment (as a Docker image) are stored in a reliable data repository.
+While the manual workflow of building the image and running it is very likely to work in the future, the archived image captures the exact version of the software the original author used.
+
+The presented solution might seem complex.
+But it caters to many different levels of expertise (one-click open in browser vs. self-building of images and local inspection) and has several fail-safes (binder may disappear, GitHub repository may be lost, Docker may stop working).
+The additional work is much outweighed by the advantages in transparency and openness.
+
+## License
+
+<img alt="Creative Commons License" style="border-width:0" src="cc-by-4.0.png" />
+
+This document is licensed under a [Creative Commons Attribution 4.0 International ](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0).
+
+## Metadata
+
+```{r metadata, echo=FALSE}
+devtools::session_info()
+```

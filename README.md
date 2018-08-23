@@ -13,11 +13,12 @@ We want to thank everyone who contributed a workspace! Why not [add your own?](h
 
 ## Workspaces
 
-### Journal articles
+### Journal articles or short papers
 
 - [Garcia, M., Portney, K., and Islam, S.: A question driven socio-hydrological modeling process, Hydrol. Earth Syst. Sci., 20, 73-92, https://doi.org/10.5194/hess-20-73-2016, 2016.](workspaces/Aquestiondrivenprocess) 
 [License: [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/)]
 - [Fraza, E., Elsner, J. B., and Jagger, T. H.: A space–time statistical climate model for hurricane intensification in the North Atlantic basin, Adv. Stat. Clim. Meteorol. Oceanogr., 2, 105-114, https://doi.org/10.5194/ascmo-2-105-2016, 2016.](workspaces/Aspacetimemodel) [License: [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/)]
+- [Nüst, Daniel. (2018, January 8). Open environmental data analysis with senseBox, openSenseMap, Jupyter Notebook, RStudio, and BinderHub. Zenodo.](workspaces/sensebox-opensensemap) is included in a shorted version, see [Zenodo](http://doi.org/10.5281/zenodo.1139929) [License: [Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/)]
 
 ### Demos
 
