@@ -1,5 +1,5 @@
 FROM alpine
-MAINTAINER <http://o2r.info>
+MAINTAINER <https://o2r.info>
 
 ENV HOST o2r.info
 ENV COUNT 30
