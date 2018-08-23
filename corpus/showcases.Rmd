@@ -3,6 +3,16 @@ title: "o2r corpus - showcase upload"
 author: "Daniel Nüst"
 ---
 
+## Required libraries
+
+```{r libs}
+library("httr")
+library("curl")
+library("stringr")
+library("jsonlite")
+```
+
+
 ## Corpus preparation
 
 This document contains some script to upload the workspaces making up the o2r test corpus to an instance of the o2r reproducibility service.
@@ -28,13 +38,47 @@ This file must be a suitable ERC main document for upload to the o2r reference i
 
 ## Start o2r reference implementation
 
+This is optional if you want to upload corpus papers to a remote deployment of the reference implementation.
+
 ```{bash, eval = FALSE}
 git clone https://github.com/o2r-project/reference-implementation.git
 cd reference-implementation
 make hub
 ```
 
-**Now log in as 'User' at http://localhost.**
+**Now log in as a "regular user" at http://localhost.**
+
+## Get user cookie for authentication
+
+The following code chunk retrieves the cookie from the local reference implementation, which is exposed via [o2r-guestlister]().
+This is a "security hole" which of course does not work when uploading workspaces to a remote reference implementation deployment.
+In case of a remote service, log in, find the cookie `connec.sid` for the platform website in your browser (e.g. using debug tools, `F12`), and manually define the variable `o2r_user_cookie` with the value of said cookie.
+Depending on the used browser, you must decode the string so that is starts with `s:`.
+
+```{r cookie_local, eval=FALSE}
+o2r_api_endpoint <- "http://localhost/api/v1/"
+user_cookie_url <- "http://localhost/oauth/cookie/0000-0001-6225-344X"
+
+# get cookie via API from o2r-guestlister, but user must login manually
+if (!is.null(content(GET(user_cookie_url))$error))
+  invisible(readline(prompt = "Login as 'User' at http://localhost, then press [enter] to continue"))
+if (!is.null(content(GET(user_cookie_url))$error) && !interactive())
+  stop("Login as 'User' at http://localhost before rendering the document.")
+
+o2r_user_cookie <- curl_unescape(content(GET(user_cookie_url))$cookie)
+# clear cookies (can be required for manual testing and when the cookie changes)
+httr::handle_reset(o2r_api_endpoint)
+```
+
+```{r cookie_manual, eval=FALSE}
+o2r_api_endpoint <- "https://o2r.uni-muenster.de/api/v1/"
+o2r_user_cookie <- URLdecode("s%3A1gULF5iJHqZdzTwXeU77N633xOXoU-ft.c22tDacKgXinGLZjovY%2Bz70IY0o0svHDFbYA3cAooXQ")
+```
+
+```{r log_endpoint_cookie}
+cat("Endpoint    ", o2r_api_endpoint, "\n")
+cat("Cookie      ", o2r_user_cookie, "\n")
+```
 
 ## Finished papers
 
@@ -109,28 +153,6 @@ green_papers
 
 ## Upload corpus papers as workspaces
 
-```{r upload_prerequisites}
-library("httr")
-library("curl")
-library("stringr")
-library("jsonlite")
-
-o2r_api_endpoint <- "http://localhost/api/v1/"
-user_cookie_url <- "http://localhost/oauth/cookie/0000-0001-6225-344X"
-cat("Endpoint    ", o2r_api_endpoint, "\n")
-
-# get cookie via API from o2r-guestlister, but user must login manually
-if (!is.null(content(GET(user_cookie_url))$error))
-  invisible(readline(prompt = "Login as 'User' at http://localhost, then press [enter] to continue"))
-if (!is.null(content(GET(user_cookie_url))$error) && !interactive())
-  stop("Login as 'User' at http://localhost before rendering the document.")
-
-o2r_user_cookie <- curl_unescape(content(GET(user_cookie_url))$cookie)
-# clear cookies (can be required for manual testing and when the cookie changes)
-httr::handle_reset(o2r_api_endpoint)
-cat("Cookie      ", o2r_user_cookie, "\n")
-```
-
 ```{r upload_functions}
 relativePath = function(p) {
   str_replace(p, paste0(path.expand(corpus_path), "/"), "")
@@ -140,7 +162,7 @@ upload_workspace_zip <- function(file, cookie) {
   file_relative <- relativePath(file)
   startTime <- Sys.time()
   cat(format(startTime), "Uploading ", file_relative, "\n")
-  # http://o2r.info/o2r-web-api/compendium/upload/#upload-via-api
+  # https://o2r.info/o2r-web-api/compendium/upload/#upload-via-api
   multipart_file <- upload_file(file)
   response <- POST(url = paste0(o2r_api_endpoint, "compendium"),
                    body = list(compendium = multipart_file,
