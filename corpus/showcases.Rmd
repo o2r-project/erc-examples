@@ -188,16 +188,17 @@ publish_compendium <- function(id, cookie, sleep_after_upload_secs = 0) {
                   set_cookies(connect.sid = cookie))
   
   metadata <-  content(response, as = "text")
+  
   tmpMeta = fromJSON(metadata)["metadata"]
   ####BAD HACK: fromJSON toJSON transforms array including "displayFile" to character
   if(typeof(tmpMeta$metadata$o2r$displayfile_candidates)=="character"){
-    tmpMeta$metadata$o2r$displayfile_candidates = c("display.html", "test.html")
+    tmpMeta$metadata$o2r$displayfile_candidates = c("display.html", "")
   }
   if(typeof(tmpMeta$metadata$o2r$codefiles)=="character"){
-    tmpMeta$metadata$o2r$codefiles = c("main.Rmd", "test.Rmd")
+    #tmpMeta$metadata$o2r$codefiles = c("main.Rmd")
   }
   if(typeof(tmpMeta$metadata$o2r$mainfile_candidates)=="character"){
-    tmpMeta$metadata$o2r$mainfile_candidates = c("main.Rmd", "test.Rmd")
+    tmpMeta$metadata$o2r$mainfile_candidates = c("main.Rmd", "")
   }
   for (binding in bindings) {
     if(binding["title"]==tmpMeta$metadata$o2r$title){
