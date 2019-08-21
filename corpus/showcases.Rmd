@@ -10,6 +10,7 @@ library("httr")
 library("curl")
 library("stringr")
 library("jsonlite")
+library("rjson")
 ```
 
 
@@ -23,12 +24,10 @@ The path to the corpus directory must be set for any code to work.
 You can add a file `.Renviron` on your local machine next to this file, and in it define the path in the environment variable `ERC_EXAMPLES_CORPUS_PATH`.
 
 ```{r}
-if(!exists("corpus_path")) {
-  corpus_path <- Sys.getenv(x = "ERC_EXAMPLES_CORPUS_PATH", unset = NA)
-  if (is.na(corpus_path))
-    stop("Corpus path must be set!")
-}
+corpus_path <- "../ERC"
+corpus_path
 cat("Loading copus papers from", corpus_path, "\n")
+bindings <- rjson::fromJSON(file = "bindings.json")
 ```
 
 At the path `r corpus_path` a directory `Finished` is expected with one directory per successfully reproduced paper.
@@ -41,9 +40,9 @@ This file must be a suitable ERC main document for upload to the o2r reference i
 This is optional if you want to upload corpus papers to a remote deployment of the reference implementation.
 
 ```{bash, eval = FALSE}
-git clone https://github.com/o2r-project/reference-implementation.git
-cd reference-implementation
-make hub
+#git clone https://github.com/o2r-project/reference-implementation.git
+#cd reference-implementation
+#make hub
 ```
 
 **Now log in as a "regular user" at http://localhost.**
@@ -58,21 +57,19 @@ Depending on the used browser, you must decode the string so that is starts with
 ```{r cookie_local, eval=FALSE}
 o2r_api_endpoint <- "http://localhost/api/v1/"
 user_cookie_url <- "http://localhost/oauth/cookie/0000-0001-6225-344X"
-
 # get cookie via API from o2r-guestlister, but user must login manually
 if (!is.null(content(GET(user_cookie_url))$error))
   invisible(readline(prompt = "Login as 'User' at http://localhost, then press [enter] to continue"))
 if (!is.null(content(GET(user_cookie_url))$error) && !interactive())
   stop("Login as 'User' at http://localhost before rendering the document.")
-
 o2r_user_cookie <- curl_unescape(content(GET(user_cookie_url))$cookie)
 # clear cookies (can be required for manual testing and when the cookie changes)
 httr::handle_reset(o2r_api_endpoint)
 ```
 
 ```{r cookie_manual, eval=FALSE}
-o2r_api_endpoint <- "https://o2r.uni-muenster.de/api/v1/"
-o2r_user_cookie <- URLdecode("s%3A1gULF5iJHqZdzTwXeU77N633xOXoU-ft.c22tDacKgXinGLZjovY%2Bz70IY0o0svHDFbYA3cAooXQ")
+#o2r_api_endpoint <- "https://o2r.uni-muenster.de/api/v1/"
+#o2r_user_cookie <- URLdecode("s%3A1gULF5iJHqZdzTwXeU77N633xOXoU-ft.c22tDacKgXinGLZjovY%2Bz70IY0o0svHDFbYA3cAooXQ")
 ```
 
 ```{r log_endpoint_cookie}
@@ -109,7 +106,6 @@ has_rmd <- sapply(X = finished_papers_repro_zips, FUN = function(zipfile) {
   files_in_zip <- unzip(zipfile = zipfile, list = TRUE)
   any(grepl(pattern = "main\\.Rmd", x = files_in_zip, ignore.case = TRUE))
 })
-
 finished_papers_repro_zips[has_rmd]
 ```
 
@@ -120,29 +116,7 @@ _Which of the reproduced workspaces can be uploaded, published, and a job execut
 See notes [here](https://docs.google.com/spreadsheets/d/1WG8Ab5EKhb4KcZNLpveWwbvqlZ41Gjj7l1LccKyBla4/edit#gid=406313660).
 
 ```{r list_of_green_workspaces}
-green_papers <- finished_papers_repro_zips[has_rmd][c(1, # Bayesian - check fails
-                                                      2, # Aquestiondriven - check fails
-                                                      4, # gastropod
-                                                      8, # metafor
-                                                      13,# flood risk
-                                                      14,# geochronological
-                                                      16, # INSYDE
-                                                      22, # Fourier
-                                                      26, # Timescales
-                                                      27, # survival
-                                                      28, # Underestimation - success with no diffs
-                                                      11, # lubridate - success with no diffs
-                                                      24, # split-apply-combine
-                                                      25, # tidy data
-                                                      # to check:
-                                                      
-                                                      19, # LOESS - execution takes very long
-                                                      5, # landslide - recently updated by DN, not waited yet to finish
-                                                      7, # calibrating norway
-                                                      18  # vector machines
-                                                      # need fix:
-                                                      #10, # CPLFD # ERROR saving new compendium: Error: key /tmp/o2r/compendium/B8c0H/r/nc/TmaxForYears.nc must not contain '.' > o2r-meta
-                                                      )]
+green_papers <- finished_papers_repro_zips[has_rmd]
 ```
 
 Uploading `r length(green_papers)`:
@@ -157,7 +131,6 @@ green_papers
 relativePath = function(p) {
   str_replace(p, paste0(path.expand(corpus_path), "/"), "")
 }
-
 upload_workspace_zip <- function(file, cookie) {
   file_relative <- relativePath(file)
   startTime <- Sys.time()
@@ -213,8 +186,35 @@ publish_compendium <- function(id, cookie, sleep_after_upload_secs = 0) {
   response <- GET(url = paste0(o2r_api_endpoint, "compendium/", id, "/metadata"),
                   accept_json(),
                   set_cookies(connect.sid = cookie))
-  metadata <-  content(response, as = "text")
   
+  metadata <-  content(response, as = "text")
+  tmpMeta = fromJSON(metadata)["metadata"]
+  ####BAD HACK: fromJSON toJSON transforms array including "displayFile" to character
+  if(typeof(tmpMeta$metadata$o2r$displayfile_candidates)=="character"){
+    tmpMeta$metadata$o2r$displayfile_candidates = c("display.html", "test.html")
+  }
+  if(typeof(tmpMeta$metadata$o2r$codefiles)=="character"){
+    tmpMeta$metadata$o2r$codefiles = c("main.Rmd", "test.Rmd")
+  }
+  if(typeof(tmpMeta$metadata$o2r$mainfile_candidates)=="character"){
+    tmpMeta$metadata$o2r$mainfile_candidates = c("main.Rmd", "test.Rmd")
+  }
+  for (binding in bindings) {
+    if(binding["title"]==tmpMeta$metadata$o2r$title){
+      tmpMeta$metadata$o2r$interaction = binding$bindings
+      for (i in seq(from=1, to=length(tmpMeta$metadata$o2r$interaction),by=1)){
+        tmpMeta$metadata$o2r$interaction[[i]]$id=paste0(id)
+        create_binding <- POST(url = paste0(o2r_api_endpoint, "bindings/binding"),
+              body = toJSON(tmpMeta$metadata$o2r$interaction[[i]]),
+              content_type_json(),
+              accept_json()
+              )
+      }
+    }
+  }
+  
+  metadata <- toJSON(tmpMeta)
+
   # avoid parsing and recoding because of unboxing issues
   # extract "o2r" element from metadata
   metadata <- str_sub(string = metadata,
@@ -230,7 +230,7 @@ publish_compendium <- function(id, cookie, sleep_after_upload_secs = 0) {
                          set_cookies(connect.sid = cookie))
   cat(format(Sys.time()), "Published? ", status_code(response_update), "\n")
   if (status_code(response_update) != 200) {
-     cat("Response:", toString(content(response_update)), "\n")
+    cat("Response:", toString(content(response_update)), "\n")
   }
   result <- status_code(response_update)
   names(result) <- id
@@ -293,7 +293,6 @@ start_job <- function(id, cookie) {
   return(result)
 }
 #start_job(names(finished_papers_publishings)[[2]], o2r_user_cookie)
-
 job_status <- function(job_id, cookie) {
   response <- GET(url = paste0(o2r_api_endpoint, "job/", job_id),
                   accept_json(),
@@ -302,7 +301,6 @@ job_status <- function(job_id, cookie) {
   job <- content(response)
   return(job$status)
 }
-
 finish_job <- function(id, cookie) {
   job_id <- start_job(id, cookie)
   
@@ -329,7 +327,6 @@ Run the jobs, one at a time.
 
 ```{r jobs}
 finished_papers_jobs <- c()
-
 for (id in names(finished_papers_publishings)) {
   result <- finish_job(id, cookie = o2r_user_cookie)
   finished_papers_jobs <- c(finished_papers_jobs, result)
@@ -382,7 +379,5 @@ The last call must show a "valid" metadata file for publishing to work.
 
 ```{r manifests, eval=FALSE}
 library("containerit")
-
 workspace <- here("Finished/spacetime - spatio temporal data in R/workspace")
-
 ```
