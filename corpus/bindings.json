@@ -38,7 +38,7 @@
                                 "type": "slider",
                                 "maxValue": 5,
                                 "stepSize": 1,
-                                "caption": "The velocity parameter specifies the pace of the water."
+                                "caption": "The velocity parameter specifies the pace of the water in meter pers seconds."
                             }
                         }
                     ]
@@ -106,7 +106,7 @@
                                 "type": "slider",
                                 "maxValue": 40,
                                 "stepSize": 1,
-                                "caption": "The intensity parameter filters..."
+                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
                             }
                         }
                     ]
@@ -169,7 +169,7 @@
                                 "type": "slider",
                                 "maxValue": 40,
                                 "stepSize": 1,
-                                "caption": "..."
+                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
                             }
                         }
                     ]
@@ -236,7 +236,7 @@
                                 "type": "slider",
                                 "maxValue": 40,
                                 "stepSize": 1,
-                                "caption": "..."
+                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
                             }
                         }
                     ]
@@ -323,7 +323,7 @@
                                 "type": "slider",
                                 "maxValue": 40,
                                 "stepSize": 1,
-                                "caption": "..."
+                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
                             }
                         }
                     ]
@@ -367,7 +367,7 @@
                                 "type": "slider",
                                 "maxValue": 0.5,
                                 "stepSize": 0.1,
-                                "caption": "smooth"
+                                "caption": "The smooth parameter is responsible for smoothing the graph."
                             }
                         }
                     ]
@@ -405,7 +405,7 @@
                             "uiWidget": {
                                 "minValue": 0,
                                 "type": "radio",
-                                "caption": "Kp",
+                                "caption": "Kp: The model was run for SOP (Kp=1) and three levels of HP where level one (Kp=1.5) is the least conservative, level two (Kp=2) is slightly more conservative and level three (Kp=3) is the most conservative hedging rule tested.",
                                 "options": [
                                     "1",
                                     "2",
@@ -638,7 +638,7 @@
                                 "type": "slider",
                                 "maxValue": 139,
                                 "stepSize": 5,
-                                "caption": "skip"
+                                "caption": "The skip parameter ignores the first X data rows."
                             }
                         }
                     ]
@@ -765,7 +765,7 @@
                                 "type": "slider",
                                 "maxValue": 1,
                                 "stepSize": 0.1,
-                                "caption": "threshold"
+                                "caption": "This can be measurement-specific. Note: threshold can be arbitrary, try different values and visually evaluate from figures, a recommendation is to set it firstly to the value of minimum unit of measurement."
                             }
                         }
                     ]
@@ -820,7 +820,7 @@
                                 "type": "slider",
                                 "maxValue": 1,
                                 "stepSize": 0.1,
-                                "caption": "threshold"
+                                "caption": "This can be measurement-specific. Note: threshold can be arbitrary, try different values and visually evaluate from figures, a recommendation is to set it firstly to the value of minimum unit of measurement."
                             }
                         }
                     ]
@@ -884,7 +884,7 @@
                                 "type": "slider",
                                 "maxValue": 50,
                                 "stepSize": 1,
-                                "caption": "filter"
+                                "caption": "The filter parameter creates a subset of the dataset."
                             }
                         }
                     ]
@@ -943,7 +943,7 @@
                                 "type": "slider",
                                 "maxValue": 50,
                                 "stepSize": 1,
-                                "caption": "filter"
+                                "caption": "The filter parameter creates a subset of the dataset."
                             }
                         }
                     ]
@@ -1006,7 +1006,7 @@
                                 "type": "slider",
                                 "maxValue": 50,
                                 "stepSize": 1,
-                                "caption": "filter"
+                                "caption": "The filter parameter creates a subset of the dataset."
                             }
                         }
                     ]
@@ -1073,7 +1073,7 @@
                                 "type": "slider",
                                 "maxValue": 350,
                                 "stepSize": 5,
-                                "caption": "costrain"
+                                "caption": "The costrain parameter creates a subset of the dataset."
                             }
                         }
                     ]
@@ -1136,7 +1136,7 @@
                                 "type": "slider",
                                 "maxValue": 350,
                                 "stepSize": 5,
-                                "caption": "constrain"
+                                "caption": "The costrain parameter creates a subset of the dataset."
                             }
                         }
                     ]
@@ -1192,7 +1192,7 @@
                                 "type": "slider",
                                 "maxValue": 0.05,
                                 "stepSize": 0.01,
-                                "caption": "binwidthVal"
+                                "caption": "Bin width changes the width of the bins."
                             }
                         }
                     ]
