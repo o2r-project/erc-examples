@@ -1,0 +1,227 @@
+---
+title: "In-depth examination of spatio-temporal figures in open reproducible research"
+author:
+- affiliation:  "Institute for Geoinformatics, University of Münster, Germany, Heisenbergstrasse 2."
+  name: "Markus Konkol"
+- affiliation:  "Institute for Geoinformatics, University of Münster, Germany, Heisenbergstrasse 2."
+  name: "Christian Kray"
+date: "18 April 2018"
+doi: 10.1080/15230406.2018.1512421
+output:
+  html_document: default
+  pdf_document: default
+abstract: "Figures such as maps and time series are essential means to visualize spatio-temporal results in scientific papers. Being able to recompute them using the underlying source code and data is thus a core aspect in reproducible research. However, many scientists see the preparation of code and data for publication as an additional burden without immediate benefits. In this work, we investigate advantages and new capabilities of reproducible research papers. Our key contributions are (i) the extension of a geoscientist's workflow while examining papers including reproducible figures such as maps and (ii) the prototypical implementation of the workflow as a web application. The workflow is based on current practices of geoscientists and encapsulates benefits of reproducible figures. It is informed by ideas and needs identified by geoscientists in a survey, interviews, and a focus group. Based on their statements, we first extend the traditional workflow steps Discovery and Inspection by additional capabilities and propose two new steps: Manipulation of the content of a spatiotemporal figure and Substitution of the underlying code and data. The extended workflow and its implementation might facilitate in-depth examination and reusability of geoscientific results."
+---
+
+#License
+
+This document is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+
+All contained code is licensed under the [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/).
+
+The data used is licensed under a [Open Data Commons Attribution License](https://opendatacommons.org/licenses/by/).
+
+#Online survey
+##Metadata
+Required libraries and runtime environment description.
+```{r warning=FALSE, message=FALSE}
+#install.packages("likert")
+#install.packages("sessioninfo")
+#install.packages("here")
+library(likert)
+library(sessioninfo)
+library(here)
+sessioninfo::session_info()
+```
+
+##Data processing
+```{r warning=FALSE}
+surveydata <- read.csv("data/surveydata.csv")
+```
+
+Delete answers that were not submitted actively after finishing the survey.
+
+Delete columns that are not required: "Submissiondate", "language", "last page".
+```{r warning=FALSE}
+cleanData = function(dataSet){
+  deleteRows = c()
+  for (i in 1:nrow(dataSet)){
+    if (dataSet[i,dataSet$Date.submitted] == ""){
+      deleteRows = union(deleteRows, c(i))
+    }
+  }
+  
+  #delete not submitted answers
+  dataSet = dataSet[-deleteRows,]
+  
+  #delete columns which are not required: "Submissiondate", "language", "last page"
+  dataSet<-dataSet[,-c(2,3,4)]  
+  
+  return(dataSet)
+}
+
+surveydata <- cleanData(surveydata)
+
+```
+
+Take only the results from scientists who come from the geosciences.
+```{r warning=FALSE}
+geosciencesResults = surveydata[which (surveydata[8]=="Yes"),]
+#biologyResults = questionnaireResults[which (questionnaireResults[5]=="Yes"),]
+#computerScience = questionnaireResults[which (questionnaireResults[6]=="Yes"),]
+#economics = questionnaireResults[which (questionnaireResults[7]=="Yes"),]
+#humanities = questionnaireResults[which (questionnaireResults[9]=="Yes"),]
+#law = questionnaireResults[which (questionnaireResults[10]=="Yes"),]
+#mathematics = questionnaireResults[which (questionnaireResults[11]=="Yes"),]
+#medicine = questionnaireResults[which (questionnaireResults[12]=="Yes"),]
+#pyhsics = questionnaireResults[which (questionnaireResults[13]=="Yes"),]
+#politics = questionnaireResults[which (questionnaireResults[14]=="Yes"),]
+```
+
+Save processed data used to compute the figures.
+```{r}
+write.csv(geosciencesResults, "data/geosciencesResults.csv")
+```
+
+
+##Some background information of the survey respondents.
+
+If respondents write papers, read them, or do both:
+```{r warning=FALSE}
+#How many write papers?
+numWriter = nrow(geosciencesResults[which (geosciencesResults[2]=="Yes"),])
+numWriter
+#How many read papers?
+numReader = nrow(geosciencesResults[which (geosciencesResults[3]=="Yes"),])
+numReader
+#How many read AND write?
+numReadersAndWriters = nrow(geosciencesResults[which (geosciencesResults[2]=="Yes" & geosciencesResults[3]=="Yes"),])
+numReadersAndWriters
+```
+Age distribution and gender.
+```{r}
+demographics = function(dataSet, i, labels){
+  barplot(table(dataSet[i]),
+          main="Participants", xlab="", col=c("blue", "orange"),
+          names.arg=labels)
+  print(table(dataSet[i]))
+}
+
+demographics(geosciencesResults,61, c("18-25", "26-35", "36-45", "46-55", "56-65", "66+"))
+demographics(geosciencesResults,62, c("Other", "Female", "Male"))
+```
+
+
+Years in research: mean + standard deviation
+```{r}
+yearsInResearch = function(dataSet){
+  temp = NULL
+  for (i in 1:nrow(dataSet)){
+    if (is.na(dataSet[i,63])){
+      next
+    }
+    #One respondent indicated the year when s/he started research, not the years in research so far:
+    else if (dataSet[i,63] == "2010"){
+      temp[length(temp)+1] = 6
+    }
+    else{
+      temp[length(temp)+1] = as.integer(dataSet[i,63])      
+    }
+  }
+  print(mean(temp))
+  print(sd(temp))
+}
+
+yearsInResearch(geosciencesResults)
+```
+
+
+
+Functionality for plotting likert diagrams. With help from Lighton Phiri: http://lightonphiri.org/blog/r-scripts-visualising-likert-scale-responses-using-likert
+
+
+```{r warning=FALSE}
+likertPlot = function(dataSet, questions, x, y, scale, ordered){
+  plotlevels <- scale
+  subset = dataSet[,x:y]
+
+  sapply(subset, class)
+  sapply(subset, function(x) { length(levels(x)) } )
+  
+  for(i in 1:ncol(subset)){
+    numAnswers=nrow(subset[which (subset[i]!=""),])
+    colnames(subset)[i] = paste(sep="", questions[i],"\n(", numAnswers, ")")
+  }
+  
+  for(i in seq_along(subset)) {
+    subset[,i] <- factor(subset[,i], levels=plotlevels)
+  }
+  
+  experimentdataset <- likert(subset)
+  if(ordered){
+    p=likert.bar.plot(experimentdataset, group.order = names(subset), 
+                      low.color="grey70", neutral.color = "grey50", high.color = "grey30")
+    p + theme(panel.background = element_rect(fill = "grey95"))
+  }else{
+    p = likert.bar.plot(experimentdataset,
+                    low.color="grey70", neutral.color = "grey50", high.color = "grey30")
+    p + theme(panel.background = element_rect(fill = "grey95"))
+  }
+}
+```
+
+
+##Requested tasks while examining a paper
+Third, we asked for tasks geoscientists would like to perform while examining a paper.
+```{r warning=FALSE}
+#Scale
+agreementScale1 = c("strongly disagree", "disagree", "neither agree nor disagree", "agree", "strongly agree")
+
+#Tasks
+whileReadingPapers = c("change the model to see if results change.",
+                       "change input variables to the model to see if results are robust to changes.",
+                       "leave out data records to see if results change.",
+                       "compare the results with my results after changing input variables.",
+                       "use the analysis with a different dataset.",
+                       "see the code used to compute diagrams etc.",
+                       "download the code used to compute diagrams etc.",
+                       "see the datasets underlying the paper.",
+                       "download the datasets underlying the paper.",
+                       "use the datasets with a different analysis.",
+                       "interact with figures (zooming/panning).",
+                       "jump to other sources cited in the paper.",
+                       "do nothing more than reading the paper."
+                       )
+
+#Calling plot function
+likertPlot(geosciencesResults, whileReadingPapers, 40,52, agreementScale1, FALSE)
+```
+
+##Searching for scientific papers
+Asking for what geoscientists would like to search for.
+```{r warning=FALSE}
+agreementScale2 = c("strongly disagree", "disagree", "neither disagree nor agree", "agree", "strongly agree")
+searchAndAccess = c("source code", "dataset", "methods", "research questions", "hypothesis")
+likertPlot(geosciencesResults, searchAndAccess, 53,57, agreementScale2, FALSE)
+```
+
+Asking for how participants would like to search.
+```{r}
+searchBy = c("spatial properties", "temporal properties", "thematic properties")
+likertPlot(geosciencesResults, searchBy, 58,60, agreementScale2, FALSE)
+```
+
+##Comments
+Comments given by survey respondents.
+```{r}
+comments = function(dataSet){
+  comment = c()
+  for (i in 1:nrow(dataSet)){
+    if (dataSet[i,65] != ""){
+      print(dataSet[i, 65])
+    }
+  }
+}
+
+comments(geosciencesResults)
+```
