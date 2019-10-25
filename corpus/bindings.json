@@ -1202,7 +1202,6 @@
         ]
     },
     {
-    
     "title": "A quantitative approach to evaluating the GWP timescale through implicit discount rates",
     "bindings": [
       {
@@ -1215,13 +1214,13 @@
           "file": "main.Rmd",
           "codelines": [
             {
-              "start": 1,
-              "end": 516
+              "start": 22,
+              "end": 501
             }
             ],
           "parameter": [
             {
-              "text": "CSlist <- c(3.92)",
+              "text": "CSlist=3.92",
               "name": "CSlist",
               "val": 3.92,
               "uiWidget": {
