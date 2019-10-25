@@ -1200,5 +1200,44 @@
                 "port": 5090
             }
         ]
+    },
+    {
+    
+    "title": "A quantitative approach to evaluating the GWP timescale through implicit discount rates",
+    "bindings": [
+      {
+        "id": "",
+        "computationalResult": {
+          "type": "figure",
+          "result": "Figure 1"
+        },
+        "sourcecode": {
+          "file": "main.Rmd",
+          "codelines": [
+            {
+              "start": 1,
+              "end": 516
+            }
+            ],
+          "parameter": [
+            {
+              "text": "CSlist <- c(3.92)",
+              "name": "CSlist",
+              "val": 3.92,
+              "uiWidget": {
+                "type": "radio",
+                "caption": "The model was run for climate sensitivity (CS=3.92) but CS is possible in a range from 1.5 to 4.5. Model adaptations exist for CS=1.5 and CS=4.5",
+                "options": [
+                  "1.5",
+                  "3.92",
+                  "4.5"
+                  ]
+              }
+            }
+            ]
+        },
+        "port": 5000
+      }
+      ]
     }
 ]
