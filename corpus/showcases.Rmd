@@ -116,7 +116,7 @@ _Which of the reproduced workspaces can be uploaded, published, and a job execut
 See notes [here](https://docs.google.com/spreadsheets/d/1WG8Ab5EKhb4KcZNLpveWwbvqlZ41Gjj7l1LccKyBla4/edit#gid=406313660).
 
 ```{r list_of_green_workspaces}
-green_papers <- finished_papers_repro_zips[has_rmd][4]
+green_papers <- finished_papers_repro_zips[has_rmd][8]
 ```
 
 Uploading `r length(green_papers)`:
@@ -200,6 +200,7 @@ publish_compendium <- function(id, cookie, sleep_after_upload_secs = 0) {
   if(typeof(tmpMeta$metadata$o2r$mainfile_candidates)=="character"){
     tmpMeta$metadata$o2r$mainfile_candidates = c("main.Rmd", "")
   }
+  
   for (binding in bindings) {
     if(binding["title"]==tmpMeta$metadata$o2r$title){
       print("found")
