@@ -1,0 +1,18 @@
+"","model","variable","effect","Fvalue","df","Pvalue","N","varExpsite","varExptotal"
+"1","iso_18O_all ~ bowen_18O_annual * Species + (1 | Site)","bowen_18O_annual","0.431+-0.03545",148.41,"1, 94.84",0,335,0.685,0.499
+"2",NA,"Species","-0.8336+-0.08285",101.34,"1, 250.49",0,NA,NA,0.052
+"3",NA,"bowen_18O_annual:Species",NA,1.94,"1, 260.98",0.1646,NA,NA,NA
+"4","iso_18O_all ~ bowen_18O_AprSep * Species + (1 | Site)","bowen_18O_AprSep","0.49447+-0.04942",100.45,"1, 93.76",0,335,0.576,0.419
+"5",NA,"Species","-0.82731+-0.08295",99.4,"1, 248.6",0,NA,NA,0.049
+"6",NA,"bowen_18O_AprSep:Species",NA,1.41,"1, 255.71",0.2354,NA,NA,NA
+"7","iso_18O_all ~ bowen_18O_JanApr * Species + (1 | Site)","bowen_18O_JanApr","0.3723+-0.02725",187.15,"1, 95.75",0,335,0.745,0.545
+"8",NA,"Species","-0.83615+-0.08277",102.31,"1, 252.04",0,NA,NA,0.053
+"9",NA,"bowen_18O_JanApr:Species",NA,2.27,"1, 264.87",0.1328,NA,NA,NA
+"10","iso_18O_all ~ bowen_18O_annual + HWT_end_season + (1 | Site)","bowen_18O_annual","0.40569+-0.03835",111.89,"1, 87.81",0,310,0.638,0.46
+"11",NA,"HWT_end_season","0.01505+-0.00464",10.43,"1, 287.75",0.0014,NA,-0.022,0.005
+"12","start+(evap/precip)*species","evap/precip",NA,0.06,"1, 98.57",0.8127,335,NA,NA
+"13",NA,"e/p * Species","S.fus: -0.39095+-0.48228 / S.mag: 0.28231+-0.5035",3.5,"1, 265.84",0.0623,NA,0.0023,0.0029
+"14","start+precipitation*species","precip","-0.00049+-8e-04",0.38,"1, 98.85",0.5378,335,-4e-04,-0.0011
+"15",NA,"precip*Species",NA,0.8,"1, 257.1",0.3719,NA,NA,NA
+"16","start+temp*species","temp","-0.13932+-0.05111",7.4,"1, 96.26",0.0077,335,0.0209,0.0226
+"17",NA,"temp*Species",NA,1.55,"1, 273.82",0.2139,NA,NA,NA

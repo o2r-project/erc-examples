@@ -1,0 +1,20 @@
+"","model","variable","effect","Fvalue","df","Pvalue","N","varExpsite","varExptotal"
+"1","iso_13C_all ~ HWT_end_season.st * Species + (HWT_end_season.st |     Site)","HWT_end_season.st",NA,26.64,"1, 61.55",0,311,NA,NA
+"2",NA,"Species","-0.87682+-0.13142",42.87,"1, 273.08",0,NA,NA,NA
+"3",NA,"HWT_end_season.st:Species","S.fus: -0.02081+-0.00831 / S.mag: -0.04547+-0.00787",5.99,"1, 226.75",0.0152,NA,0.3195,0.2192
+"4","iso_13C_all_Smag ~ HWT_end_season.st + (1 | Site)","HWT_end_season.st","-0.04046+-0.00785",26.02,"1, 133.91",0,158,0.3274,0.1659
+"5","iso_13C_all ~ prod * Species + (1 | Site)","prod","0.0023+-0.00048",23.07,"1, 308.97",0,318,0.1148,0.0679
+"6",NA,"Species","-0.38197+-0.12414",9.42,"1, 265.9",0.0024,NA,0.0122,0.0143
+"7",NA,"prod:Species",NA,0.68,"1, 290.48",0.4101,NA,NA,NA
+"8","iso_13C_all ~ HWT_end_season.st * Species + prod + (1 | Site)","HWT_end_season.st",NA,25.5,"1, 245.71",0,295,NA,NA
+"9",NA,"Species","-0.62111+-0.13353",22.13,"1, 268.77",0,NA,NA,NA
+"10",NA,"prod","0.0022+-0.00046",22.4,"1, 281.03",0,NA,0.1148,0.0679
+"11",NA,"HWT_end_season.st:Species","S.fus: -0.01209+-0.00718 / S.mag: -0.04226+-0.00705",10.55,"1, 267.23",0.0013,NA,0.2034,0.1216
+"12","start+elevation*species","elevation","0.00035+-0.00021",2.67,"1, 81.18",0.1064,295,0.0332,0.0086
+"13",NA,NA,NA,0.53,"1, 232.9",0.4657,NA,NA,NA
+"14","start+(evap/precip)*species","evap/precip",NA,0.2,"1, 90.08",0.6592,295,NA,NA
+"15",NA,"e/p * Species","S.fus: -0.32718+-0.4024 / S.mag: 0.7759+-0.44043",4.98,"1, 265.66",0.0265,NA,-0.0196,0.0087
+"16","start+precipitation*species","precip","-0.00013+-0.00063",0.04,"1, 79.54",0.8349,295,-0.0139,-6e-04
+"17",NA,"precip*Species",NA,1.22,"1, 247.79",0.2708,NA,NA,NA
+"18","start+temp*species","temp",NA,0,"1, 91.37",0.9687,295,NA,NA
+"19",NA,"temp*Species","S.fus: -0.0511+-0.03426 / S.mag: 0.08665+-0.04127",9.72,"1, 273.24",0.002,NA,-0.0481,0.0171
