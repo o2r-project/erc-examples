@@ -676,7 +676,7 @@
                             "uiWidget": {
                                 "minValue": 1,
                                 "type": "slider",
-                                "maxValue": 30,
+                                "maxValue": 16,
                                 "stepSize": 1,
                                 "caption": "nref"
                             }
@@ -712,7 +712,7 @@
                                 "minValue": 1,
                                 "type": "slider",
                                 "maxValue": 100,
-                                "stepSize": 10,
+                                "stepSize": 1,
                                 "caption": "repetitions"
                             }
                         }
