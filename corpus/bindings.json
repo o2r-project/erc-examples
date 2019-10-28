@@ -1232,7 +1232,20 @@
                   "4.5"
                   ]
               }
-            }
+            },
+            {
+            "text": "tempofflist <- c(0.6)",
+            "name": "tempofflist",
+            "val": 0.6,
+            "uiWidget": {
+                "type": "radio",
+                "caption": "0.6 is the Temperature change from 1951-1980 compared to 2011 and 0.8 represents temperature change from 1880 to 2012.",
+          "options": [
+            "0.6",
+            "0.8"
+            ]
+        }
+      }
             ]
         },
         "port": 5000
