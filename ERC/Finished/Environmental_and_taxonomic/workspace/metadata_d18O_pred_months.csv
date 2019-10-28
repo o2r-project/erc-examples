@@ -1,0 +1,20 @@
+Meta data for file “d18O_pred_months.csv”,,,,
+"Data used in paper Granath et al., Environmental and taxonomic controls of carbon and oxygen stable isotope composition in Sphagnum across broad climatic and geographic ranges. Biogeosciences",,,,
+,,,,
+Column name,Variable,Unit,Reference,Comment
+Region,,,,Country and province/area
+Site,,,,Site name
+Patch_coord_lat,,,,"Latitude coordinate, WGS84"
+Patch_coord_lon,,,,"Longitude coordinate, WGS84"
+january,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
+february,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
+march,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
+april,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
+may,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
+june,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
+july,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
+august,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
+september,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
+october,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
+november,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
+december,d18O precipitation,‰,"Bowen and Wilkinson 2002,http://www.waterisotopes.org",Modelled montly mean value in precipitation. Data downloaded October 2017
