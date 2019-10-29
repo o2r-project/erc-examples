@@ -1251,5 +1251,71 @@
         "port": 5000
       }
       ]
+    },
+        {
+        "title": "spacetime: Spatio-Temporal Data in R",
+        "bindings": [
+            {
+                "id": "",
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 4"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 21,
+                            "end": 32
+                        },
+                        {
+                            "start": 127,
+                            "end": 130
+                        },
+                        {
+                            "start": 173,
+                            "end": 178
+                        },
+                        {
+                            "start": 193,
+                            "end": 222
+                        },
+                        {
+                            "start":232,
+                            "end":232
+                        },
+                        {
+                            "start": 243,
+                            "end": 243
+                        },
+                        {
+                            "start": 274,
+                            "end": 282
+                        },
+                        {
+                            "start": 303,
+                            "end": 334
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "model='Sph'",
+                            "name": "model",
+                            "val": "Sph",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "One of the following model values can be passed to the variogram: Gaussian, spherical, exponential, matern",
+                                "options": [
+                                    "Sph",
+                                    "Exp",
+                                    "Gau"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "port": 5020
+            }
+        ]
     }
 ]
