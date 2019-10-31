@@ -708,24 +708,24 @@
                     "file": "main.Rmd",
                     "codelines": [
                         {
-                            "start": 48,
-                            "end": 58
+                            "start": 46,
+                            "end": 56
                         },
                         {
-                            "start": 75,
-                            "end": 86
+                            "start": 73,
+                            "end": 84
                         },
                         {
-                            "start": 92,
-                            "end": 92
+                            "start": 90,
+                            "end": 90
                         },
                         {
-                            "start": 97,
-                            "end": 97
+                            "start": 95,
+                            "end": 95
                         },
                         {
-                            "start": 109,
-                            "end": 109
+                            "start": 107,
+                            "end": 107
                         }
                     ],
                     "parameter": [
@@ -734,11 +734,11 @@
                             "name": "threshold",
                             "val": 0.2,
                             "uiWidget": {
-                                "minValue": 0.1,
+                                "minValue": 0.05,
                                 "type": "slider",
-                                "maxValue": 1,
-                                "stepSize": 0.1,
-                                "caption": "This can be measurement-specific. Note: threshold can be arbitrary, try different values and visually evaluate from figures, a recommendation is to set it firstly to the value of minimum unit of measurement."
+                                "maxValue": 0.2,
+                                "stepSize": 0.01,
+                                "caption": "This can be measurement-specific. Note: threshold can be arbitrary, try different values and visually evaluate from figures. As a recommendation: First, set the value to the smallest possible unit."
                             }
                         }
                     ]
@@ -753,32 +753,32 @@
                     "file": "main.Rmd",
                     "codelines": [
                         {
-                            "start": 48,
-                            "end": 58
+                            "start": 46,
+                            "end": 56
                         },
                         {
-                            "start": 75,
-                            "end": 75
+                            "start": 73,
+                            "end": 73
                         },
                         {
-                            "start": 81,
-                            "end": 83
+                            "start": 79,
+                            "end": 81
                         },
                         {
-                            "start": 87,
-                            "end": 88
+                            "start": 85,
+                            "end": 86
                         },
                         {
-                            "start": 93,
-                            "end": 93
+                            "start": 91,
+                            "end": 91
                         },
                         {
-                            "start": 98,
-                            "end": 98
+                            "start": 96,
+                            "end": 96
                         },
                         {
-                            "start": 110,
-                            "end": 110
+                            "start": 108,
+                            "end": 108
                         }
                     ],
                     "parameter": [
@@ -787,11 +787,11 @@
                             "name": "threshold",
                             "val": 0.2,
                             "uiWidget": {
-                                "minValue": 0.1,
+                                "minValue": 0.05,
                                 "type": "slider",
-                                "maxValue": 1,
-                                "stepSize": 0.1,
-                                "caption": "This can be measurement-specific. Note: threshold can be arbitrary, try different values and visually evaluate from figures, a recommendation is to set it firstly to the value of minimum unit of measurement."
+                                "maxValue": 0.2,
+                                "stepSize": 0.01,
+                                "caption": "This can be measurement-specific. Note: threshold can be arbitrary, try different values and visually evaluate from figures. As a recommendation: First, set the value to the smallest possible unit."
                             }
                         }
                     ]
@@ -1279,36 +1279,36 @@
                     "file": "main.Rmd",
                     "codelines": [
                         {
-                            "start": 21,
-                            "end": 32
+                            "start": 23,
+                            "end": 34
                         },
                         {
-                            "start": 127,
-                            "end": 130
+                            "start": 129,
+                            "end": 132
                         },
                         {
-                            "start": 173,
-                            "end": 178
+                            "start": 175,
+                            "end": 180
                         },
                         {
-                            "start": 193,
-                            "end": 222
+                            "start": 198,
+                            "end": 227
                         },
                         {
-                            "start":232,
-                            "end":232
+                            "start":237,
+                            "end":237
                         },
                         {
-                            "start": 243,
-                            "end": 243
+                            "start": 248,
+                            "end": 248
                         },
                         {
-                            "start": 274,
-                            "end": 282
+                            "start": 279,
+                            "end": 287
                         },
                         {
-                            "start": 303,
-                            "end": 334
+                            "start": 314,
+                            "end": 345
                         }
                     ],
                     "parameter": [
