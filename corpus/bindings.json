@@ -853,7 +853,7 @@
                                 "type": "slider",
                                 "maxValue": 50,
                                 "stepSize": 1,
-                                "caption": "The filter parameter creates a subset of the dataset."
+                                "caption": "The paper only considers diseases with more than 50 deaths. This number can be changed by using the slider."
                             }
                         }
                     ]
@@ -910,7 +910,7 @@
                                 "type": "slider",
                                 "maxValue": 50,
                                 "stepSize": 1,
-                                "caption": "The filter parameter creates a subset of the dataset."
+                                "caption": "The paper only considers diseases with more than 50 deaths. This number can be changed by using the slider."
                             }
                         }
                     ]
@@ -971,7 +971,7 @@
                                 "type": "slider",
                                 "maxValue": 50,
                                 "stepSize": 1,
-                                "caption": "The filter parameter creates a subset of the dataset."
+                                "caption": "The paper only considers diseases with more than 50 deaths. This number can be changed by using the slider."
                             }
                         }
                     ]
@@ -1036,7 +1036,7 @@
                                 "type": "slider",
                                 "maxValue": 350,
                                 "stepSize": 5,
-                                "caption": "The costrain parameter creates a subset of the dataset."
+                                "caption": "The paper only considers causes of death with more than 350 deaths over a year. This number can be changed by using the slider."
                             }
                         }
                     ]
