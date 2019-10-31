@@ -1,5 +1,0 @@
-library("plumber")
-setwd(file.path("tmp", "o2r", "compendium", "zqIa7"))
-path = paste("figure4tmp.R", sep = "")
-r <- plumb(path)
-r$run(host = "0.0.0.0", port=8123)
