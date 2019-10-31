@@ -1050,34 +1050,72 @@
             {
                 "computationalResult": {
                     "type": "figure",
+                    "result": "Figure 8"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 22,
+                            "end": 25
+                        },
+                        {
+                            "start": 45,
+                            "end": 48
+                        },
+                        {
+                            "start": 60,
+                            "end": 60
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "playerID='ruthba01'",
+                            "name": "playerID",
+                            "val": "ruthba01",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "It is possible to switch between to players: Ruth Bale and Jim O. Rourke.",
+                                "options": [
+                                    "ruthba01",
+                                    "orourji01"
+                                    ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
                     "result": "Figure 9"
                 },
                 "sourcecode": {
                     "file": "main.Rmd",
                     "codelines": [
                         {
-                            "start": 20,
-                            "end": 23
+                            "start": 22,
+                            "end": 25
                         },
                         {
-                            "start": 43,
-                            "end": 46
+                            "start": 45,
+                            "end": 48
                         },
                         {
-                            "start": 51,
-                            "end": 52
+                            "start": 53,
+                            "end": 54
                         },
                         {
-                            "start": 59,
-                            "end": 59
+                            "start": 66,
+                            "end": 66
                         },
                         {
-                            "start": 80,
-                            "end": 91
+                            "start": 84,
+                            "end": 95
                         },
                         {
-                            "start": 103,
-                            "end": 105
+                            "start": 107,
+                            "end": 109
                         }
                     ],
                     "parameter": [
@@ -1090,7 +1128,89 @@
                                 "type": "slider",
                                 "maxValue": 0.05,
                                 "stepSize": 0.01,
-                                "caption": "Bin width changes the width of the bins."
+                                "caption": "Bin width changes the width of the bins in the diagram."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 13a"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 22,
+                            "end": 25
+                        },
+                        {
+                            "start": 172,
+                            "end": 173
+                        },
+                        {
+                            "start": 184,
+                            "end": 184
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "geom='line'",
+                            "name": "geom",
+                            "val": "line",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "The geometry of the diagram can be changed in three different ways: line, smooth, and point.",
+                                "options": [
+                                    "line",
+                                    "smooth",
+                                    "point"
+                                    ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 13b"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 22,
+                            "end": 25
+                        },
+                        {
+                            "start": 172,
+                            "end": 173
+                        },
+                        {
+                            "start": 174,
+                            "end": 177
+                        },
+                        {
+                            "start": 190,
+                            "end": 190
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "geom='line'",
+                            "name": "geom",
+                            "val": "line",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "The geometry of the diagram can be changed in three different ways: line, smooth, and point.",
+                                "options": [
+                                    "line",
+                                    "smooth",
+                                    "point"
+                                    ]
                             }
                         }
                     ]
