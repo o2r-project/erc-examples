@@ -103,7 +103,7 @@
                                 "type": "slider",
                                 "maxValue": 40,
                                 "stepSize": 1,
-                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
+                                "caption": "The intensity parameter creates a subset of storms with a minimum intensity."
                             }
                         }
                     ]
