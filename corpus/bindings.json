@@ -617,7 +617,7 @@
                                 "type": "slider",
                                 "maxValue": 139,
                                 "stepSize": 5,
-                                "caption": "The skip parameter ignores the first X data rows."
+                                "caption": "Moving the slider to the right results in skipping the first X data records from the point.dat dataset"
                             }
                         }
                     ]
