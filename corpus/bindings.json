@@ -103,7 +103,7 @@
                                 "type": "slider",
                                 "maxValue": 40,
                                 "stepSize": 1,
-                                "caption": "The intensity parameter creates a subset of storms with a minimum intensity."
+                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
                             }
                         }
                     ]
@@ -645,12 +645,12 @@
                     "file": "main.Rmd",
                     "codelines": [
                         {
-                            "start": 39,
-                            "end": 39
+                            "start": 41,
+                            "end": 41
                         },
                         {
-                            "start": 49,
-                            "end": 72
+                            "start": 51,
+                            "end": 74
                         }
                     ],
                     "parameter": [
@@ -663,7 +663,7 @@
                                 "type": "slider",
                                 "maxValue": 16,
                                 "stepSize": 1,
-                                "caption": "nref"
+                                "caption": "nref denotes the reference period length."
                             }
                         }
                     ]
@@ -678,25 +678,25 @@
                     "file": "main.Rmd",
                     "codelines": [
                         {
-                            "start": 39,
-                            "end": 45
+                            "start": 41,
+                            "end": 47
                         },
                         {
-                            "start": 79,
-                            "end": 111
+                            "start": 81,
+                            "end": 113
                         }
                     ],
                     "parameter": [
                         {
-                            "text": "repetitions = 10",
-                            "name": "repetitions",
-                            "val": 10,
+                            "text": "n_ref = 30",
+                            "name": "n_ref",
+                            "val": 30,
                             "uiWidget": {
                                 "minValue": 1,
                                 "type": "slider",
                                 "maxValue": 100,
                                 "stepSize": 1,
-                                "caption": "repetitions"
+                                "caption": "n_ref denotes the reference period length."
                             }
                         }
                     ]
