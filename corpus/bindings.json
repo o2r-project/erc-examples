@@ -99,7 +99,7 @@
                             "name": "Intensity",
                             "val": 33,
                             "uiWidget": {
-                                "minValue": 1,
+                                "minValue": 18,
                                 "type": "slider",
                                 "maxValue": 40,
                                 "stepSize": 1,
@@ -160,7 +160,7 @@
                             "name": "Intensity",
                             "val": 33,
                             "uiWidget": {
-                                "minValue": 1,
+                                "minValue": 18,
                                 "type": "slider",
                                 "maxValue": 40,
                                 "stepSize": 1,
@@ -225,7 +225,7 @@
                             "name": "Intensity",
                             "val": 33,
                             "uiWidget": {
-                                "minValue": 1,
+                                "minValue": 18,
                                 "type": "slider",
                                 "maxValue": 40,
                                 "stepSize": 1,
@@ -310,7 +310,7 @@
                             "name": "Intensity",
                             "val": 33,
                             "uiWidget": {
-                                "minValue": 1,
+                                "minValue": 18,
                                 "type": "slider",
                                 "maxValue": 40,
                                 "stepSize": 1,
