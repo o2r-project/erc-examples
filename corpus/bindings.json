@@ -1,0 +1,1612 @@
+[
+    {
+        "title": "INSYDE: a synthetic, probabilistic flood damage model based on explicit cost analysis",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 3"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 30,
+                            "end": 431
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "duration <- 24",
+                            "name": "duration",
+                            "val": 24,
+                            "uiWidget": {
+                                "minValue": 1,
+                                "type": "slider",
+                                "maxValue": 24,
+                                "stepSize": 1,
+                                "caption": "The duration parameter specifies the duration of the flood event in hours."
+                            }
+                        },
+                        {
+                            "text": "velocity <- 0.5",
+                            "name": "velocity",
+                            "val": 0.5,
+                            "uiWidget": {
+                                "minValue": 0,
+                                "type": "slider",
+                                "maxValue": 5,
+                                "stepSize": 1,
+                                "caption": "The velocity parameter specifies the pace of the water in meter pers seconds."
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "title": "A space–time statistical climate model for hurricane intensification in the North Atlantic basin",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 1"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 24,
+                            "end": 29
+                        },
+                        {
+                            "start": 35,
+                            "end": 36
+                        },
+                        {
+                            "start": 46,
+                            "end": 51
+                        },
+                        {
+                            "start": 60,
+                            "end": 67
+                        },
+                        {
+                            "start": 70,
+                            "end": 77
+                        },
+                        {
+                            "start": 81,
+                            "end": 84
+                        },
+                        {
+                            "start": 86,
+                            "end": 93
+                        },
+                        {
+                            "start": 98,
+                            "end": 112
+                        },
+                        {
+                            "start": 118,
+                            "end": 143
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "Intensity = 33.0",
+                            "name": "Intensity",
+                            "val": 33,
+                            "uiWidget": {
+                                "minValue": 18,
+                                "type": "slider",
+                                "maxValue": 40,
+                                "stepSize": 1,
+                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 2a"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 24,
+                            "end": 29
+                        },
+                        {
+                            "start": 46,
+                            "end": 51
+                        },
+                        {
+                            "start": 60,
+                            "end": 63
+                        },
+                        {
+                            "start": 81,
+                            "end": 82
+                        },
+                        {
+                            "start": 98,
+                            "end": 112
+                        },
+                        {
+                            "start": 118,
+                            "end": 119
+                        },
+                        {
+                            "start": 2447,
+                            "end": 2447
+                        },
+                        {
+                            "start": 2618,
+                            "end": 2622
+                        },
+                        {
+                            "start": 2625,
+                            "end": 2638
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "Intensity = 33.0",
+                            "name": "Intensity",
+                            "val": 33,
+                            "uiWidget": {
+                                "minValue": 18,
+                                "type": "slider",
+                                "maxValue": 40,
+                                "stepSize": 1,
+                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 2b"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 24,
+                            "end": 29
+                        },
+                        {
+                            "start": 35,
+                            "end": 41
+                        },
+                        {
+                            "start": 46,
+                            "end": 55
+                        },
+                        {
+                            "start": 60,
+                            "end": 63
+                        },
+                        {
+                            "start": 81,
+                            "end": 82
+                        },
+                        {
+                            "start": 98,
+                            "end": 112
+                        },
+                        {
+                            "start": 118,
+                            "end": 119
+                        },
+                        {
+                            "start": 2447,
+                            "end": 2447
+                        },
+                        {
+                            "start": 2618,
+                            "end": 2622
+                        },
+                        {
+                            "start": 2645,
+                            "end": 2666
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "Intensity = 33.0",
+                            "name": "Intensity",
+                            "val": 33,
+                            "uiWidget": {
+                                "minValue": 18,
+                                "type": "slider",
+                                "maxValue": 40,
+                                "stepSize": 1,
+                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 3a"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 24,
+                            "end": 29
+                        },
+                        {
+                            "start": 46,
+                            "end": 51
+                        },
+                        {
+                            "start": 60,
+                            "end": 67
+                        },
+                        {
+                            "start": 81,
+                            "end": 82
+                        },
+                        {
+                            "start": 98,
+                            "end": 99
+                        },
+                        {
+                            "start": 151,
+                            "end": 672
+                        },
+                        {
+                            "start": 678,
+                            "end": 704
+                        },
+                        {
+                            "start": 2007,
+                            "end": 2168
+                        },
+                        {
+                            "start": 1195,
+                            "end": 1356
+                        },
+                        {
+                            "start": 1362,
+                            "end": 1388
+                        },
+                        {
+                            "start": 1394,
+                            "end": 1394
+                        },
+                        {
+                            "start": 2174,
+                            "end": 2200
+                        },
+                        {
+                            "start": 2205,
+                            "end": 2271
+                        },
+                        {
+                            "start": 2351,
+                            "end": 2377
+                        },
+                        {
+                            "start": 2554,
+                            "end": 2559
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "Intensity = 33.0",
+                            "name": "Intensity",
+                            "val": 33,
+                            "uiWidget": {
+                                "minValue": 18,
+                                "type": "slider",
+                                "maxValue": 40,
+                                "stepSize": 1,
+                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "title": "Geochronological database and classification system for age uncertainties in Neotropical pollen records",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 2"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 29,
+                            "end": 1350
+                        },
+                        {
+                            "start": 1355,
+                            "end": 1369
+                        },
+                        {
+                            "start": 1375,
+                            "end": 1375
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "smooth=0.3",
+                            "name": "smooth",
+                            "val": 0.3,
+                            "uiWidget": {
+                                "minValue": 0.1,
+                                "type": "slider",
+                                "maxValue": 0.5,
+                                "stepSize": 0.1,
+                                "caption": "The smooth parameter is responsible for smoothing the graph."
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "title": "A question driven socio-hydrological modeling process",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 6"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 28,
+                            "end": 53
+                        },
+                        {
+                            "start": 59,
+                            "end": 144
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "Kp <- 1",
+                            "name": "Kp",
+                            "val": 1,
+                            "uiWidget": {
+                                "minValue": 0,
+                                "type": "radio",
+                                "caption": "Kp: The model was run for SOP (Kp=1) and three levels of HP where level one (Kp=1.5) is the least conservative, level two (Kp=2) is slightly more conservative and level three (Kp=3) is the most conservative hedging rule tested.",
+                                "options": [
+                                    "1",
+                                    "2",
+                                    "3"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "title": "Assembly processes of gastropod community change with horizontal and vertical zonation in ancient Lake Ohrid: a metacommunity speciation perspective",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 3a"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 40,
+                            "end": 46
+                        },
+                        {
+                            "start": 1056,
+                            "end": 1080
+                        },
+                        {
+                            "start": 1086,
+                            "end": 1086
+                        },
+                        {
+                            "start": 1149,
+                            "end": 1149
+                        },
+                        {
+                            "start": 1160,
+                            "end": 1163
+                        },
+                        {
+                            "start": 1186,
+                            "end": 1186
+                        },
+                        {
+                            "start": 1190,
+                            "end": 1201
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "eco_zone <- 6",
+                            "name": "eco_zone",
+                            "val": 6,
+                            "uiWidget": {
+                                "type": "radio",
+                                "options": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "6",
+                                    "7"
+                                ],
+                                "caption": "Applying a range of 1 to 10 groups and different numbers of directly connected neighbors in the spatial network, our delineation of eco-zones consisten ly revealed that seven groups of gastropod communities showed the highest likelihood. These communities relate to seven eco-zones (southeastern (SE) upper littoral 1–3, non-SE up- per littoral, lower littoral, upper sublittoral, lower sublittoral). The horizontal and vertical distribution of these eco-zones based on 65 neighbors is shown in Fig. 3 (zone terminology roughly follows Stanković, 1960)."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 3b"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 40,
+                            "end": 46
+                        },
+                        {
+                            "start": 1056,
+                            "end": 1080
+                        },
+                        {
+                            "start": 1086,
+                            "end": 1086
+                        },
+                        {
+                            "start": 1149,
+                            "end": 1149
+                        },
+                        {
+                            "start": 1160,
+                            "end": 1163
+                        },
+                        {
+                            "start": 1187,
+                            "end": 1187
+                        },
+                        {
+                            "start": 1203,
+                            "end": 1214
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "eco_zone <- 6",
+                            "name": "eco_zone",
+                            "val": 6,
+                            "uiWidget": {
+                                "type": "radio",
+                                "options": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "6",
+                                    "7"
+                                ],
+                                "caption": "Applying a range of 1 to 10 groups and different numbers of directly connected neighbors in the spatial network, our delineation of eco-zones consisten ly revealed that seven groups of gastropod communities showed the highest likelihood. These communities relate to seven eco-zones (southeastern (SE) upper littoral 1–3, non-SE up- per littoral, lower littoral, upper sublittoral, lower sublittoral). The horizontal and vertical distribution of these eco-zones based on 65 neighbors is shown in Fig. 3 (zone terminology roughly follows Stanković, 1960)."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 3c"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 40,
+                            "end": 46
+                        },
+                        {
+                            "start": 1056,
+                            "end": 1080
+                        },
+                        {
+                            "start": 1086,
+                            "end": 1086
+                        },
+                        {
+                            "start": 1149,
+                            "end": 1149
+                        },
+                        {
+                            "start": 1160,
+                            "end": 1163
+                        },
+                        {
+                            "start": 1187,
+                            "end": 1187
+                        },
+                        {
+                            "start": 1215,
+                            "end": 1223
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "eco_zone <- 6",
+                            "name": "eco_zone",
+                            "val": 6,
+                            "uiWidget": {
+                                "type": "radio",
+                                "options": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "6",
+                                    "7"
+                                ],
+                                "caption": "Applying a range of 1 to 10 groups and different numbers of directly connected neighbors in the spatial network, our delineation of eco_zones consisten ly revealed that seven groups of gastropod communities showed the highest likelihood. These communities relate to seven eco_zones (southeastern (SE) upper littoral 1–3, non-SE up- per littoral, lower littoral, upper sublittoral, lower sublittoral). The horizontal and vertical distribution of these eco_zones based on 65 neighbors is shown in Fig. 3 (zone terminology roughly follows Stanković, 1960)."
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "title": "Development of a new gas-flaring emission dataset for southern West Africa",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 2"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 23,
+                            "end": 26
+                        },
+                        {
+                            "start": 44,
+                            "end": 45
+                        },
+                        {
+                            "start": 54,
+                            "end": 55
+                        },
+                        {
+                            "start": 94,
+                            "end": 109
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "skip=2",
+                            "name": "skip",
+                            "val": 2,
+                            "uiWidget": {
+                                "minValue": 2,
+                                "type": "slider",
+                                "maxValue": 139,
+                                "stepSize": 5,
+                                "caption": "Moving the slider to the right results in skipping the first X data records from the point.dat dataset"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "title": "Have precipitation extremes and annual totals been increasing in the world's dry regions over the last 60 years?",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 1a"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 41,
+                            "end": 41
+                        },
+                        {
+                            "start": 51,
+                            "end": 74
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "nref = 8",
+                            "name": "nref",
+                            "val": 8,
+                            "uiWidget": {
+                                "minValue": 1,
+                                "type": "slider",
+                                "maxValue": 16,
+                                "stepSize": 1,
+                                "caption": "nref denotes the reference period length."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 1b"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 41,
+                            "end": 47
+                        },
+                        {
+                            "start": 81,
+                            "end": 113
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "n_ref = 30",
+                            "name": "n_ref",
+                            "val": 30,
+                            "uiWidget": {
+                                "minValue": 1,
+                                "type": "slider",
+                                "maxValue": 100,
+                                "stepSize": 1,
+                                "caption": "n_ref denotes the reference period length."
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "title": "Technical note: Fourier approach for estimating the thermal attributes of streams",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 2a"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 46,
+                            "end": 56
+                        },
+                        {
+                            "start": 73,
+                            "end": 84
+                        },
+                        {
+                            "start": 90,
+                            "end": 90
+                        },
+                        {
+                            "start": 95,
+                            "end": 95
+                        },
+                        {
+                            "start": 107,
+                            "end": 107
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "threshold <- 0.2",
+                            "name": "threshold",
+                            "val": 0.2,
+                            "uiWidget": {
+                                "minValue": 0.05,
+                                "type": "slider",
+                                "maxValue": 0.2,
+                                "stepSize": 0.01,
+                                "caption": "This can be measurement-specific. Note: threshold can be arbitrary, try different values and visually evaluate from figures. As a recommendation: First, set the value to the smallest possible unit."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 2b"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 46,
+                            "end": 56
+                        },
+                        {
+                            "start": 73,
+                            "end": 73
+                        },
+                        {
+                            "start": 79,
+                            "end": 81
+                        },
+                        {
+                            "start": 85,
+                            "end": 86
+                        },
+                        {
+                            "start": 91,
+                            "end": 91
+                        },
+                        {
+                            "start": 96,
+                            "end": 96
+                        },
+                        {
+                            "start": 108,
+                            "end": 108
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "threshold <- 0.2",
+                            "name": "threshold",
+                            "val": 0.2,
+                            "uiWidget": {
+                                "minValue": 0.05,
+                                "type": "slider",
+                                "maxValue": 0.2,
+                                "stepSize": 0.01,
+                                "caption": "This can be measurement-specific. Note: threshold can be arbitrary, try different values and visually evaluate from figures. As a recommendation: First, set the value to the smallest possible unit."
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "title": "Tidy Data",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 2a"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 22,
+                            "end": 22
+                        },
+                        {
+                            "start": 24,
+                            "end": 24
+                        },
+                        {
+                            "start": 285,
+                            "end": 285
+                        },
+                        {
+                            "start": 301,
+                            "end": 301
+                        },
+                        {
+                            "start": 306,
+                            "end": 310
+                        },
+                        {
+                            "start": 324,
+                            "end": 333
+                        },
+                        {
+                            "start": 347,
+                            "end": 349
+                        },
+                        {
+                            "start": 357,
+                            "end": 357
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "filter = 50",
+                            "name": "filter",
+                            "val": 50,
+                            "uiWidget": {
+                                "minValue": 1,
+                                "type": "slider",
+                                "maxValue": 50,
+                                "stepSize": 1,
+                                "caption": "The paper only considers diseases with more than 50 deaths. This number can be changed by using the slider."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 2b"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 24,
+                            "end": 24
+                        },
+                        {
+                            "start": 285,
+                            "end": 286
+                        },
+                        {
+                            "start": 301,
+                            "end": 301
+                        },
+                        {
+                            "start": 306,
+                            "end": 306
+                        },
+                        {
+                            "start": 309,
+                            "end": 310
+                        },
+                        {
+                            "start": 324,
+                            "end": 333
+                        },
+                        {
+                            "start": 347,
+                            "end": 355
+                        },
+                        {
+                            "start": 364,
+                            "end": 364
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "filter = 50",
+                            "name": "filter",
+                            "val": 50,
+                            "uiWidget": {
+                                "minValue": 1,
+                                "type": "slider",
+                                "maxValue": 50,
+                                "stepSize": 1,
+                                "caption": "The paper only considers diseases with more than 50 deaths. This number can be changed by using the slider."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 3"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 22,
+                            "end": 22
+                        },
+                        {
+                            "start": 24,
+                            "end": 24
+                        },
+                        {
+                            "start": 285,
+                            "end": 286
+                        },
+                        {
+                            "start": 301,
+                            "end": 301
+                        },
+                        {
+                            "start": 306,
+                            "end": 310
+                        },
+                        {
+                            "start": 324,
+                            "end": 333
+                        },
+                        {
+                            "start": 347,
+                            "end": 353
+                        },
+                        {
+                            "start": 371,
+                            "end": 371
+                        },
+                        {
+                            "start": 373,
+                            "end": 374
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "filter = 50",
+                            "name": "filter",
+                            "val": 50,
+                            "uiWidget": {
+                                "minValue": 1,
+                                "type": "slider",
+                                "maxValue": 50,
+                                "stepSize": 1,
+                                "caption": "The paper only considers diseases with more than 50 deaths. This number can be changed by using the slider."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 4a"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 22,
+                            "end": 22
+                        },
+                        {
+                            "start": 24,
+                            "end": 24
+                        },
+                        {
+                            "start": 285,
+                            "end": 286
+                        },
+                        {
+                            "start": 301,
+                            "end": 301
+                        },
+                        {
+                            "start": 306,
+                            "end": 310
+                        },
+                        {
+                            "start": 324,
+                            "end": 333
+                        },
+                        {
+                            "start": 347,
+                            "end": 349
+                        },
+                        {
+                            "start": 371,
+                            "end": 371
+                        },
+                        {
+                            "start": 381,
+                            "end": 383
+                        },
+                        {
+                            "start": 387,
+                            "end": 388
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "constrain = 350",
+                            "name": "constrain",
+                            "val": 350,
+                            "uiWidget": {
+                                "minValue": 1,
+                                "type": "slider",
+                                "maxValue": 350,
+                                "stepSize": 5,
+                                "caption": "The paper only considers causes of death with more than 350 deaths over a year. This number can be changed by using the slider."
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "title": "The Split-Apply-Combine Strategy for Data Analysis",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 8"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 22,
+                            "end": 25
+                        },
+                        {
+                            "start": 45,
+                            "end": 48
+                        },
+                        {
+                            "start": 60,
+                            "end": 60
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "playerID='ruthba01'",
+                            "name": "playerID",
+                            "val": "ruthba01",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "It is possible to switch between to players: Ruth Bale and Jim O. Rourke.",
+                                "options": [
+                                    "ruthba01",
+                                    "orourji01"
+                                    ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 9"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 22,
+                            "end": 25
+                        },
+                        {
+                            "start": 45,
+                            "end": 48
+                        },
+                        {
+                            "start": 53,
+                            "end": 54
+                        },
+                        {
+                            "start": 66,
+                            "end": 66
+                        },
+                        {
+                            "start": 84,
+                            "end": 95
+                        },
+                        {
+                            "start": 107,
+                            "end": 109
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "binwidthVal=0.01",
+                            "name": "binwidthVal",
+                            "val": 350,
+                            "uiWidget": {
+                                "minValue": 0.01,
+                                "type": "slider",
+                                "maxValue": 0.05,
+                                "stepSize": 0.01,
+                                "caption": "Bin width changes the width of the bins in the diagram."
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 13a"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 22,
+                            "end": 25
+                        },
+                        {
+                            "start": 172,
+                            "end": 173
+                        },
+                        {
+                            "start": 184,
+                            "end": 184
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "geom='line'",
+                            "name": "geom",
+                            "val": "line",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "The geometry of the diagram can be changed in three different ways: line, smooth, and point.",
+                                "options": [
+                                    "line",
+                                    "smooth",
+                                    "point"
+                                    ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 13b"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 22,
+                            "end": 25
+                        },
+                        {
+                            "start": 172,
+                            "end": 173
+                        },
+                        {
+                            "start": 174,
+                            "end": 177
+                        },
+                        {
+                            "start": 190,
+                            "end": 190
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "geom='line'",
+                            "name": "geom",
+                            "val": "line",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "The geometry of the diagram can be changed in three different ways: line, smooth, and point.",
+                                "options": [
+                                    "line",
+                                    "smooth",
+                                    "point"
+                                    ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+    "title": "A quantitative approach to evaluating the GWP timescale through implicit discount rates",
+    "bindings": [
+      {
+        "computationalResult": {
+          "type": "figure",
+          "result": "Figure 1"
+        },
+        "sourcecode": {
+          "file": "main.Rmd",
+          "codelines": [
+            {
+              "start": 22,
+              "end": 501
+            }
+            ],
+          "parameter": [
+            {
+              "text": "CSlist=3.92",
+              "name": "CSlist",
+              "val": 3.92,
+              "uiWidget": {
+                "type": "radio",
+                "caption": "The model was run for climate sensitivity (CS=3.92) but CS is possible in a range from 1.5 to 4.5. Model adaptations exist for CS=1.5 and CS=4.5",
+                "options": [
+                  "1.5",
+                  "3.92",
+                  "4.5"
+                  ]
+              }
+            },
+            {
+            "text": "tempofflist <- c(0.6)",
+            "name": "tempofflist",
+            "val": 0.6,
+            "uiWidget": {
+                "type": "radio",
+                "caption": "0.6 is the Temperature change from 1951-1980 compared to 2011 and 0.8 represents temperature change from 1880 to 2012.",
+          "options": [
+            "0.6",
+            "0.8"
+            ]
+        }
+      }
+            ]
+        }
+      }
+      ]
+    },
+        {
+        "title": "spacetime: Spatio-Temporal Data in R",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 4"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 23,
+                            "end": 34
+                        },
+                        {
+                            "start": 129,
+                            "end": 132
+                        },
+                        {
+                            "start": 175,
+                            "end": 180
+                        },
+                        {
+                            "start": 198,
+                            "end": 227
+                        },
+                        {
+                            "start":237,
+                            "end":237
+                        },
+                        {
+                            "start": 248,
+                            "end": 248
+                        },
+                        {
+                            "start": 279,
+                            "end": 287
+                        },
+                        {
+                            "start": 314,
+                            "end": 345
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "model='Sph'",
+                            "name": "model",
+                            "val": "Sph",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "One of the following model values can be passed to the variogram: Gaussian, spherical, exponential, matern",
+                                "options": [
+                                    "Sph",
+                                    "Exp",
+                                    "Gau"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "title": "Automatic Time Series Forecasting: The forecast Package for R",
+        "bindings": [
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 1a"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 27,
+                            "end": 32
+                        },
+                        {
+                            "start": 39,
+                            "end": 39
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "model = 'ZZZ'",
+                            "name": "model",
+                            "val": "ZZZ",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "The first letter denotes the error type (A, M or Z); the second letter denotes the trend type (N,A,M or Z); and the third letter denotes the season type (N,A,M or Z). (see https://www.rdocumentation.org/packages/forecast/versions/8.9/topics/ets)",
+                                "options": [
+                                    "ZZZ",
+                                    "ANN",
+                                    "MAM"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 1b"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 27,
+                            "end": 31
+                        },
+                        {
+                            "start": 33,
+                            "end": 33
+                        },
+                        {
+                            "start":40,
+                            "end":40
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "model = 'ZZZ'",
+                            "name": "model",
+                            "val": "ZZZ",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "The first letter denotes the error type (A, M or Z); the second letter denotes the trend type (N,A,M or Z); and the third letter denotes the season type (N,A,M or Z). (see https://www.rdocumentation.org/packages/forecast/versions/8.9/topics/ets)",
+                                "options": [
+                                    "ZZZ",
+                                    "ANN"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 1c"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 27,
+                            "end": 31
+                        },
+                        {
+                            "start": 34,
+                            "end": 34
+                        },
+                        {
+                            "start":41,
+                            "end":41
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "model = 'ZZZ'",
+                            "name": "model",
+                            "val": "ZZZ",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "The first letter denotes the error type (A, M or Z); the second letter denotes the trend type (N,A,M or Z); and the third letter denotes the season type (N,A,M or Z). (see https://www.rdocumentation.org/packages/forecast/versions/8.9/topics/ets)",
+                                "options": [
+                                    "ZZZ",
+                                    "ANN",
+                                    "MAM"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 1d"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 27,
+                            "end": 31
+                        },
+                        {
+                            "start": 35,
+                            "end": 35
+                        },
+                        {
+                            "start":42,
+                            "end":42
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "model = 'ZZZ'",
+                            "name": "model",
+                            "val": "ZZZ",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "The first letter denotes the error type (A, M or Z); the second letter denotes the trend type (N,A,M or Z); and the third letter denotes the season type (N,A,M or Z). (see https://www.rdocumentation.org/packages/forecast/versions/8.9/topics/ets)",
+                                "options": [
+                                    "ZZZ",
+                                    "ANN",
+                                    "MAM"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 2a"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 27,
+                            "end": 28
+                        },
+                        {
+                            "start": 66,
+                            "end": 66
+                        },
+                        {
+                            "start":84,
+                            "end":84
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "approximation=FALSE",
+                            "name": "approximation",
+                            "val": "FALSE",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "If TRUE, estimation is via conditional sums of squares and the information criteria used for model selection are approximated. The final model is still computed using maximum likelihood estimation. Approximation should be used for long time series or a high seasonal period to avoid excessive computation times. (see https://www.rdocumentation.org/packages/forecast/versions/8.9/topics/auto.arima)",
+                                "options": [
+                                    "FALSE",
+                                    "TRUE"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 2c"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 27,
+                            "end": 28
+                        },
+                        {
+                            "start": 68,
+                            "end": 68
+                        },
+                        {
+                            "start":86,
+                            "end":86
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "approximation=FALSE",
+                            "name": "approximation",
+                            "val": "FALSE",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "If TRUE, estimation is via conditional sums of squares and the information criteria used for model selection are approximated. The final model is still computed using maximum likelihood estimation. Approximation should be used for long time series or a high seasonal period to avoid excessive computation times. (see https://www.rdocumentation.org/packages/forecast/versions/8.9/topics/auto.arima)",
+                                "options": [
+                                    "FALSE",
+                                    "TRUE"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "computationalResult": {
+                    "type": "figure",
+                    "result": "Figure 2d"
+                },
+                "sourcecode": {
+                    "file": "main.Rmd",
+                    "codelines": [
+                        {
+                            "start": 27,
+                            "end": 28
+                        },
+                        {
+                            "start": 69,
+                            "end": 69
+                        },
+                        {
+                            "start":87,
+                            "end":87
+                        }
+                    ],
+                    "parameter": [
+                        {
+                            "text": "approximation=FALSE",
+                            "name": "approximation",
+                            "val": "FALSE",
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "If TRUE, estimation is via conditional sums of squares and the information criteria used for model selection are approximated. The final model is still computed using maximum likelihood estimation. Approximation should be used for long time series or a high seasonal period to avoid excessive computation times. (see https://www.rdocumentation.org/packages/forecast/versions/8.9/topics/auto.arima)",
+                                "options": [
+                                    "FALSE",
+                                    "TRUE"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]
