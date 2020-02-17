@@ -3,7 +3,7 @@ title: "Reproducible Environmental Observations and Analysis"
 author:
   - name: "Daniel Nüst"
     affiliation: "senseBox and OpenSenseMap community"
-date: "`r format(Sys.time(), '%Y-%m-%d %T %Z')`"
+date: "August 2018"
 output: html_document
 abstract: "Analyse senseBox data from OpenSenseMap in a transparent, reproducible, and open way."
 licenses:
@@ -53,7 +53,11 @@ library("lwgeom")
 library("readr")
 library("jsonlite")
 library("here")
+# next ones are quired for plotting sensebox stations n a map
 library("maps")
+library("maptools")
+library("rgeos")
+library("ggplot2")
 ```
 
 ```{r load_box_data, include=FALSE}
@@ -105,7 +109,14 @@ The openSenseMap currently provides access to `r nrow(all_boxes)` senseBoxes of 
 The following map shows the PM2.5 sensor locations, which are mostly deployed in central Europe.
 
 ```{r plot_outdoor_feinstaub, echo=FALSE}
-plot(pm25_boxes)
+geom = pm25_boxes %>%
+    sf::st_as_sf()
+
+ggplot2::ggplot(geom) + 
+  ggplot2::borders("world", colour = "gray60", fill = "gray80") +
+  ggplot2::geom_sf() +
+  ggplot2::xlab("Longitue") + ggplot2::ylab("Latitute") +
+  ggplot2::ggtitle("Locations of all senseBoxes with PM2.5 sensor")
 ```
 
 ### Particulates at New Year's Eve in Münster
@@ -202,7 +213,7 @@ top_boxes_sf <- top_boxes %>%
   st_as_sf(coords = c('lon', 'lat'), crs = 4326)
 bbox <- sf::st_bbox(top_boxes_sf)
 
-world <- map("world", plot = FALSE, fill = TRUE) %>%
+world <- maps::map("world", plot = FALSE, fill = TRUE) %>%
   sf::st_as_sf() %>%
   sf::st_geometry()
 
@@ -237,5 +248,8 @@ This document is licensed under a [Creative Commons Attribution 4.0 Internationa
 ## Metadata
 
 ```{r metadata, echo=FALSE}
-devtools::session_info()
+# for reproducibility, the session information is saved to a file an picked up during manifest generation
+sessionInfo <- devtools::session_info()
+save(sessionInfo, file = "sessionInfo.RData")
+sessionInfo
 ```
