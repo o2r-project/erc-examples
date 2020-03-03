@@ -69,7 +69,7 @@ httr::handle_reset(o2r_api_endpoint)
 
 ```{r cookie_manual, eval=FALSE}
 #o2r_api_endpoint <- "https://o2r.uni-muenster.de/api/v1/"
-#o2r_user_cookie <- URLdecode("s%3A1gULF5iJHqZdzTwXeU77N633xOXoU-ft.c22tDacKgXinGLZjovY%2Bz70IY0o0svHDFbYA3cAooXQ")
+#o2r_user_cookie <- URLdecode("s%3AJJr2hI0Q3ffgU9ZcB55yJIRfJTvUEbKh.GJbmCuqLeUrj1D8zGqHlY1ndRDUOj9jA1QDnthgTYz8")
 ```
 
 ```{r log_endpoint_cookie}
@@ -116,7 +116,7 @@ _Which of the reproduced workspaces can be uploaded, published, and a job execut
 See notes [here](https://docs.google.com/spreadsheets/d/1WG8Ab5EKhb4KcZNLpveWwbvqlZ41Gjj7l1LccKyBla4/edit#gid=406313660).
 
 ```{r list_of_green_workspaces}
-green_papers <- finished_papers_repro_zips[has_rmd]
+green_papers <- finished_papers_repro_zips[has_rmd][16]
 ```
 
 Uploading `r length(green_papers)`:
