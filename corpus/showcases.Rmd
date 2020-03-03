@@ -25,7 +25,6 @@ You can add a file `.Renviron` on your local machine next to this file, and in i
 
 ```{r}
 corpus_path <- "../ERC"
-corpus_path
 cat("Loading copus papers from", corpus_path, "\n")
 bindings <- rjson::fromJSON(file = "bindings.json")
 ```
@@ -211,6 +210,7 @@ publish_compendium <- function(id, cookie, sleep_after_upload_secs = 0) {
               content_type_json(),
               accept_json()
               )
+        cat("Created bindung for ", id, " with response:", toString(content(create_binding)), "\n")
       }
     }
   }
@@ -338,6 +338,8 @@ summary(as.factor(finished_papers_jobs))
 
 ## Fixing errors & testing
 
+### Process a single workspace
+
 The following code chunk can be used to upload, publish, and execute a single compendium from the list `finished_papers_repro_zips[has_rmd]` for debugging purposes.
 For the function to work, run the chunks above to load finished papers and the three `.._function` chunks.
 
@@ -352,7 +354,7 @@ process_workspace <- function(workspaceIndex, the_list = finished_papers_repro_z
 #process_workspace(19)
 ```
 
-## Testing the metadata extraction
+### Testing the metadata extraction
 
 The following commands are assumed to run in the repository directory of [`o2r-meta`](https://github.com/o2r-project/o2r-meta).
 
@@ -377,7 +379,7 @@ $ python3 o2rmeta.py -debug validate -s schema/json/o2r-meta-schema.json -c /tmp
 
 The last call must show a "valid" metadata file for publishing to work.
 
-## Testing the manifest generation
+### Testing the manifest generation
 
 ```{r manifests, eval=FALSE}
 library("containerit")
