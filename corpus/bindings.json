@@ -29,15 +29,40 @@
                             }
                         },
                         {
-                            "text": "velocity <- 0.5",
+                            "text": "velocity <- 2.0",
                             "name": "velocity",
-                            "val": 0.5,
+                            "val": 2.0,
                             "uiWidget": {
                                 "minValue": 0,
                                 "type": "slider",
                                 "maxValue": 5,
-                                "stepSize": 1,
-                                "caption": "The velocity parameter specifies the pace of the water in meter pers seconds."
+                                "stepSize": 0.1,
+                                "caption": "The velocity parameter specifies the pace of the water in meter per seconds."
+                            }
+                        },
+                        {
+                            "text": "sediment <- 0.05",
+                            "name": "sediment",
+                            "val": 0.05,
+                            "uiWidget": {
+                                "minValue": 0,
+                                "type": "slider",
+                                "maxValue": 1,
+                                "stepSize": 0.01,
+                                "caption": "The sediment parameter specifies the sediment concentration in % on the water volume."
+                            }
+                        },
+                        {
+                            "text": "quality <- 1",
+                            "name": "quality",
+                            "val": 1,
+                            "uiWidget": {
+                                "type": "radio",
+                                "caption": "The quality parameter specifies whether pollutants are present or not (1 = yes, 0 = no).",
+                                "options": [
+                                    1,
+                                    0
+                                ]
                             }
                         }
                     ]
@@ -390,7 +415,6 @@
                             "name": "Kp",
                             "val": 1,
                             "uiWidget": {
-                                "minValue": 0,
                                 "type": "radio",
                                 "caption": "Kp: The model was run for SOP (Kp=1) and three levels of HP where level one (Kp=1.5) is the least conservative, level two (Kp=2) is slightly more conservative and level three (Kp=3) is the most conservative hedging rule tested.",
                                 "options": [
