@@ -394,17 +394,21 @@ library("httr")
 library("curl")
 
 # need to be admin!
-o2r_api_endpoint <- "http://localhost/api/v1/"
+#o2r_api_endpoint <- "http://localhost/api/v1/"
 user_cookie_url <- "http://localhost/oauth/cookie/0000-0002-1701-2564"
-#o2r_api_endpoint <- "https://o2r.uni-muenster.de/api/v1/"
-#o2r_user_cookie <- URLdecode("s%3AJJr2hI0Q3ffgU9ZcB55yJIRfJTvUEbKh.GJbmCuqLeUrj1D8zGqHlY1ndRDUOj9jA1QDnthgTYz8")
+o2r_api_endpoint <- "https://o2r.uni-muenster.de/api/v1/"
+#o2r_user_cookie <- URLdecode("s%3AHwd...")
 
 # get cookie via API from o2r-guestlister, but user must login manually
 if (!is.null(content(GET(user_cookie_url))$error))
   invisible(readline(prompt = "Login as 'Admin' at http://localhost, then press [enter] to continue"))
 if (!is.null(content(GET(user_cookie_url))$error) && !interactive())
   stop("Login as 'Admin' at http://localhost before creating the link")
-o2r_admin_cookie <- curl::curl_unescape(content(GET(user_cookie_url))$cookie)
+
+# set cookie manually here from demo server
+#o2r_admin_cookie <- curl::curl_unescape(content(GET(user_cookie_url))$cookie)
+o2r_admin_cookie <- URLdecode("s%3AHwd21aHfTV...")
+
 # clear cookies (can be required for manual testing and when the cookie changes)
 httr::handle_reset(o2r_api_endpoint)
 
@@ -419,5 +423,6 @@ create_link <- function(id, cookie) {
   return(result)
 }
 
-create_link(id = candidate_id, cookie = o2r_admin_cookie)
+#create_link(id = candidate_id, cookie = o2r_admin_cookie)
+create_link(id = "Qliyf", cookie = o2r_admin_cookie)
 ```
