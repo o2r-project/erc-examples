@@ -54,16 +54,16 @@ In case of a remote service, log in, find the cookie `connec.sid` for the platfo
 Depending on the used browser, you must decode the string so that is starts with `s:`.
 
 ```{r cookie_local, eval=FALSE}
-o2r_api_endpoint <- "http://localhost/api/v1/"
-user_cookie_url <- "http://localhost/oauth/cookie/0000-0001-6225-344X"
-#o2r_api_endpoint <- "https://o2r.uni-muenster.de/api/v1/"
-#o2r_user_cookie <- URLdecode("s%3AJJr2hI0Q3ffgU9ZcB55yJIRfJTvUEbKh.GJbmCuqLeUrj1D8zGqHlY1ndRDUOj9jA1QDnthgTYz8")
+#o2r_api_endpoint <- "http://localhost/api/v1/"
+#user_cookie_url <- "http://localhost/oauth/cookie/0000-0001-6225-344X"
+o2r_api_endpoint <- "https://o2r.uni-muenster.de/api/v1/"
+o2r_user_cookie <- URLdecode("s%3Ak5-0d-AH8hBZ9YEp6TFhQ4-XESlaK_QX.hTPhmz%2BUE0FgP4nql%2BfPRbToLgtlaIwhVjnYOiMj%2FIo")
 # get cookie via API from o2r-guestlister, but user must login manually
-if (!is.null(content(GET(user_cookie_url))$error))
-  invisible(readline(prompt = "Login as 'User' at http://localhost, then press [enter] to continue"))
-if (!is.null(content(GET(user_cookie_url))$error) && !interactive())
-  stop("Login as 'User' at http://localhost before rendering the document.")
-o2r_user_cookie <- curl::curl_unescape(content(GET(user_cookie_url))$cookie)
+#if (!is.null(content(GET(user_cookie_url))$error))
+#  invisible(readline(prompt = "Login as 'User' at http://localhost, then press [enter] to continue"))
+#if (!is.null(content(GET(user_cookie_url))$error) && !interactive())
+#  stop("Login as 'User' at http://localhost before rendering the document.")
+#o2r_user_cookie <- curl::curl_unescape(content(GET(user_cookie_url))$cookie)
 # clear cookies (can be required for manual testing and when the cookie changes)
 httr::handle_reset(o2r_api_endpoint)
 ```
