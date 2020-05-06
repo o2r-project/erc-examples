@@ -31,7 +31,7 @@
                         {
                             "text": "velocity <- 0.5",
                             "name": "velocity",
-                            "val": 2.0,
+                            "val": 0.5,
                             "uiWidget": {
                                 "minValue": 0,
                                 "type": "slider",
@@ -57,251 +57,40 @@
                     "file": "main.Rmd",
                     "codelines": [
                         {
-                            "start": 24,
-                            "end": 29
+                            "start": 28,
+                            "end": 33
                         },
                         {
-                            "start": 35,
-                            "end": 36
+                            "start": 39,
+                            "end": 40
                         },
                         {
-                            "start": 46,
-                            "end": 51
-                        },
-                        {
-                            "start": 60,
-                            "end": 67
-                        },
-                        {
-                            "start": 70,
-                            "end": 77
-                        },
-                        {
-                            "start": 81,
-                            "end": 84
-                        },
-                        {
-                            "start": 86,
-                            "end": 93
-                        },
-                        {
-                            "start": 98,
-                            "end": 112
-                        },
-                        {
-                            "start": 118,
-                            "end": 143
-                        }
-                    ],
-                    "parameter": [
-                        {
-                            "text": "Intensity = 33.0",
-                            "name": "Intensity",
-                            "val": 33,
-                            "uiWidget": {
-                                "minValue": 18,
-                                "type": "slider",
-                                "maxValue": 40,
-                                "stepSize": 1,
-                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                "computationalResult": {
-                    "type": "figure",
-                    "result": "Figure 2a"
-                },
-                "sourcecode": {
-                    "file": "main.Rmd",
-                    "codelines": [
-                        {
-                            "start": 24,
-                            "end": 29
-                        },
-                        {
-                            "start": 46,
-                            "end": 51
-                        },
-                        {
-                            "start": 60,
-                            "end": 63
-                        },
-                        {
-                            "start": 81,
-                            "end": 82
-                        },
-                        {
-                            "start": 98,
-                            "end": 112
-                        },
-                        {
-                            "start": 118,
-                            "end": 119
-                        },
-                        {
-                            "start": 2447,
-                            "end": 2447
-                        },
-                        {
-                            "start": 2618,
-                            "end": 2622
-                        },
-                        {
-                            "start": 2625,
-                            "end": 2638
-                        }
-                    ],
-                    "parameter": [
-                        {
-                            "text": "Intensity = 33.0",
-                            "name": "Intensity",
-                            "val": 33,
-                            "uiWidget": {
-                                "minValue": 18,
-                                "type": "slider",
-                                "maxValue": 40,
-                                "stepSize": 1,
-                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                "computationalResult": {
-                    "type": "figure",
-                    "result": "Figure 2b"
-                },
-                "sourcecode": {
-                    "file": "main.Rmd",
-                    "codelines": [
-                        {
-                            "start": 24,
-                            "end": 29
-                        },
-                        {
-                            "start": 35,
-                            "end": 41
-                        },
-                        {
-                            "start": 46,
+                            "start": 50,
                             "end": 55
                         },
                         {
-                            "start": 60,
-                            "end": 63
+                            "start": 64,
+                            "end": 71
                         },
                         {
-                            "start": 81,
-                            "end": 82
+                            "start": 74,
+                            "end": 81
                         },
                         {
-                            "start": 98,
-                            "end": 112
+                            "start": 85,
+                            "end": 88
                         },
                         {
-                            "start": 118,
-                            "end": 119
+                            "start": 90,
+                            "end": 97
                         },
                         {
-                            "start": 2447,
-                            "end": 2447
+                            "start": 102,
+                            "end": 116
                         },
                         {
-                            "start": 2618,
-                            "end": 2622
-                        },
-                        {
-                            "start": 2645,
-                            "end": 2666
-                        }
-                    ],
-                    "parameter": [
-                        {
-                            "text": "Intensity = 33.0",
-                            "name": "Intensity",
-                            "val": 33,
-                            "uiWidget": {
-                                "minValue": 18,
-                                "type": "slider",
-                                "maxValue": 40,
-                                "stepSize": 1,
-                                "caption": "The intensity parameter creates a subsets of storms with a minimum intensity."
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                "computationalResult": {
-                    "type": "figure",
-                    "result": "Figure 3a"
-                },
-                "sourcecode": {
-                    "file": "main.Rmd",
-                    "codelines": [
-                        {
-                            "start": 24,
-                            "end": 29
-                        },
-                        {
-                            "start": 46,
-                            "end": 51
-                        },
-                        {
-                            "start": 60,
-                            "end": 67
-                        },
-                        {
-                            "start": 81,
-                            "end": 82
-                        },
-                        {
-                            "start": 98,
-                            "end": 99
-                        },
-                        {
-                            "start": 151,
-                            "end": 672
-                        },
-                        {
-                            "start": 678,
-                            "end": 704
-                        },
-                        {
-                            "start": 2007,
-                            "end": 2168
-                        },
-                        {
-                            "start": 1195,
-                            "end": 1356
-                        },
-                        {
-                            "start": 1362,
-                            "end": 1388
-                        },
-                        {
-                            "start": 1394,
-                            "end": 1394
-                        },
-                        {
-                            "start": 2174,
-                            "end": 2200
-                        },
-                        {
-                            "start": 2205,
-                            "end": 2271
-                        },
-                        {
-                            "start": 2351,
-                            "end": 2377
-                        },
-                        {
-                            "start": 2554,
-                            "end": 2559
+                            "start": 122,
+                            "end": 147
                         }
                     ],
                     "parameter": [

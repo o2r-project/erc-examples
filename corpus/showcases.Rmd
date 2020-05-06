@@ -57,7 +57,7 @@ Depending on the used browser, you must decode the string so that is starts with
 #o2r_api_endpoint <- "http://localhost/api/v1/"
 #user_cookie_url <- "http://localhost/oauth/cookie/0000-0001-6225-344X"
 o2r_api_endpoint <- "https://o2r.uni-muenster.de/api/v1/"
-o2r_user_cookie <- URLdecode("s%3Ak5-0d-AH8hBZ9YEp6TFhQ4-XESlaK_QX.hTPhmz%2BUE0FgP4nql%2BfPRbToLgtlaIwhVjnYOiMj%2FIo")
+o2r_user_cookie <- URLdecode("s%3AcrkZg2HvqbSThA1Sj6o2nZ8vO4-NbixB.%2FKD9xaG3pTejTjJBy3T3CNHyXwfnzOekSBle6zv93tw")
 # get cookie via API from o2r-guestlister, but user must login manually
 #if (!is.null(content(GET(user_cookie_url))$error))
 #  invisible(readline(prompt = "Login as 'User' at http://localhost, then press [enter] to continue"))
@@ -161,7 +161,7 @@ upload_workspace_zip <- function(file, cookie) {
   return(result)
 }
 ```
-
+  
 ```{r upload}
 finished_papers_uploads <- lapply(X = green_papers,
                                   FUN = upload_workspace_zip,
@@ -249,7 +249,7 @@ finished_papers_publishings <- c()
 for (candidate_id in finished_papers_uploads) {
   result <- publish_compendium(candidate_id, cookie = o2r_user_cookie, sleep_after_upload_secs = 2)
   if (!is.na(result))
-    finished_papers_publishings <- c(finished_papers_publishings, result)
+      finished_papers_publishings <- c(finished_papers_publishings, result)
 }
 ```
 
