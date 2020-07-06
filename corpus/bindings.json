@@ -11,8 +11,8 @@
                     "file": "main.Rmd",
                     "codelines": [
                         {
-                            "start": 101,
-                            "end": 503
+                            "start": 96,
+                            "end": 498
                         }
                     ],
                     "parameter": [
@@ -33,11 +33,23 @@
                             "name": "velocity",
                             "val": 0.5,
                             "uiWidget": {
-                                "minValue": 0,
+                                "minValue": 0.0,
                                 "type": "slider",
-                                "maxValue": 5,
+                                "maxValue": 2.0,
                                 "stepSize": 0.1,
                                 "caption": "The velocity parameter specifies the pace of the water in meter per seconds."
+                            }
+                        },
+                        {
+                            "text": "sediment_concentration <- 0.05",
+                            "name": "sediment_concentration",
+                            "val": 0.05,
+                            "uiWidget": {
+                                "minValue": 0.00,
+                                "type": "slider",
+                                "maxValue": 1.00,
+                                "stepSize": 0.05,
+                                "caption": "The sediment concentration parameter specifies the sediment load in % on the water volume."
                             }
                         }
                     ]
