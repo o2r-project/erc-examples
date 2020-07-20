@@ -1,5 +1,5 @@
 # Example script to run INSYDE using the default settings
-install.packages("truncnorm")
+#install.packages("truncnorm")
 library(truncnorm)
 
 # Change working directory if necessary
@@ -10,7 +10,7 @@ source("insyde_function.R")
 
 # Read hazard and exposure variables
 source("hazard_variables.R")
-source("exposure_variables.R")
+  source("exposure_variables.R")
 
 # Read unit prices
 up <- read.table("unit_prices.txt")

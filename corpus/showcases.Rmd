@@ -61,7 +61,7 @@ o2r_user_cookie <- URLdecode("s%3AHbnk6zxke4_FQLCqmUU0ZJOXOouuFF6l.NEAUoGH%2F18l
 # get cookie via API from o2r-guestlister, but user must login manually
 #if (!is.null(content(GET(user_cookie_url))$error))
 #  invisible(readline(prompt = "Login as 'User' at http://localhost, then press [enter] to continue"))
-#if (!is.null(content(GET(user_cookie_url))$error) && !interactive())
+#if (!is.null(content(GET(user_cookie_url))$error) && !interactive())   
 #  stop("Login as 'User' at http://localhost before rendering the document.")
 #o2r_user_cookie <- curl::curl_unescape(content(GET(user_cookie_url))$cookie)
 # clear cookies (can be required for manual testing and when the cookie changes)
