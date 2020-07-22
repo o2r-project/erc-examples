@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SAGA_METADATA>
+  <HISTORY saga-version="2.2.2">
+    <MODULE library="table_calculus" id="2" name="Table Calculator (Shapes)">
+      <OPTION type="text" id="FORMULA" name="Formula">f2 - f52</OPTION>
+      <OPTION type="text" id="NAME" name="Field Name">Calculation1</OPTION>
+      <OPTION type="table_field" id="FIELD" name="Field">&lt;not set&gt;</OPTION>
+      <INPUT type="shapes" id="TABLE" name="Shapes">
+        <MODULE library="table_calculus" id="2" name="Table Calculator (Shapes)">
+          <OPTION type="text" id="FORMULA" name="Formula">f2 - f4</OPTION>
+          <OPTION type="text" id="NAME" name="Field Name">Calculation</OPTION>
+          <OPTION type="table_field" id="FIELD" name="Field">&lt;not set&gt;</OPTION>
+          <INPUT type="shapes" id="TABLE" name="Shapes">
+            <MODULE library="table_tools" id="4" name="Join Attributes from a Table (Shapes)">
+              <OPTION type="table_field" id="ID_A" name="Identifier">id</OPTION>
+              <OPTION type="table_field" id="ID_B" name="Identifier">id</OPTION>
+              <OPTION type="boolean" id="FIELDS_ALL" name="Add All Fields">TRUE</OPTION>
+              <OPTION type="boolean" id="KEEP_ALL" name="Keep All">TRUE</OPTION>
+              <INPUT type="shapes" id="TABLE_A" name="Shapes">
+                <FILE>E:\Dropbox\Dropbox (Licente_Disertatii)\2016_NHESS\miletin_landslides_database_validare.shp</FILE>
+              </INPUT>
+              <INPUT type="table" id="TABLE_B" name="Join Table">
+                <FILE>E:\Dropbox\Dropbox (Licente_Disertatii)\2016_NHESS\miletin_final2.shp</FILE>
+              </INPUT>
+              <OUTPUT type="shapes" id="RESULT" name="Result">landslide_inventory [miletin_final2]</OUTPUT>
+            </MODULE>
+          </INPUT>
+          <OUTPUT type="shapes" id="RESULT" name="Result">Result</OUTPUT>
+        </MODULE>
+      </INPUT>
+      <OUTPUT type="shapes" id="RESULT" name="Result">Result</OUTPUT>
+    </MODULE>
+  </HISTORY>
+  <SOURCE>
+    <FILE>C:\script\landslide_inventory.shp</FILE>
+    <DATABASE></DATABASE>
+    <PROJECTION>
+      <OGC_WKT>PROJCS["Double_Stereographic",GEOGCS["GCS_Krassovsky, 1942",DATUM["D_unknown",SPHEROID["krass",6378245.0,298.3]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Double_Stereographic"],PARAMETER["false_easting",500000.0],PARAMETER["false_northing",500000.0],PARAMETER["central_meridian",25.0],PARAMETER["scale_factor",0.99975],PARAMETER["latitude_of_origin",46.0],UNIT["Meter",1.0]]</OGC_WKT>
+      <PROJ4></PROJ4>
+      <EPSG>-1</EPSG>
+    </PROJECTION>
+  </SOURCE>
+  <DESCRIPTION></DESCRIPTION>
+</SAGA_METADATA>

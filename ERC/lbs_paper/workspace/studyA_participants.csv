@@ -1,0 +1,18 @@
+study;id;gender;age;background;building_familiarity;SBSOD1;SBSOD2;SBSOD3;SBSOD4;SBSOD5;SBSOD6;SBSOD7;SBSOD8;SBSOD9;SBSOD10;SBSOD11;SBSOD12;SBSOD13;SBSOD14;SBSOD15;smartphone_usage;becoming_lost;apps;usage_navsys_freq;used_indoor_nav;familiar_qrcodes;preference;started_with
+studyA;1;f;55;social;1;6;3;6;7;7;2;5;2;6;1;1;3;1;7;1;5;2;5;less than once a week;no;yes;kiosk;mixed
+studyA;2;m;24;natural;1;3;6;3;3;2;3;6;3;3;3;3;7;1;3;2;1;1;2;weekly;no;no;mixed;kiosk
+studyA;3;m;27;economics;1;5;2;2;5;7;1;5;3;5;3;1;3;3;5;2;2;2;2;weekly;no;yes;kiosk;mixed
+studyA;4;m;24;economics;1;6;2;3;6;7;2;6;2;7;1;3;4;6;4;7;3;2;4;weekly;no;yes;mixed;kiosk
+studyA;5;m;23;natural;1;2;5;2;2;1;5;4;6;3;1;5;7;4;4;3;1;3;2;weekly;no;yes;mixed;mixed
+studyA;6;m;28;social;1;3;5;2;2;3;6;2;5;3;3;5;6;7;2;6;1;4;2;weekly;no;yes;mixed;kiosk
+studyA;7;f;23;economics;1;3;5;6;2;7;6;6;5;3;2;4;6;7;3;5;1;4;1;less than once a week;no;yes;kiosk;mixed
+studyA;8;f;23;law;1;2;5;4;5;7;4;5;5;3;4;6;6;6;4;4;1;2;2;weekly;no;yes;mixed;kiosk
+studyA;9;f;21;economics;1;4;2;3;5;3;2;5;4;3;2;3;4;2;6;2;2;1;3;weekly;no;yes;mixed;mixed
+studyA;10;f;18;social;1;5;2;3;6;7;3;2;3;6;1;1;7;3;6;1;1;1;2;weekly;no;yes;kiosk;kiosk
+studyA;11;m;19;law;1;4;3;3;2;5;2;2;6;3;1;4;5;3;5;1;1;3;3;weekly;no;no;mixed;mixed
+studyA;12;f;20;medicine;1;3;5;5;3;3;7;2;4;3;6;3;6;5;1;6;2;4;3;less than once a month;no;yes;mixed;kiosk
+studyA;13;f;19;medicine;1;7;1;7;7;7;2;7;2;7;2;2;1;1;6;1;1;1;3;weekly;no;no;mixed;mixed
+studyA;14;f;21;natural;1;3;2;3;3;5;3;4;5;2;2;5;6;6;4;6;1;3;2;only in exception / emergency;no;no;mixed;kiosk
+studyA;15;f;25;economics;1;6;5;6;3;7;3;1;3;5;3;2;7;3;3;3;1;2;1;weekly;no;yes;kiosk;mixed
+studyA;16;f;24;medicine;1;1;6;1;1;4;7;2;7;1;4;5;7;6;3;6;1;4;2;weekly;no;yes;mixed;kiosk
+studyA;17;m;26;didactic;1;4;4;5;4;7;5;6;4;4;2;2;3;2;4;3;1;3;2;less than once a week;no;yes;mixed;mixed

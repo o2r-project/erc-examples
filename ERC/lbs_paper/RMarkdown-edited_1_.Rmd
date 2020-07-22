@@ -1,0 +1,390 @@
+---
+title: "Indoor Navigation"
+output: html_document
+author: Christian Terbeck & Benjamin Dietz
+---
+
+```{r setup, include=FALSE}
+```
+
+```{r}
+rawdata <- read.csv(file="/Users/benni/Downloads/studien_rohdaten2.csv", header=TRUE, sep=";")
+```
+
+In the following we use these abbreviation for the two studies:
+
+ - MS-study - mobile standalone study - study that compares the stand-alone mobile indoor navigation system with the initial stationary kiosk system
+ - MWK-study - mobile with kiosk system study - study that compares the system that combines the a kiosk system with a mobile navigation system with the initial stationary kiosk system
+
+Deviding the dataset for the both user studies:
+```{r}
+ms_study = rawdata[rawdata$Verwendetes.System..2. == "Dietz", ]
+mwk_study = rawdata[rawdata$Verwendetes.System..2. == "Terbeck", ]
+```
+
+The number of participants for the MS-study is `r length(ms_study[,1])` while `r length(mwk_study[,1])` people conducted the MWK-study.
+
+# Functions
+
+### Functions for SBSOD:
+Calculating SBSOD for each person of the study:
+```{r}
+recodeSantaBarbara <- function(values) {
+  x = c()
+  for (i in values) {
+    x = append(x, c(switch(i,7,6,5,4,3,2,1)))
+  }
+  return (x)
+}
+getSenseOfDirectionForPerson <- function(index, dataset) {
+  sum = recodeSantaBarbara(dataset[,7])[index] + dataset[,8][index] + recodeSantaBarbara(dataset[,9])[index] + 
+    recodeSantaBarbara(dataset[,10])[index] + recodeSantaBarbara(dataset[,11])[index] + dataset[,12][index] + 
+    recodeSantaBarbara(dataset[,13])[index] + dataset[,14][index] + recodeSantaBarbara(dataset[,15])[index] + dataset[,16][index] + dataset[,17][index] + dataset[,18][index] + dataset[,19][index] + recodeSantaBarbara(dataset[,20])[index] + dataset[,21][index] 
+  return (sum/15)
+}
+getAllSenseOfDir = function(dataset) {
+  x = c()
+  for (i in 1:length(dataset[,7])) {
+    x = append(x, c(getSenseOfDirectionForPerson(i,dataset)))
+  }
+  return(x)
+}
+```
+
+### Functions for NASA-TLX:
+Calculating SBSOD for each person of the study:
+```{r}
+getNasaTLXPersonKonkol = function(dataset, i) {
+  konkol = dataset[,29][i] + dataset[,30][i] + dataset[,31][i] + dataset[,32][i] + dataset[,33][i] + dataset[,34][i]
+  return (konkol/6)
+}
+
+getNasaTLXPersonComparedSystem = function(dataset, i) {
+  comparedSys = dataset[,45][i] + dataset[,46][i] + dataset[,47][i] + dataset[,48][i] + dataset[,49][i] + dataset[,50][i]
+  return (comparedSys/6)
+}
+
+getAverageTLXComparedSystem = function(dataset) {
+  persons = length(dataset[,1])
+  sum = 0
+  for (i in 1:persons) {
+    sum = sum + getNasaTLXPersonComparedSystem(dataset, i)
+  }
+  return(sum/persons)
+}
+
+getAverageTLXKonkol = function(dataset) {
+  persons = length(dataset[,1])
+  sum = 0
+  for (i in 1:persons) {
+    sum = sum + getNasaTLXPersonKonkol(dataset, i)
+  }
+  return(sum/persons)
+}
+
+getAllTLXKonkol = function(dataset) {
+  persons = length(dataset[,1])
+  all = c()
+  for (i in 1:persons) {
+    all = append(all, getNasaTLXPersonKonkol(dataset, i))
+  }
+  return(all)
+}
+
+getAllTLXComparedSystem = function(dataset) {
+  persons = length(dataset[,1])
+  all = c()
+  for (i in 1:persons) {
+    all = append(all, getNasaTLXPersonComparedSystem(dataset, i))
+  }
+  return(all)
+}
+
+getAverageValue = function(dataset, column) {
+  persons = length(dataset[,column])
+  sum = 0
+  for (i in 1:persons) {
+    sum = sum + dataset[,column][i]
+  }
+  return(sum/persons)
+}
+
+```
+
+
+
+# MS-study
+
+### Participants
+- `r length(ms_study[,2][ms_study[,2] == 1])` female and `r length(ms_study[,2][ms_study[,2] == 2])` male participants
+- the age of the participant was between `r min(summary(ms_study[,3]))` and `r max(summary(ms_study[,3]))` with a mean value of `r mean(summary(ms_study[,3]))`
+- `r length(ms_study[,6][ms_study[,6] == 1])` have never been in the building before while `r length(ms_study[,6][ms_study[,6] == 2])` have already been in the building but has no good knowledge about it ("Ich war schonmal hier, kenne mich aber nicht gut aus")
+
+Background of participants:
+
+ - natural science: `r length(ms_study[,4][ms_study[,4] == 1])`
+ - medicine: `r length(ms_study[,4][ms_study[,4] == 2])`
+ - social sciences: `r length(ms_study[,4][ms_study[,4] == 3])`
+ - law: `r length(ms_study[,4][ms_study[,4] == 4])`
+ - languages & culture: `r length(ms_study[,4][ms_study[,4] == 5])`
+ - didactic: `r length(ms_study[,4][ms_study[,4] == 6])`
+ - other: `r length(ms_study[,4][ms_study[,4] == 7])`
+
+### SBSOD
+Using the methods we introduced above, the participants of the study had the following SBSODs:
+```{r}
+getAllSenseOfDir(ms_study)
+```
+
+While these values range from `r min(getAllSenseOfDir(ms_study))` to `r max(getAllSenseOfDir(ms_study))`, the mean SBSOD value is `r mean(getAllSenseOfDir(ms_study))`.
+
+### Smartphone and navigation usage of users
+
+```{r}
+ms_study[,25][ms_study[,25] == 1] <- "weekly"
+ms_study[,25][ms_study[,25] == 2] <- "less than once a week"
+ms_study[,25][ms_study[,25] == 3] <- "less than once a month"
+ms_study[,25][ms_study[,25] == 4] <- "only in exception / emergency "
+ms_study[,25][ms_study[,25] == 5] <- "never"
+barplot(table(ms_study[,25]), main = "How often do participants use navigation systems in their everyday life?", xlim = c(0,5))
+```
+
+```{r}
+pie(table(ms_study[,26]),labels=c("Yes","No"), main="I have already used an Indoor navigation system")
+```
+
+```{r}
+pie(table(ms_study[,27]),labels=c("Yes","No"), main="I am familiar with scanning QR codes")
+```
+
+
+```{r}
+mean(ms_study[,22])
+barplot(table(ms_study[,22]), main = "The use of smartphones is very easy for me", sub ="1: strongly agree; 5: do not agree at all", xlim = c(0,5))
+```
+
+```{r}
+mean(ms_study[,23])
+barplot(table(ms_study[,23]), main = "I easily get lost in complex buildings", sub ="1: strongly agree; 5: do not agree at all", xlim = c(0,5))
+```
+
+```{r}
+mean(ms_study[,24])
+barplot(table(ms_study[,24]), main = "I cope well with new mobile apps", sub ="1: strongly agree; 5: do not agree at all", xlim = c(0,5))
+```
+
+
+### Time spend for the interaction
+
+These are the times spend for the interaction with the system:
+```{r}
+ms_study$Zeit.Benutzung..1. # times of standalone mobile system
+ms_study$Zeit.Benutzung..2. # times of initial kiosk system
+```
+|               | Standalone Mobile system           | Initial stationary system  |
+|---------------|:----------------------------------:|---------------------------:|
+| min value     | `r min(ms_study$Zeit.Benutzung..1.)` s                       |  `r min(ms_study$Zeit.Benutzung..2.)` s                     |
+| max value     | `r max(ms_study$Zeit.Benutzung..1.)` s                       |  `r max(ms_study$Zeit.Benutzung..2.)` s                     |
+| mean value   | `r mean(ms_study$Zeit.Benutzung..1.)` s                       |  `r mean(ms_study$Zeit.Benutzung..2.)` s                     |
+
+### Time spend for the navigation
+
+These are the times spent for the navigation with the system:
+```{r}
+ms_study$Zeit.Navigation..in.Sekunden...1. # times of standalone mobile system
+ms_study$Zeit.Navigation..in.Sekunden...2. # times of initial kiosk system
+```
+|               | Standalone Mobile system           | Initial stationary system  |
+|---------------|:----------------------------------:|---------------------------:|
+| min value     | `r min(ms_study$Zeit.Navigation..in.Sekunden...1.)` s                       |  `r min(ms_study$Zeit.Navigation..in.Sekunden...2.)` s                     |
+| max value     | `r max(ms_study$Zeit.Navigation..in.Sekunden...1.)` s                       |  `r max(ms_study$Zeit.Navigation..in.Sekunden...2.)` s                     |
+| mean value   | `r mean(ms_study$Zeit.Navigation..in.Sekunden...1.)` s                       |  `r mean(ms_study$Zeit.Navigation..in.Sekunden...2.)` s                     |
+
+### NASA TLX:
+
+Initial kiosk system:
+```{r}
+summary(getAllTLXKonkol(ms_study))
+```
+
+Mobile system:
+```{r}
+summary(getAllTLXComparedSystem(ms_study))
+```
+
+### Overview: Evaluation of system
+```{r}
+dataset = ms_study
+getMeanValue <- function(dataset, index) {
+  return(round(mean(dataset[,index]), 2))
+}
+vergleich <- matrix(c(getMeanValue(dataset, 35), getMeanValue(dataset, 36),getMeanValue(dataset, 37), getMeanValue(dataset, 38),getMeanValue(dataset, 39), getMeanValue(dataset, 40), getMeanValue(dataset, 41), getMeanValue(dataset, 51), getMeanValue(dataset, 52), getMeanValue(dataset, 53), getMeanValue(dataset, 54),getMeanValue(dataset, 55), getMeanValue(dataset, 56),getMeanValue(dataset, 57)),ncol=7,byrow=TRUE)
+colnames(vergleich) <- c("The system was easy to use","The system was good to understand", "I always felt that I was being well guided", 
+                         "The system helped me to reach my destination reliably", "The system supported my orientation", "Would recommend to other people", "Would also use in other buildings")
+rownames(vergleich) <- c("Konkol","Dietz")
+vergleich
+```
+
+
+NASA TLX:
+```{r}
+rawdata = ms_study
+
+mean(rawdata[,29][!is.na(rawdata[,29])]) # Mental demand: Konkol
+mean(rawdata[,45][!is.na(rawdata[,45])]) # Mental demand: Dietz
+
+mean(rawdata[,30][!is.na(rawdata[,30])]) # Physical demand: Konkol
+mean(rawdata[,46][!is.na(rawdata[,46])]) # Physical demand: Dietz
+
+mean(rawdata[,31][!is.na(rawdata[,31])]) # Temporal demand: Konkol
+mean(rawdata[,47][!is.na(rawdata[,47])]) # Temporal demand: Dietz
+
+mean(rawdata[,32][!is.na(rawdata[,32])]) # Performance: Konkol
+mean(rawdata[,48][!is.na(rawdata[,48])]) # Performance: Dietz
+
+mean(rawdata[,33][!is.na(rawdata[,33])]) # Effort: Konkol
+mean(rawdata[,49][!is.na(rawdata[,49])]) # Effort: Dietz
+
+mean(rawdata[,34][!is.na(rawdata[,34])]) # Frustration: Konkol
+mean(rawdata[,50][!is.na(rawdata[,50])]) # Frustration: Dietz
+
+```
+
+
+
+
+# MWK-study
+
+### Participants
+- `r length(mwk_study[,2][mwk_study[,2] == 1])` female and `r length(mwk_study[,2][mwk_study[,2] == 2])` male participants
+- the age of the participant was between `r min(summary(mwk_study[,3]))` and `r max(summary(mwk_study[,3]))` with a mean value of `r mean(summary(mwk_study[,3]))`
+- `r length(mwk_study[,6][mwk_study[,6] == 1])` have never been in the building before while `r length(mwk_study[,6][mwk_study[,6] == 2])` have already been in the building but has no good knowledge about it ("Ich war schonmal hier, kenne mich aber nicht gut aus")
+
+Background of participants:
+
+ - natural science: `r length(mwk_study[,4][mwk_study[,4] == 1])`
+ - medicine: `r length(mwk_study[,4][mwk_study[,4] == 2])`
+ - social sciences: `r length(mwk_study[,4][mwk_study[,4] == 3])`
+ - law: `r length(mwk_study[,4][mwk_study[,4] == 4])`
+ - languages & culture: `r length(mwk_study[,4][mwk_study[,4] == 5])`
+ - didactic: `r length(mwk_study[,4][mwk_study[,4] == 6])`
+ - other: `r length(mwk_study[,4][mwk_study[,4] == 7])`
+
+### SBSOD
+Using the methods we introduced above, the participants of the study had the following SBSODs:
+```{r}
+getAllSenseOfDir(mwk_study)
+```
+
+While these values range from `r min(getAllSenseOfDir(mwk_study))` to `r max(getAllSenseOfDir(mwk_study))`, the mean SBSOD value is `r mean(getAllSenseOfDir(mwk_study))`.
+
+### Smartphone and navigation usage of users
+
+```{r}
+mwk_study[,25][mwk_study[,25] == 1] <- "weekly"
+mwk_study[,25][mwk_study[,25] == 2] <- "less than once a week"
+mwk_study[,25][mwk_study[,25] == 3] <- "less than once a month"
+mwk_study[,25][mwk_study[,25] == 4] <- "only in exception / emergency "
+mwk_study[,25][mwk_study[,25] == 5] <- "never"
+barplot(table(mwk_study[,25]), main = "How often do participants use navigation systems in their everyday life?", xlim = c(0,5))
+```
+
+```{r}
+pie(table(mwk_study[,26]),labels=c("Yes","No"), main="I have already used an Indoor Navigation system")
+```
+
+```{r}
+pie(table(mwk_study[,27]),labels=c("Yes","No"), main="I am familiar with scanning QR codes")
+```
+
+
+```{r}
+mean(mwk_study[,22])
+barplot(table(mwk_study[,22]), main = "The use of smartphones is very easy for me", sub ="1: strongly agree; 5: do not agree at all", xlim = c(0,5))
+```
+
+```{r}
+mean(mwk_study[,23])
+barplot(table(mwk_study[,23]), main = "I easily get lost in complex buildings", sub ="1: strongly agree; 5: do not agree at all", xlim = c(0,5))
+```
+
+```{r}
+mean(mwk_study[,24])
+barplot(table(mwk_study[,24]), main = "I cope well with new mobile apps", sub ="1: strongly agree; 5: do not agree at all", xlim = c(0,5))
+```
+
+
+### Time spend for the interaction
+
+These are the times spent for the interaction with the system:
+```{r}
+mwk_study$Zeit.Benutzung..1. # times of standalone mobile system
+mwk_study$Zeit.Benutzung..2. # times of initial kiosk system
+```
+|               | Standalone Mobile system           | Initial stationary system  |
+|---------------|:----------------------------------:|---------------------------:|
+| min value     | `r min(mwk_study$Zeit.Benutzung..1.)` s                       |  `r min(mwk_study$Zeit.Benutzung..2.)` s                     |
+| max value     | `r max(mwk_study$Zeit.Benutzung..1.)` s                       |  `r max(mwk_study$Zeit.Benutzung..2.)` s                     |
+| mean value   | `r mean(mwk_study$Zeit.Benutzung..1.)` s                       |  `r mean(mwk_study$Zeit.Benutzung..2.)` s                     |
+
+### Time spend for the navigation
+
+These are the times spend for the navigation with the system:
+```{r}
+mwk_study$Zeit.Navigation..in.Sekunden...1. # times of standalone mobile system
+mwk_study$Zeit.Navigation..in.Sekunden...2. # times of initial kiosk system
+```
+|               | Standalone Mobile system           | Initial stationary system  |
+|---------------|:----------------------------------:|---------------------------:|
+| min value     | `r min(mwk_study$Zeit.Navigation..in.Sekunden...1.)` s                       |  `r min(mwk_study$Zeit.Navigation..in.Sekunden...2.)` s                     |
+| max value     | `r max(mwk_study$Zeit.Navigation..in.Sekunden...1.)` s                       |  `r max(mwk_study$Zeit.Navigation..in.Sekunden...2.)` s                     |
+| mean value   | `r mean(mwk_study$Zeit.Navigation..in.Sekunden...1.)` s                       |  `r mean(mwk_study$Zeit.Navigation..in.Sekunden...2.)` s                     |
+
+### NASA TLX:
+
+Initial kiosk system:
+```{r}
+summary(getAllTLXKonkol(mwk_study))
+```
+
+Mobile system:
+```{r}
+summary(getAllTLXComparedSystem(mwk_study))
+```
+### Overview: Evaluation of system
+```{r}
+dataset = mwk_study
+getMeanValue <- function(dataset, index) {
+  return(round(mean(dataset[,index]), 2))
+}
+vergleich <- matrix(c(getMeanValue(dataset, 35), getMeanValue(dataset, 36),getMeanValue(dataset, 37), getMeanValue(dataset, 38),getMeanValue(dataset, 39), getMeanValue(dataset, 40), getMeanValue(dataset, 41), getMeanValue(dataset, 51), getMeanValue(dataset, 52), getMeanValue(dataset, 53), getMeanValue(dataset, 54),getMeanValue(dataset, 55), getMeanValue(dataset, 56),getMeanValue(dataset, 57)),ncol=7,byrow=TRUE)
+colnames(vergleich) <- c("The system was easy to use","The system was good to understand", "I always felt that I was being well guided", 
+                         "The system helped me to reach my destination reliably", "The system supported my orientation", "Would recommend to other people", "Would also use in other buildings")
+rownames(vergleich) <- c("Konkol","Dietz")
+vergleich
+```
+
+
+NASA TLX:
+```{r}
+rawdata = mwk_study
+
+mean(rawdata[,29][!is.na(rawdata[,29])]) # Mental demand: Konkol
+mean(rawdata[,45][!is.na(rawdata[,45])]) # Mental demand: Dietz
+
+mean(rawdata[,30][!is.na(rawdata[,30])]) # Physical demand: Konkol
+mean(rawdata[,46][!is.na(rawdata[,46])]) # Physical demand: Dietz
+
+mean(rawdata[,31][!is.na(rawdata[,31])]) # Temporal demand: Konkol
+mean(rawdata[,47][!is.na(rawdata[,47])]) # Temporal demand: Dietz
+
+mean(rawdata[,32][!is.na(rawdata[,32])]) # Performance: Konkol
+mean(rawdata[,48][!is.na(rawdata[,48])]) # Performance: Dietz
+
+mean(rawdata[,33][!is.na(rawdata[,33])]) # Effort: Konkol
+mean(rawdata[,49][!is.na(rawdata[,49])]) # Effort: Dietz
+
+mean(rawdata[,34][!is.na(rawdata[,34])]) # Frustration: Konkol
+mean(rawdata[,50][!is.na(rawdata[,50])]) # Frustration: Dietz
+
+```

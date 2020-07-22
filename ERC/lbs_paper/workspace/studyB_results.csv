@@ -1,0 +1,29 @@
+id;treatment;mental;physical;temporal;performance;effort;frustration;easeofuse;understanding;guidance;relicability;orientation;recommendation;applicability;interaction_time;navigation_time;successful;advantages_disadvantages;comments;observations
+1;kiosk;8;3;9;17;6;6;1;2;1;5;5;2;4;50;33;yes;Schwierig sich alles zu merken;[BILD];
+2;kiosk;5;1;1;18;2;2;5;3;4;4;4;3;4;67;29;yes;[BILD];[BILD];
+3;kiosk;11;7;18;18;14;5;4;4;4;4;3;4;4;25;160;yes;[BILD];[BILD];hat gut geklappt, wollte Navigationsweg vom Monitor abfotografieren
+4;kiosk;4;2;4;2;11;12;4;4;2;5;4;4;4;35;64;no;-relativ konzentriert, sich die informationen zu merken;[BILD];
+5;kiosk;5;1;7;12;8;5;4;4;1;2;2;3;2;20;70;yes;Mit Zeichnung erkl盲rt, mit Worten erkl盲rt, gro铿俥 Schrift  Relativ tief angebracht, Info nur einmal bekommen, Erkl盲rung nicht ausreichend;Grundidee ganz gut;wollte Navigationsweg abfotografieren
+6;kiosk;4;2;9;14;6;4;4;5;4;5;5;5;5;50;110;yes;#NAME?;[BILD];
+7;kiosk;9;1;7;5;10;14;4;5;4;4;5;5;5;43;89;yes;#NAME?;[BILD];
+8;kiosk;2;1;10;17;1;2;2;1;2;2;1;3;3;30;80;no;POS: gute Beschreibung aus Sicht der Suchenden Person, gute bildliche Darstellung   Neg: schlechter Touch, da ich auf den falschen Namen kam, man hat nichts was man mitnehmen  kann (man muss es sich merken oder abfotografieren );W赂rd ich gerne an dem Eingang gr藆e铿俥rer Geb盲ude oder gebeudekomplexen f赂r sinnvoll sehen ...ggf. noch mehrere im Geb盲ude also auf jeder Etage eins um sich zu vergewissern ...;den falschen Raum am Touchscreen ausgewaehlt und daher Ziel nicht erreicht - Bedienung des Systems war aber dennoch sehr gut
+9;kiosk;3;4;6;20;3;3;5;5;4;5;5;4;4;28;25;yes;Gut verst盲ndlich  Schnell Unterwegs konnte man den Weg nicht nochmal anschauen;[BILD];
+10;kiosk;2;2;7;16;4;2;3;4;2;5;2;4;2;43;116;yes;Das mit dem Bild, fand ich sehr hilfreich;[BILD];
+11;kiosk;7;2;15;12;13;9;4;5;4;5;5;4;4;37;61;yes;#NAME?;Bildschirm h盲ngt zu tief finde ich;
+12;kiosk;9;2;10;13;2;1;3;3;2;4;3;3;3;26;65;yes;Negativ: keine M藆eglichkeit, zu einem sp盲teren Zeitpunkt nochmal zu schauen, wo ich hin muss;[BILD];Erinnerungen waren schwach
+13;kiosk;4;3;10;15;7;6;2;3;3;3;3;2;2;22;58;yes;-Weg musste germerkt werden;[BILD];wollte abfotografieren
+14;kiosk;7;2;9;20;7;7;3;3;2;4;3;2;2;30;47;yes;Einfach, zielf赂hrend, passendes Design  Viel zu merken, lang, k藆ennte ansprechender sein;[BILD];wollte abfotografieren - an Raumnummern auf dem Weg orientiert
+1;app;1;1;7;19;10;1;4;5;5;4;4;5;4;13;26;yes;Negativ: es war nicht intuitiv dass man auf den n盲chsten Schritt klicken soll  Positiv: Erfolgserlebnis AS2 Ende;[BILD];
+2;app;14;2;11;20;14;11;2;4;2;2;3;3;2;39;156;yes;[BILD];[BILD];Navigation wurde neu gestartet weil die Person am Fahrstuhl vorbei gelaufen ist
+3;app;3;3;17;17;2;12;2;4;2;4;3;3;2;40;178;yes;[BILD];[BILD];"""ganz gut"" - es gab ein paar Verstaendnisprobleme"
+4;app;1;3;4;18;3;2;5;4;4;5;5;4;4;34;99;yes;+erkennt blickrichtung +Man muss nur recht einfach den anweisungen folgen -bei Der ersten benutzung Noch etwas unverst盲ndlich,danach besser;[BILD];
+5;app;9;22;7;9;3;16;5;4;5;5;5;5;5;80;177;yes;Jeder Schritt erkl盲rt, sprachliche Unterst赂tzung,  Die Eingangsseite war im ersten Moment verwirrend, weil ich ja den Raum nach Namen gesucht habe und nicht umgekehrt;Mir ist die Suchfunktion in der Rangliste erst sp盲t aufgefallen. Der noch besser visualisieren;
+6;app;4;5;6;14;7;7;4;2;1;3;2;4;4;120;115;no;-Suchfunktion ist zu versteckt -Ansage, die die Route Ansagt, ohne auf den Button weiter zuklicken;[BILD];"nur durch manuelles Suchen gefunden (""zum naechsten Schritt"" nicht gefunden)"
+7;app;3;1;4;3;3;2;4;5;4;5;5;5;5;35;39;yes;Gute Orientierung f赂r innen g盲uden;[BILD];
+8;app;5;1;6;11;8;8;4;4;3;1;3;4;5;15;92;yes;POS: eine Karte ist mit Beschreibung vorhanden (also sinnvoll f赂r visuelle Lerner),   Neg: teilweise irritierend mit der Karte, zeitintensiv;[BILD];"""nach Eingewoehnung finde ich es sehr gut"""
+9;app;1;4;3;20;2;2;2;1;2;1;2;2;1;63;73;yes;Wege wurden aufgezeigt Raumnummer k藆ennte deutlicher zu sehen sein  Insgesamt etwas un赂bersichtlich;Ich h盲tte den Raum nur mit der Nummer schneller gefunden da es etwas gedauert hat das System zu verstehen;
+10;app;7;1;6;2;10;10;5;3;4;5;2;4;4;51;234;yes;-durch nur 90鈭�-Kurven war der Weg etwas 赂berfl赂ssig umst盲 ndlich;[BILD];"Such-Feld nicht gefunden - ""Sie stehen vor dem Raum 1"" hat sie nicht gehoert und stand daher falsch (beim zweiten Versuch hat es dann gut geklappt)"
+11;app;4;2;19;16;11;10;5;4;4;5;5;4;4;15;76;yes;+Leicht zu installieren, mehrere Startpunkte m藆eglich(?) +man muss sich nichts merken +karte extrem hilfreich;Ich fand die Karte hilfreicher als die Tonangaben. Ein Hinweis wie 'Begeben Sie sich zu dem Fahrstuhl' oder so w盲re eventuell besser gewesen. Gibt es die M藆eglichkeit Fahrst赂hle auszuschlie铿俥n oder nur Barrierefreie Wege zu nehmen?;
+12;app;2;1;5;20;1;1;4;4;3;3;2;4;4;23;103;no;Positiv: M藆eglichkeit zur Orientierung in gro铿俥n Geb盲uden, die sonst ot un赂bersichtlich sind Negativ: farbliche Gestaltung der Button anpassen, um zu verdeutlichen, was gemacht werden muss;[BILD];"""zum naechsten Schritt"" nicht direkt gefunden. Nicht verstanden dass man den Fahrstuhl nehmen muss und daher vorbeigelaufen - manuell Raum gefunden"
+13;app;4;4;10;15;6;5;4;4;3;4;4;4;4;37;112;yes;#NAME?;[BILD];"""nach Eingewoehnung gut"" - kurz rechts am Fahrstuhl vorbeigelaufen"
+14;app;5;2;8;13;5;8;4;4;4;5;5;4;4;26;50;yes;Mobil, meistens sehr 赂bersichtlich, gutes Design;[BILD];
