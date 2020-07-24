@@ -1,16 +1,18 @@
 ---
-title: "A mobile assistant for indoor kiosk systems based on self-localization and QR codes"
+title: "Exploring alternatives for zero-configuration and low-cost indoor localization"
 author: 
 - affiliation:  "Institute for Science"
   name: "Anna Anonymous"
 licenses:
-  code: CC-BY-3.0
-  data: CC-BY-3.0
-  text: CC-BY-3.0
-date: "15 May 2020"
+  code: CC-BY-4.0
+  data: CC-BY-4.0
+  text: CC-BY-4.0
+date: "22 July 2020"
 output: html_document
 abstract: "Because outdoor navigation systems are used frequently, people are accustomed to automatic and accurate localization. To achieve the same inside buildings, extensive infrastructure is needed, which is either cost- or labour-intensive. An alternative approach is to involve users in the localization process, for example, by asking them to scan QR codes for which the location within the building is stored in a database. In this work, we present a concept for creating indoor navigation systems to assist first-time visitors in navigating public buildings based on stepwise self-localization. Based on this concept, we designed and implemented two prototypes: a mixed approach combining a stationary kiosk system with a smartphone application and a stand-alone mobile application. We evaluated the two prototypes separately against an existing stationary kiosk display concerning efficiency, workload, and user acceptance. The results provide initial evidence that the participants favoured the two prototypes over the kiosk display while also revealing several limitations that should be addressed in a next iteration. We also showed that based on a common infrastructure it is possible to test different implementations independently."
 ---
+
+<style>body{text-align:justify}</style>
 
 ```{r, echo=FALSE, results="hide", message=FALSE, comment=FALSE, warning=FALSE}
 studyA_participants <- read.csv(file="studyA_participants.csv", header=TRUE, sep=";")
