@@ -15,10 +15,10 @@ abstract: "Because outdoor navigation systems are used frequently, people are ac
 <style>body{text-align:justify}</style>
 
 ```{r, echo=FALSE, results="hide", message=FALSE, comment=FALSE, warning=FALSE}
-studyA_participants <- read.csv(file="studyA_participants.csv", header=TRUE, sep=";")
-studyB_participants <- read.csv(file="studyB_participants.csv", header=TRUE, sep=";")
-studyA_results <- read.csv(file="studyA_results.csv", header=TRUE, sep=",")
-studyB_results <- read.csv(file="studyB_results.csv", header=TRUE, sep=";")
+studyA_participants <- read.csv("studyAparticipants.csv", header=TRUE, sep=";")
+studyB_participants <- read.csv(file="studyBparticipants.csv", header=TRUE, sep=";")
+studyA_results <- read.csv(file="studyAresults.csv", header=TRUE, sep=",")
+studyB_results <- read.csv(file="studyBresults.csv", header=TRUE, sep=";")
 ```
 
 The two user studies were conducted separately by the developers of the prototypes. 
