@@ -57,7 +57,7 @@ Depending on the used browser, you must decode the string so that is starts with
 #o2r_api_endpoint <- "http://localhost/api/v1/"
 #user_cookie_url <- "http://localhost/oauth/cookie/0000-0001-6225-344X"
 o2r_api_endpoint <- "https://o2r.uni-muenster.de/api/v1/"
-o2r_user_cookie <- URLdecode("s%3AHbnk6zxke4_FQLCqmUU0ZJOXOouuFF6l.NEAUoGH%2F18lKeiehvqMfWUtFrfP422VUwfzIy2sxJbg")
+o2r_user_cookie <- URLdecode("s%3Al0yBqmf0rMVcSjyCjfy_sj2oCCPEvkxx.lXe5WBzXQIwAUW5xTqojOW8hLfxKB8dCntB8vpdidnA")
 # get cookie via API from o2r-guestlister, but user must login manually
 #if (!is.null(content(GET(user_cookie_url))$error))
 #  invisible(readline(prompt = "Login as 'User' at http://localhost, then press [enter] to continue"))
@@ -117,7 +117,7 @@ _Which of the reproduced workspaces can be uploaded, published, and a job execut
 See notes [here](https://docs.google.com/spreadsheets/d/1WG8Ab5EKhb4KcZNLpveWwbvqlZ41Gjj7l1LccKyBla4/edit#gid=406313660).
 
 ```{r list_of_green_workspaces}
-green_papers <- finished_papers_repro_zips[has_rmd][15]
+green_papers <- finished_papers_repro_zips[has_rmd]
 ```
 
 Uploading `r length(green_papers)`:

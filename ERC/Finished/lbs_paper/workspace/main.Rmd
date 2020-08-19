@@ -9,7 +9,7 @@ licenses:
   text: CC-BY-4.0
 date: "22 July 2020"
 output: html_document
-abstract: "Because outdoor navigation systems are used frequently, people are accustomed to automatic and accurate localization. To achieve the same inside buildings, extensive infrastructure is needed, which is either cost- or labour-intensive. An alternative approach is to involve users in the localization process, for example, by asking them to scan QR codes for which the location within the building is stored in a database. In this work, we present a concept for creating indoor navigation systems to assist first-time visitors in navigating public buildings based on stepwise self-localization. Based on this concept, we designed and implemented two prototypes: a mixed approach combining a stationary kiosk system with a smartphone application and a stand-alone mobile application. We evaluated the two prototypes separately against an existing stationary kiosk display concerning efficiency, workload, and user acceptance. The results provide initial evidence that the participants favoured the two prototypes over the kiosk display while also revealing several limitations that should be addressed in a next iteration. We also showed that based on a common infrastructure it is possible to test different implementations independently."
+abstract: "Because outdoor navigation systems are used frequently, people are accustomed to automatic and accurate localization. To achieve the same inside buildings, extensive infrastructure is needed, which is either cost- or labour-intensive. An alternative approach is to involve users in the localization process, for example, by asking them to scan QR codes for which the location within the building is stored in a database. In this work, we present a concept for creating low-cost indoor navigation systems to assist first-time visitors in navigating public buildings based on stepwise self-localization. Based on this concept, we designed and implemented two prototypes: a mixed approach combining a stationary kiosk system with a smartphone application and a stand-alone mobile application. We evaluated the two prototypes separately against an existing stationary kiosk display concerning efficiency, workload, and user acceptance. The results provide initial evidence that the participants favoured the two prototypes over the kiosk display while also revealing several limitations that should be addressed in a next iteration."
 ---
 
 <style>body{text-align:justify}</style>
@@ -63,7 +63,9 @@ getAverageValue = function(dataset, column) {
 }
 ```
 
-## Study A
+## User study A
+
+In the following, we report on the results of study A, which compared the existingkiosk  display  and  the  mixed  approach  composed  of  a  newly  implemented  kiosksystem and a mobile application.
 
 ```{r, echo=FALSE, results="hide", message=FALSE, comment=FALSE, warning=FALSE}
 getAllSenseOfDir(studyA_participants)
@@ -103,7 +105,7 @@ The average NASA TLX score for the kiosk system was `r mean(studyA_nasa_kiosk$na
 The largest differences exist for mental demand in favour of the mobile application and temporal demand in favour of the kiosk system. 
 The differences of the remaining scales are marginal: 
 The kiosk system achieved better ratings with respect to the participants' performance and invested effort. 
-In contrast, they required less physical demand and were less frustrated when using the mobile application.
+In contrast, they required less physical effort and were less frustrated when using the mobile application.
 
 ```{r, echo=FALSE, results="hide", message=FALSE, comment=FALSE, warning=FALSE}
 library(ggplot2)
@@ -124,16 +126,19 @@ df <- data.frame(System = c("kiosk", "mixed"),
                  frustration = c(mean(studyA_results[rowsKiosk,]$frustration), mean(studyA_results[rowsMixed,]$frustration)))
 DFtall <- df %>% gather(key = NasaTLX, value = Score, mental:frustration)
 
-png(file="studyA_nasa.png")
+#png(file="studyA_nasa.png")
 ggplot(DFtall, aes(NasaTLX, Score, fill = System)) + 
   geom_col(position = "dodge") +
   geom_text(aes(label = round(Score, 1)), position = position_dodge(width = 1), vjust = 1.5, hjust = 0.5, size = size) +
   coord_cartesian(ylim = c(1, 20)) +
   theme(text = element_text(size=20), axis.text.x = element_text(angle=90, hjust=1), legend.position = c(0.9, 0.8)) 
-dev.off()            
+#dev.off()            
 ```
 
 #### User Acceptance (1 = do not agree at all, 5 = fully agree ) 
+
+The figure  provides  an  overview  of  the  user  experience  and  usability  ratings.These were similarly close to each other. The kiosk system scored better with re-spect to understandability, likelihood for recommending the system to others, andapplicability to other buildings. Participants rated ease of use and orientation supportin favour of the mobile application. The values for guidance support and reliabilityare identical.
+
 ```{r, echo=FALSE, message=FALSE, comment=FALSE, warning=FALSE}
 rowsKiosk = 1:17
 rowsMixed = 18:34
@@ -147,17 +152,20 @@ df <- data.frame(group = c("kiosk", "mixed"),
                  applicability = c(mean(studyA_results[rowsKiosk,]$applicability), mean(studyA_results[rowsMixed,]$applicability)))
 DFtall <- df %>% gather(key = Usability, value = Score, ease_of_use:applicability)
 
-png(file="studyA_use.png")
+#png(file="studyA_use.png")
 ggplot(DFtall, aes(Usability, Score, fill = group)) + 
   geom_col(position = "dodge") +
   geom_text(aes(label = round(Score, 1)), position = position_dodge(width = 1), vjust = 1.5, hjust = 0.5, size = size) +
   coord_cartesian(ylim = c(1, 5)) + 
   theme(text = element_text(size=20), axis.text.x = element_text(angle=90, hjust=1), legend.position = "none") 
-dev.off()
+#dev.off()
 ```
 
 
 ## Study B
+
+Study B compared the existing kiosk display with the stand-alone mobile app.
+
 ```{r, echo=FALSE, results="hide", message=FALSE, comment=FALSE, warning=FALSE}
 options(digits=1)
 getAllSenseOfDir(studyB_results)
@@ -208,7 +216,7 @@ Minor differences exist with respect to effort as well as temporal demand in fav
 ```{r, echo=FALSE, message=FALSE, comment=FALSE, warning=FALSE}
 rowsKiosk = 1:14
 rowsMixed = 15:28
-df <- data.frame(System = c("kiosk", "mixed"),
+df <- data.frame(System = c("kiosk", "mobile"),
                  mental = c(mean(studyB_results[rowsKiosk,]$mental), mean(studyB_results[rowsMixed,]$mental)),
                  physical = c(mean(studyB_results[rowsKiosk,]$physical), mean(studyB_results[rowsMixed,]$physical)),
                  temporal = c(mean(studyB_results[rowsKiosk,]$temporal), mean(studyB_results[rowsMixed,]$temporal)),
@@ -217,20 +225,23 @@ df <- data.frame(System = c("kiosk", "mixed"),
                  frustration = c(mean(studyB_results[rowsKiosk,]$frustration), mean(studyB_results[rowsMixed,]$frustration)))
 DFtall <- df %>% gather(key = NasaTLX, value = Score, mental:frustration)
 
-png(file="studyB_nasa.png")
+#png(file="studyB_nasa.png")
 ggplot(DFtall, aes(NasaTLX, Score, fill = System)) + 
   geom_col(position = "dodge") +
   geom_text(aes(label = round(Score, 1)), position = position_dodge(width = 1), vjust = 1.5, hjust = 0.5, size = size) +
   coord_cartesian(ylim = c(1, 20)) +
   theme(text = element_text(size=20), axis.text.x = element_text(angle=90, hjust=1), legend.position = c(0.9, 0.8)) 
-dev.off()            
+#dev.off()            
 ```
 
 #### User Acceptance (1 = do not agree at all, 5 = fully agree ) 
+
+The figure provides an overview of the usability ratings related to user experienceand usability. The mobile app scored better regarding reliability only. Both systemsachieved the same rating for orientation support. The kiosk system was perceivedas being easier to use, more understandable, and providing better guidance. Further-more, the participants would rather recommend the kiosk system and find it moreapplicable to other buildings.
+
 ```{r, echo=FALSE, message=FALSE, comment=FALSE, warning=FALSE}
 rowsKiosk = 1:14
 rowsMixed = 15:28
-df <- data.frame(group = c("kiosk", "app"),
+df <- data.frame(group = c("kiosk", "mobile"),
                  ease_of_use = c(mean(studyB_results[rowsKiosk,]$easeofuse), mean(studyB_results[rowsMixed,]$easeofuse)),
                  understanding = c(mean(studyB_results[rowsKiosk,]$understanding), mean(studyB_results[rowsMixed,]$understanding)),
                  guidance = c(mean(studyB_results[rowsKiosk,]$guidance), mean(studyB_results[rowsMixed,]$guidance)),
@@ -240,14 +251,14 @@ df <- data.frame(group = c("kiosk", "app"),
                  applicability = c(mean(studyB_results[rowsKiosk,]$applicability), mean(studyB_results[rowsMixed,]$applicability)))
 DFtall <- df %>% gather(key = Usability, value = Score, ease_of_use:applicability)
 
-png(file="studyB_use.png")
+#png(file="studyB_use.png")
 ggplot(DFtall, aes(Usability, Score, fill = group)) + 
   geom_col(position = "dodge") +
   scale_y_continuous(breaks = c(1:5), labels = c("1", "2", "3", "4", "5")) +
   geom_text(aes(label = round(Score, 1)), position = position_dodge(width = 1), vjust = 1.5, hjust = 0.5, size = size) +
   coord_cartesian(ylim = c(1, 5)) +
   theme(text = element_text(size=20), axis.text.x = element_text(angle=90, hjust=1), legend.position = "none")  
-dev.off()
+#dev.off()
 ```
 
 
